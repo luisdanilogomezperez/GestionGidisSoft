@@ -5,7 +5,7 @@ async function login() {
     data.email = document.getElementById('email').value;
     data.clave = document.getElementById('clave').value;
 
-    const request = await fetch('api/v1/usuario/login', {
+    const request = await fetch('api/v1/usuarios/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
