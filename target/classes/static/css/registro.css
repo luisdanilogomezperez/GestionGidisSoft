@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
     margin: 0;
@@ -7,21 +8,48 @@
 
   }
   
-body{
-  background: rgb(255,255,255);
-background: radial-gradient(circle, rgba(255,255,255,1) 15%, rgba(255,169,169,1) 54%, rgba(255,0,0,1) 99%);
+body {
+    background: #456;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(../img/19.jpg);
+    background-repeat: no-repeat;
+    overflow: auto;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
-
-
-
-.form2{
-  margin-top: 20%;
-  margin-left: 25%;
-  margin-right: 10%;
-  margin-bottom: 10%;
+.register{
+    font-size: 16px;
+    background-color: white;
+    border-radius: 5px;
+    padding-left: 20px;
 }
-
-
+.titulo{
+    background-color: white;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+    border: 1px solid #000000;
+    width: 100%;
+}
+.encabezado {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.encabezado{
+    background: #D31024;
+    padding: 10px;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+}
+.formulario{
+    padding-top:10px;
+}
+.formulario p{
+    font-size: 15pt;
+}
 
 select{
   object-fit: cover;
@@ -29,34 +57,66 @@ select{
    
 }
 
+.login-opciones {
+  font-weight: normal;
+  text-align: center;
+  padding-top: 5px;
+}
 
-  
-input{
-    text-align: center;
-    object-fit: cover;
-    width:50%;
-    background-color: white;
-    
+.container{
+    max-width: 440px;
+    padding: 0 20px;
+    margin: 50px auto;
+}
+
+.container input[type="submit"] {
+  border-color: transparent;
+  color: #fff;
 }
 
 #paisR{
   border: 1px solid #000000;
 }
-
 #registrar{
-  box-sizing: border-box; 
-    width: 50%;
-    height: 31px;
-    background: #D31024;
-    border: 1px solid #000000;
-    border-radius: 0px 0px 0px 20px;
+    width: 100%;
+    text-align: center;
 }
 
 #img{
   object-fit: cover;
   margin-left:  auto;
-  width:50%;
-  height:100%;
   margin-bottom: 20px;
+  max-width: 100%;
+  height: auto;
+  width: 30vw;
+}
+
+.register input[type="text"],
+.register input[type="email"],
+.register input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+  text-align: left;
+  font-size: 14pt;
+  height: 25px;
+  width: 80%;
+  border-radius: 5px;
+}
+
+
+/* Text fields' focus effect */
+.register input[type="email"]:focus,
+.register input[type="password"]:focus {
+  border-color: #888;
+}
+
+.register input[type="submit"]:hover {
+  background: #D31024;
+}
+
+/* Buttons' focus effect */
+.register input[type="submit"]:focus {
+  border-color: #D31024;
 }
   

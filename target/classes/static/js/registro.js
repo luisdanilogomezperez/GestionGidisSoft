@@ -1,14 +1,19 @@
 async function registro() {
     let data = {};
 
-    data.nombre = document.getElementById('nombre').value;
-    data.apellido = document.getElementById('apellido').value;
-    data.email = document.getElementById('email').value;
+    data.username = document.getElementById('username').value;
     data.clave = document.getElementById('clave').value;
-    data.documento = document.getElementById('documento').value;
+    data.primerNombre = document.getElementById('primerNombre').value;
+    data.segundoNombre = document.getElementById('segundoNombre').value;
+    data.primerApellido = document.getElementById('primerApellido').value;
+    data.segundoApellido = document.getElementById('segundoApellido').value;
     data.telefono = document.getElementById('telefono').value;
+    data.direccion = document.getElementById('direccion').value;
+    data.documento = document.getElementById('documento').value;
+    data.email = document.getElementById('email').value;
 
-    const request = await fetch('/api/v1/usuario/guardar', {
+
+    const request = await fetch('/api/v1/usuarios/guardar', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -18,11 +23,11 @@ async function registro() {
     }).then(res => res.json())
         .then(data => {
             if (data.guardo) {
-                alert("Usuario Registrado");
+                alert("Usuario registrado exitosamente");
                 window.location.href = '../index.html';
             }
             else
-                alert("No se registró");
+                alert("¡Hubo un error durante el registro!");
         }).catch( err => {
             alert("Error de registro.");
         });
