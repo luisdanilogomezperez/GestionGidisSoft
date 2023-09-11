@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins',sans-serif;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  background-image: url(../img/fondo.jpg);
+}
+#guardar{
+    box-sizing: border-box; 
+      width: 20%;
+      height: 31px;
+      background: #D31024;
+      border: 1px solid #000000;
+      border-radius: 0px 0px 0px 20px;
+      margin-left: 80%;
+  }
+  #cuerpo{
+    background-color: white;
+    height: 100%;
+}

@@ -1,0 +1,62 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+
+  }
+  
+body{
+  background: rgb(255,255,255);
+background: radial-gradient(circle, rgba(255,255,255,1) 15%, rgba(255,169,169,1) 54%, rgba(255,0,0,1) 99%);
+}
+
+
+
+.form2{
+  margin-top: 20%;
+  margin-left: 25%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+}
+
+
+
+select{
+  object-fit: cover;
+    width:50% !important;
+   
+}
+
+
+  
+input{
+    text-align: center;
+    object-fit: cover;
+    width:50%;
+    background-color: white;
+    
+}
+
+#paisR{
+  border: 1px solid #000000;
+}
+
+#registrar{
+  box-sizing: border-box; 
+    width: 50%;
+    height: 31px;
+    background: #D31024;
+    border: 1px solid #000000;
+    border-radius: 0px 0px 0px 20px;
+}
+
+#img{
+  object-fit: cover;
+  margin-left:  auto;
+  width:50%;
+  height:100%;
+  margin-bottom: 20px;
+}
+  

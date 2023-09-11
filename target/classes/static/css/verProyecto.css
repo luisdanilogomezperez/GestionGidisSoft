@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+    background-image: url(../img/fondo.jpg);
+}
+.label{
+    color: black;
+    font-weight: bold;
+}
+#proyecto{
+    width:100%;
+    height:auto;
+    border:3px solid brown;
+   border-radius:22px;
+   background-color:#fdf5d8;
+   padding:9px;
+   
+ }
+ #cuerpo{
+    background-color: white;
+    height: 100%;
+    
+}
