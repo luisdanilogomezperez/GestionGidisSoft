@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../css/registro.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -18,68 +19,155 @@
     </div>
     <h2 class="encabezado">Registro GIDIS Soft </h2>
     <div class="register">
-        <div class="formulario">
+<!--        <div class="formulario">-->
+<!--            <form onsubmit="event.preventDefault(); registro()">-->
+<!--                <div class="row justify-content-around">-->
+<!--                    <div class="col-md-5 col-sm-12">-->
+<!--                        <p>-->
+<!--                            <label>Primer Nombre</label><br>-->
+<!--                            <input type="text" id="primerNombre" name="primerNombre" placeholder="Primer Nombre" required><br>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Primer Apellido</label><br>-->
+<!--                            <input type="text" id="primerApellido" name="primerApellido" placeholder="Primer Apellido" required><br>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Documento</label><br>-->
+<!--                            <input type="text" id="documento" name="documento" placeholder="Documento" required>-->
+<!--                        </p>-->
+
+<!--                        <p>-->
+<!--                            <label>Direccion</label><br>-->
+<!--                            <input type="text" id="direccion" name="direccion" placeholder="Ejemplo: Calle 1 #4E-5" required>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Email</label><br>-->
+<!--                            <input type="email" id="email" name="email" placeholder="Email" required>-->
+<!--                        </p>-->
+
+
+<!--                    </div>-->
+
+<!--                    <div class="col-md-5 col-sm-12">-->
+<!--                        <p>-->
+<!--                            <label>Segundo Nombre</label><br>-->
+<!--                            <input type="text" id="segundoNombre" name="segundoNombre" placeholder="Segundo Nombre" required>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Segundo Apellido</label><br>-->
+<!--                            <input type="text" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido" required>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Telefono</label><br>-->
+<!--                            <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Usuario</label><br>-->
+<!--                            <input type="text" id="username" name="username" placeholder="Usuario" required>-->
+<!--                        </p>-->
+<!--                        <p>-->
+<!--                            <label>Contraseña</label><br>-->
+<!--                            <input type="password" id="clave" name="clave" placeholder="Contraseña" required>-->
+<!--                        </p>-->
+
+<!--                    </div>-->
+
+
+
+<!--                </div>-->
+
+<!--            </form>-->
+<!--        </div>-->
+        <div class="">
             <form onsubmit="event.preventDefault(); registro()">
-                <div class="row justify-content-around">
-                    <div class="col-md-5 col-sm-12">
-                        <p>
-                            <label>Primer Nombre</label><br>
-                            <input type="text" id="primerNombre" name="primerNombre" placeholder="Primer Nombre" required><br>
-                        </p>
-                        <p>
-                            <label>Primer Apellido</label><br>
-                            <input type="text" id="primerApellido" name="primerApellido" placeholder="Primer Apellido" required><br>
-                        </p>
-                        <p>
-                            <label>Documento</label><br>
-                            <input type="text" id="documento" name="documento" placeholder="Documento" required>
-                        </p>
 
-                        <p>
-                            <label>Direccion</label><br>
-                            <input type="text" id="direccion" name="direccion" placeholder="Ejemplo: Calle 1 #4E-5" required>
-                        </p>
-                        <p>
-                            <label>Email</label><br>
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </p>
-
-
+                <br><br>
+                <div class="row">
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Primer Nombre</label>
+                            <input type="text" class="form-control" name="primerNombre" id="primerNombre"
+                                   placeholder="" required>
+                        </div>
                     </div>
-
-                    <div class="col-md-5 col-sm-12">
-                        <p>
-                            <label>Segundo Nombre</label><br>
-                            <input type="text" id="segundoNombre" name="segundoNombre" placeholder="Segundo Nombre" required>
-                        </p>
-                        <p>
-                            <label>Segundo Apellido</label><br>
-                            <input type="text" id="segundoApellido" name="segundoApellido" placeholder="Segundo Apellido" required>
-                        </p>
-                        <p>
-                            <label>Telefono</label><br>
-                            <input type="text" id="telefono" name="telefono" placeholder="Telefono" required>
-                        </p>
-                        <p>
-                            <label>Usuario</label><br>
-                            <input type="text" id="username" name="username" placeholder="Usuario" required>
-                        </p>
-                        <p>
-                            <label>Contraseña</label><br>
-                            <input type="password" id="clave" name="clave" placeholder="Contraseña" required>
-                        </p>
-
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Segundo Nombre</label>
+                            <input type="text" class="form-control" name="segundoNombre" id="segundoNombre"
+                                   placeholder="" required>
+                        </div>
                     </div>
-                    <div col-sm-12 col-md-12 id="registrar">
-                        <input type="submit" class="btn btn-danger" value="Registrarse">
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Primer Apellido</label>
+                            <input type="text" class="form-control" name="primerApellido" id="primerApellido"
+                                   placeholder="" required>
+                        </div>
                     </div>
-
-
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Segundo Apellido</label>
+                            <input type="text" class="form-control" name="segundoApellido" id="segundoApellido"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Documento</label>
+                            <input type="text" class="form-control" name="documento" id="documento"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Teléfono</label>
+                            <input type="text" class="form-control" name="telefono" id="telefono"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Dirección</label>
+                            <input type="text" class="form-control" name="direccion" id="direccion"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-3">
+                        <div class="form-group">
+                            <label for="input">Nombre de Usuario</label>
+                            <input type="text" class="form-control" name="username" id="username"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-xd-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Email</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                   placeholder="" required>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Contraseña</label>
+                            <input type="password" class="form-control" name="clave" id="clave"
+                                   placeholder="" required>
+                        </div>
+                    </div>
                 </div>
 
+
+
+                <!--Boton-->
+                <br>
+                <div col-sm-12 col-md-12 id="registrar">
+                    <input type="submit" class="btn btn-danger" value="Registrarse">
+                </div>
             </form>
         </div>
-
         <div class="login-opciones">
             <span>¿Ya tienes una cuenta?</span>
             <a class="link-dark" class="forgot-pass" href="../index.html" id="link2"> Iniciar Sesión</a>

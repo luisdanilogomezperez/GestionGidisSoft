@@ -23,12 +23,35 @@ async function registro() {
     }).then(res => res.json())
         .then(data => {
             if (data.guardo) {
-                alert("Usuario registrado exitosamente");
-                window.location.href = '../index.html';
+                Swal.fire({
+                    title: "Éxito",
+                    text: "El registro se ha completado con éxito.",
+                    icon: "success",
+                    timer: 3000,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                }).then(() => {
+                    // Esta función se ejecutará después de que el usuario cierre el SweetAlert
+                    window.location.href = '../index.html'; // Redirige a la página deseada
+                });
             }
             else
-                alert("¡Hubo un error durante el registro!");
-        }).catch( err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                html: '<div style="text-align: justify;">' +
+                'Se ha producido un error durante el registro.<br/><br/>' +
+                'Al parecer, ya existe un usuario registrado con la misma dirección de correo electrónico, o te recomendamos verificar cuidadosamente los datos proporcionados.' +
+                '</div>',
+                showCancelButton: false,
+                showConfirmButton: true
+            }).then(() => {
+                // Puedes agregar más acciones después de que se cierre la alerta si es necesario
+                console.log('Alerta de error cerrada');
+            });
+
+
+    }).catch( err => {
             alert("Error de registro.");
         });
 
