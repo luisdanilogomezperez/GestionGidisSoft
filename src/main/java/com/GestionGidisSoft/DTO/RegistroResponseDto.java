@@ -1,8 +1,5 @@
 package com.GestionGidisSoft.DTO;
 
-import lombok.*;
-
-@Builder
 public class RegistroResponseDto {
 
     private boolean guardo;

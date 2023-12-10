@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/registrarArticulo.css">
+    <title>Registro articulos</title>
+</head>
+
+<body>
+    <!--Navbar-->
+    <div class="container" id="cuerpo">
+    <nav class="navbar navbar-expand-lg   static-top">
+        <div class="container">
+            <a class="navbar-brand" href="">
+                <img src="/img/logo_ufps.jpg" alt="..." height="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="inicio.html">Volver</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="index.html">Salir <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Formulario-->
+    <div class="container">
+        <form onsubmit="event.preventDefault(); registroArticulo()">
+            <div class="form-group">
+                <label for="input">Titulo</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo" required>
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-7">
+                    <div class="form-group">
+                        <label for="input">Coautores</label>
+                        <input type="text" class="form-control" name="coautores" id="coautores" placeholder="Coautores"
+                            required>
+                    </div>
+                </div>
+
+            </div><br>
+            <div class="form-group">
+                <label for="input">Nombre de Revista</label>
+                <input type="text" class="form-control" name="nombreRevista" id="nombreRevista" placeholder="Nombre de Revista" required>
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-4">
+                    <div class="form-group">
+                        <label for="input">Fasciculo de Revista</label>
+                        <input type="text" class="form-control" name="fasciculoRevista" id="fasciculoRevista" placeholder="Fasciculo de Revista" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Ciudad</label>
+                        <input type="text" name="ciudad" class="form-control" id="ciudad" placeholder="Ciudad" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="input">Serie Revista</label>
+                        <input type="text" class="form-control" name="serieRevista" id="serieRevista"
+                            placeholder="Serie Revista" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="input">DOI</label>
+                        <input type="text" name="digitalObjectIdentifierDOI" class="form-control" id="digitalObjectIdentifierDOI" placeholder="DOI" required>
+                    </div>
+                </div>
+
+            </div><br>
+
+            <div class="form-group">
+                <label for="input">Medio de divulgación</label>
+                <input type="text" class="form-control" name="medioDivulgacion" id="medioDivulgacion" placeholder="Medio de divulgación">
+            </div><br>
+
+            <div class="row">
+                <div class="col-xd-12 col-sm-3">
+                    <div class="form-group">
+                        <label for="input">Idioma</label>
+                        <input type="text" class="form-control" name="idioma" id="idioma" placeholder="Idioma" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Volumen</label>
+                        <input type="text" name="volumen" class="form-control" id="volumen" placeholder="Volumen" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label for="input">Tipo Artículo</label>
+                        <input type="text" class="form-control" name="tipoArticulo" id="tipoArticulo"
+                               placeholder="Tipo artículo" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Página Inicial</label>
+                        <input type="text" name="paginaInicial" class="form-control" id="paginaInicial" placeholder="Página Inicial" required>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Página Final</label>
+                        <input type="text" name="paginaFinal" class="form-control" id="paginaFinal" placeholder="Página Final" required>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--Boton-->
+            <br>
+            <button type="submit" class="btn btn-primary" value="registrar" id="guardar">Guardar</button>
+        </form>
+    </div>
+    </div>
+
+</body>
+<script src="../static/js/articulos.js"></script>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+    <title>Editar Libro</title>
+    <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <div class="container" >
+    <nav class="navbar navbar-expand-lg static-top">
+        <div class="container" id="cuerpo">
+            <a class="navbar-brand" href="">
+                <img src="/img/logo_ufps.jpg" alt="..." height="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/libros/verLibros}">Volver</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Formulario-->
+    <div class="container" id="libro">
+        <form th:action="@{/libros/save}" th:object="${libro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-12 TitleCell">
+                        Libro completo resultado de investigación
+                    </div>
+                </div>
+                <div class="row" style="font-size: 16px">
+                    <div class="col col-md-8" >
+                        A continuación ingrese los datos del libro completo resultado de investigación. <br/>Recuerde que los campos marcados con asterisco (*) son obligatorios.
+                        <br/>
+                        <strong>Recomendaci&oacute;n:</strong> Verifique la informaci&oacute;n diligenciada antes de pulsar la opción &quot;Guardar&quot;.
+                        <br>
+                        Una vez guardada esta informaci&oacute;n se desplegar&aacute;n las opciones para registrar coautores, palabras clave, referencias en revistas, referencias en libros, &aacute;reas de conocimiento y reconocimientos.
+                        <br>
+                        Pulse el enlace <a href="/cvlac/EnLibro/all.do" > "Regresar" </a> para volver al listado de libros resultado de investigaci&oacute;n
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="form-group col-xd-12 col-sm-12">
+                        <label for="titulo">Titulo(*)</label>
+                        <input th:field="*{titulo}" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required/>
+                    </div>
+                    <div class="form-group col-s-6 col-xd-6 col-sm-3">
+                        <label for="input">Año(*)</label>
+                        <div id="anioLibro" th:attr="data-anioLibro=*{anio}"></div>
+                        <select th:field="*{anio}" class="form-control" name="anio" id="anio" required>
+                        </select>
+                    </div>
+                    <div class="form-group col-s-6 col-xd-6 col-sm-3">
+                        <label for="input">Mes(*)</label>
+                        <div id="mesLibro" th:attr="data-mesLibro=*{mes}"></div>
+                        <select th:field="*{mes}" class="form-control" name="meses"  id="meses" required>
+                        </select>
+                    </div>
+                    <div class="col-xd-12 col-sm-6">
+                        <label for="input">Lugar de Publicación(*)</label>
+                        <div id="lugarLibro" th:attr="data-lugarLibro=*{lugarPublicacion}"></div>
+                        <select th:field="*{lugarPublicacion}" class="form-control" name="lugarPublicacion" id="lugarPublicacion" required>
+                        </select>
+                    </div>
+
+                    <div class="col col-md-6" >
+                        <label for="isbn">ISBN(*)</label>
+                        <br>
+                        <input type="text" th:field="*{isbn}" class="form-control" id="isbn" name="isbn" maxlength="13" size="13" required/> <font size="0.5"> Ej: 978-958-15481-8-8</font>
+                        <p id="mensaje"></p>
+
+                    </div>
+                    <div class="col-xd-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="input">Medio de divulgación</label>
+                            <select th:field="*{medioDivulgacion}" class="form-control" id="medioDivulgacion" required>
+                                <option value=""></option>
+                                <option value="Papel">Papel</option>
+                                <option value="Electronico">Electronico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xd-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Tipo de editorial(*)</label>
+                            <select th:field="*{tipoEditorial}" class="form-control" id="tipoEditorial" required>
+                                <option value=""></option>
+                                <option value="Editorial Nacional">Editorial Nacional</option>
+                                <option value="Editorial Internacional">Editorial Internacional</option>
+                                <option value="Libro indexado en el Book Citation Index (BCI) / Libro Indexado en Scopus">Libro indexado en el Book Citation Index (BCI) / Libro Indexado en Scopus</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Editorial(*)</label>
+                            <input type="text" th:field="*{editorial}" class="form-control" name="editorial" id="editorial" required />
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Disciplina(*)</label>
+                            <input type="text" th:field="*{disciplina}" class="form-control" name="disciplina" id="disciplina" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group btn1">
+                <button type="submit" class="btn btn-primary" id="guardar" onclick="validarFormulario()">Guardar</button>
+            </div>
+            <br>
+        </form>
+    </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+<script th:src="@{/js/editarLibro.js}"  type="text/javascript"></script>
+
+</html>

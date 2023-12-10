@@ -1,118 +1,86 @@
-async function verLibro(){
-    const datosURL = window.location.search;
-    const urlParams = new URLSearchParams(datosURL);
-    let id = urlParams.get('id');
-    const request = await fetch(`/api/v1/libro/${id}`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
+document.addEventListener("DOMContentLoaded", function() {
+    cargarPaises()
+    ComboAno()
+    cargarMeses()
+
+    // Obtén el año del Libro desde el atributo de datos
+    var lugarLibro = document.getElementById("lugarLibro").getAttribute("data-lugarLibro");
+    var anoLibro = document.getElementById("anioLibro").getAttribute("data-anioLibro");
+    var mesLibro = document.getElementById("mesLibro").getAttribute("data-mesLibro");
+
+    // Si hay un año de libro, establece ese año como seleccionado
+
+    if (lugarLibro) {
+        var select = document.getElementById("lugarPublicacion");
+        select.value = lugarLibro;
+    }
+    if (anoLibro) {
+        var select = document.getElementById("anio");
+        select.value = anoLibro;
+    }
+    if (mesLibro) {
+        var select = document.getElementById("meses");
+        select.value = mesLibro;
+    }
+
+});
+function ComboAno() {
+    var n = (new Date()).getFullYear();
+    var select = document.getElementById("anio");
+    for (var i = n; i >= 1900; i--) {
+        select.options.add(new Option(i, i));
+    }
+}
+
+function cargarMeses() {
+    var select = document.getElementById("meses");
+    var meses = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ]
+
+    // Recorremos el array de meses y agregamos cada uno como una opción
+    for (var i = 0; i < meses.length; i++) {
+        var option = document.createElement("option");
+        option.text = meses[i];
+        option.value = meses[i]; // El valor será el nombre del mes
+        select.add(option);
+    }
+}
+function cargarPaises(paisPublicacion) {
+    var select = document.getElementById("lugarPublicacion");
+
+    // Hacer una solicitud a la API
+    fetch("https://restcountries.com/v2/all")
+        .then(function(response) {
+        return response.json();
     })
-    const res = await request.json();
-    if(!res){
-        document.getElementById("editLibro").innerHTML = "<td>No hay libros disponibles</td>"
-    }
-    else{
-        console.log(res)
-        document.getElementById("editLibro").innerHTML = ""
-        let id = res.id
-        let titulo = res.titulo
-        let isbn = res.isbn
-        let lugarPublicacion = res.lugarPublicacion
-        let editorial = res.editorial
-        let disciplina = res.disciplina
-        let certificadoCreditos = res.certificadoCreditos
-        let certificadoInstitucionAvala = res.certificadoInstitucionAvala
+        .then(function(data) {
+        // Recorrer los datos y agregar opciones al select
+        data.forEach(function(pais) {
+            var option = document.createElement("option");
+            option.text = pais.name;
+            option.value = pais.name; // Puedes usar el código del país como valor si lo deseas
 
+            // Establecer el atributo 'selected' si es el país de publicación
+            if (pais.name === paisPublicacion) {
+                option.selected = true;
+            }
 
-        document.getElementById("editLibro").innerHTML +=
-            ` <form onsubmit="event.preventDefault(); editarLibro(${id})">
-            <div class="form-group">
-                <label for="input">Titulo</label>
-                <input type="text" class="form-control" value="${titulo}" name="titulo" id="titulo" placeholder="Titulo" required>
-            </div><br>
-            <div class="row">
-                <div class="col-xd-12 col-sm-7">
-                    <div class="form-group">
-                        <label for="input">Lugar de Publicación</label>
-                        <input type="text" class="form-control" value="${lugarPublicacion}" name="lugarPublicacion" id="lugarPublicacion" placeholder="Lugar de Publicación"
-                            required>
-                    </div>
-                </div>
-
-            </div><br>
-            <div class="form-group">
-                <label for="input">Editorial</label>
-                <input type="text" class="form-control" value="${editorial}" name="editorial" id="editorial" placeholder="Editorial" required>
-            </div><br>
-            <div class="row">
-                <div class="col-xd-12 col-sm-4">
-                    <div class="form-group">
-                        <label for="input">Disciplina</label>
-                        <input type="text" class="form-control" value="${disciplina}" name="disciplina" id="disciplina" placeholder="Disciplina" required>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label for="input">Certificado Creditos</label>
-                        <input type="text" name="certificadoCreditos" value="${certificadoCreditos}" class="form-control" id="certificadoCreditos" placeholder="Certificado Creditos" required>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label for="input">Certificado Institución que avala</label>
-                        <input type="text" class="form-control" value="${certificadoInstitucionAvala}" name="certificadoInstitucionAvala" id="certificadoInstitucionAvala"
-                            placeholder="Certificado Institución que avala" required>
-                    </div>
-                </div>
-
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label for="input">ISBN</label>
-                        <input type="text" name="isbn" value="${isbn}" class="form-control" id="isbn" placeholder="ISBN" required>
-                    </div>
-                </div>
-
-            </div><br>
-
-
-
-
-            <!--Boton-->
-            <br>
-            <button type="submit" class="btn btn-primary" value="registrar" id="guardar">Editar</button>
-        </form>
-        `
-    }
-
+            select.add(option);
+        });
+    })
+        .catch(function(error) {
+        console.error("Error al cargar los países:", error);
+    });
 }
-verLibro()
 
-async function editarLibro(id) {
-    let data = {};
+// Obtén el país de publicación desde el atributo de datos
+var paisPublicacion = document.getElementById("lugarLibro").getAttribute("data-lugarLibro");
 
-    data.titulo = document.getElementById('titulo').value;
-    data.isbn = document.getElementById('isbn').value;
-    data.lugarPublicacion = document.getElementById('lugarPublicacion').value;
-    data.editorial = document.getElementById('editorial').value;
-    data.disciplina = document.getElementById('disciplina').value;
-    data.certificadoCreditos = document.getElementById('certificadoCreditos').value;
-    data.certificadoInstitucionAvala = document.getElementById('certificadoInstitucionAvala').value;
+// Llama a la función para cargar los países y seleccionar automáticamente el país de publicación
+cargarPaises(paisPublicacion);
 
-
-    const request = await fetch(`/api/v1/libro/editar/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(() => {
-                alert("Libro Actualizado");
-                window.location.href = './viewLibros.html'
-
-        })
-}
+setTimeout(function() {
+    $('#mensajeAlerta').fadeOut('slow');
+}, 5000);

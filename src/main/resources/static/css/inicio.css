@@ -1,57 +1,114 @@
 *{
-    
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins',sans-serif;
 }
-html,body{
-    height: 100%;
-    width: 100%;
+body{
+    height: auto;
+    display: grid;
+    place-items: center;
     background-image: url(../img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: Poppins-bold;
+    margin: 0px;
+}
+.cuerpo {
+    display: grid;
+    grid-template-columns: 700px;
+    grid-template-rows: auto;
+    gap: 1em;
+    box-shadow: 0 0 10px 5px rgba(99, 93, 93, 0.7);
+    border-radius: 5px;
+}
+.menu {
+    display: grid;
+    grid-template-rows: 100px 40px auto;
+    background-color: white;
+    box-shadow: 0 0 10px 5px rgba(99, 93, 93, 0.7);
+    border-radius: 5px;
+    gap: 1em;
+}
+.titulo {
+    display: grid;
+    grid-template-columns: 70% 15% 15%;
+    grid-template-rows: 100px:
 }
 
-#img{
-    object-fit: cover;
-    width:80%;
-    height:50%; 
-    margin-bottom: 10px;
-    margin-left: 8%;
-    
-}
-#cuerpo{
-    
-  width: 50%;
-  height: auto;
-  background-color: white;
-  /* centrar vertical y horizontalmente */
-  position: absolute;
-  top: 27%;
-  left: 30%;
-  margin: -25px 0 0 -25px;
-  border-radius: 5%;
+.titulo > div img{
+    height: 80%;
+    width: 100%;
+    border-radius: 5px;
 }
 
-#art{
-    margin-left: 25%;
-}
-#articulos{
-    margin-left: 30%;
-}
-#sal{
-    margin-left: 20%;
-}
-#salir{
-    margin-left: 30%;
-}
-#pro{
-    margin-left: 20%;
-}
-#proyectos{
-    margin-left: 25%;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1em;
+    padding: 5px;
+    place-items: center;
+    max-height: 100%;
+    max-width: 100%;
 }
 
-#lib{
-    margin-left: 25%;
+@media (max-width: 700px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
-#libros{
-    margin-left: 30%;
+
+.grid div:hover {
+    box-shadow: 0 0 10px 5px rgba(99, 93, 93, 0.7);
+    border-radius: 5px;
 }
+.grid div {
+    padding: 2px;
+    text-align: center;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+}
+
+.popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.popup button {
+    padding: 10px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+

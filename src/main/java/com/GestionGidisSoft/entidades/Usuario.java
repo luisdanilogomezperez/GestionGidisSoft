@@ -12,8 +12,26 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private long usuarioId;
+    @Transient
+    private String usuarioRol;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUsuarioRol() {
+        return usuarioRol;
+    }
+
+    public void setUsuarioRol(String usuarioRol) {
+        this.usuarioRol = usuarioRol;
+    }
 
     private String username;
 
@@ -42,13 +60,12 @@ public class Usuario {
     @JsonIgnore
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
-
     public long getUsuarioId() {
-        return usuarioId;
+        return id;
     }
 
     public void setUsuarioId(long usuarioId) {
-        this.usuarioId = usuarioId;
+        this.id = usuarioId;
     }
 
     public String getUsername() {

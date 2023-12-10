@@ -10,6 +10,7 @@ import com.GestionGidisSoft.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -26,7 +27,6 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         Usuario usuarioLocal = usuarioRepo.findByUsername(usuario.getUsername());
 
         if (usuarioLocal != null) {
-            System.out.println("El usuario ya existe");
             throw new Exception("El usuario ya esta presente");
         } else {
             for (UsuarioRol usuarioRol : usuarioRoles) {
@@ -39,13 +39,25 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
+    public Usuario actualizarUsuario(Usuario usuario) throws Exception {
         return null;
     }
 
     @Override
     public Usuario buscarUsuario(String username) {
         return usuarioRepo.findByUsername(username);
+    }
+
+    @Override
+    public Usuario getByUsuarioId(Long id) {
+        Usuario user = usuarioRepo.findByusuarioId(id);
+        return user;
+    }
+
+    @Override
+    public Usuario buscarUsuarioByEmail(String email) {
+        Usuario user = usuarioRepo.findByEmail(email);
+        return user;
     }
 
     @Override
@@ -56,6 +68,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     @Override
     public boolean loginUsuario(LoginRequestDto loginRequestDto) {
         return usuarioRepo.existsUsuarioByEmailAndClave(loginRequestDto.getEmail(), loginRequestDto.getClave());
+    }
+
+    @Override
+    public Rol consultarRolUsuario(Long usuarioId) {
+        return rolRepo.findByusuarioId(usuarioId);
     }
 
 }

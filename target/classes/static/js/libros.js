@@ -1,107 +1,157 @@
-async function listarLibros(){
-    const request = await fetch('/api/v1/libro', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-    })
-    const res = await request.json();
-    if(!res){
-        document.getElementById("tbody").innerHTML = "<td>No hay libros disponibles</td>"
-    }
-    else{
-        console.log(res)
-        document.getElementById("tbody").innerHTML = ""
-        for (let i = 0; i < res.length; i++){
-            let titulo = res[i].titulo
-            let lugarPublicacion = res[i].lugarPublicacion
-            let isbn = res[i].isbn
-            let id = res[i].id
-
-            document.getElementById("tbody").innerHTML +=
-                ` <tr>
-        <td>${titulo}</td>
-        <td>${lugarPublicacion}</td>
-        <td>${isbn}</td>
-        <td>
-          <div class="dropdown show">
-            <a class="btn dropdown-toggle" src="img/puntos.png" href="#" role="button" id="desplegable"
-              data-toggle="dropdown" aria-haspopup="true">
-              <img src="../img/puntos.png" class="align-right" height="30px" width="30px">
-            </a>
-
-
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" onclick="verLib(${id})" data-toggle="modal" style="background-color:#FFFFFF" id="btn-abrir-popup3"
-                href="verLibro.html?id=${id}">Ver</a>
-              <a class="dropdown-item" onclick="eliminarLibro('${id}')" data-toggle="modal" style="background-color:#FFFFFF"
-                >Eliminar</a>
-              <a class="dropdown-item" onclick="editarLib(${id})" data-toggle="modal" style="background-color:#FFFFFF" id="btn-abrir-popup2"
-                href="editarLibro.html">Editar</a>
-              
-            </div>
-          </div>
-        </td>
-
-      </tr>
-        `
-        }
-
-    }
+function onLoad(){
+    ComboAno();
+    cargarMeses();
+    cargarPaises();
 
 }
+window.onload = onLoad;
 
-function verLib(id){
-    window.location.href=`verLibro.html?id=${id}`
+$(document).ready(function () {
+    $("table.display").Datatable();
+});
+
+async function mostrarMes(){
+    var select = document.getElementById("meses").value;
 }
 
-function editarLib(id){
-    window.location.href=`editarLibro.html?id=${id}`
-}
+function eliminarLibro(libroId) {
+    if (confirm("¿Estás seguro de que deseas eliminar este libro "+ libroId +"?")) {
+        // Realizar la solicitud AJAX
+        $.ajax({
+            type: "DELETE",
+            url: "/libros/eliminar/" + libroId,
+            success: function (response) {
+                alert(response);
 
-listarLibros()
-
-
-async function registroLibro() {
-    let data = {};
-
-    data.titulo = document.getElementById('titulo').value;
-    data.isbn = document.getElementById('isbn').value;
-    data.lugarPublicacion = document.getElementById('lugarPublicacion').value;
-    data.editorial = document.getElementById('editorial').value;
-    data.disciplina = document.getElementById('disciplina').value;
-    data.certificadoCreditos = document.getElementById('certificadoCreditos').value;
-    data.certificadoInstitucionAvala = document.getElementById('certificadoInstitucionAvala').value;
-
-
-    const request = await fetch('/api/v1/libro/guardar', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(() => {
-                alert("Libro Registrado Correctamente");
-                window.location.href="viewLibros.html"
-                }).catch( err => {
-            alert("Error de registro.");
+                // Eliminar la fila de la tabla
+                $("#fila-" + libroId).remove();
+            },
+            error: function (error) {
+                alert("Error al intentar eliminar el libro");
+            }
         });
+    }
 }
 
-async function eliminarLibro(id) {
-    const request = await fetch(`/api/v1/libro/borrar/${id}`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
+
+
+// Función para cargar los meses en el select
+function cargarMeses() {
+    var select = document.getElementById("meses");
+    var meses = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ]
+
+    // Recorremos el array de meses y agregamos cada uno como una opción
+    for (var i = 0; i < meses.length; i++) {
+        var option = document.createElement("option");
+        option.text = meses[i];
+        option.value = meses[i]; // El valor será el nombre del mes
+        select.add(option);
+    }
+}
+
+function ComboAno(){
+    var n = (new Date()).getFullYear()
+    var select = document.getElementById("anio");
+    for(var i = n; i>=1900; i--)select.options.add(new Option(i,i));
+}
+
+function cargarPaises() {
+    var select = document.getElementById("lugarPublicacion");
+
+    // Hacer una solicitud a la API
+    fetch("https://restcountries.com/v2/all")
+        .then(function(response) {
+        return response.json();
     })
-
-    window.alert("Se eliminó correctamente")
-    listarLibros()
-
+        .then(function(data) {
+        // Recorrer los datos y agregar opciones al select
+        data.forEach(function(pais) {
+            var option = document.createElement("option");
+            option.text = pais.name;
+            option.value = pais.name; // Puedes usar el código del país como valor si lo deseas
+            select.add(option);
+        });
+    })
+        .catch(function(error) {
+        console.error("Error al cargar los países:", error);
+    });
 }
+
+function validarISBN(isbn) {
+    isbn = isbn.replace(/[-\s]/g, "").replace(/\D/g, "");
+
+    if (isbn.length === 10 || isbn.length === 13) {
+        const digitos = isbn.split("").map(Number);
+
+        if (isbn.length === 10) {
+            // Validar ISBN-10
+            const suma = digitos.reduce((acc, val, index) => acc + val * (index === 9 ? 10 : index + 1), 0);
+            return suma % 11 === 0;
+        } else {
+            // Validar ISBN-13
+            const suma = digitos.reduce((acc, val, index) => acc + val * (index % 2 === 0 ? 1 : 3), 0);
+            return suma % 10 === 0;
+        }
+    }
+
+    return false;
+}
+
+const isbnInput = document.getElementById("isbn");
+const mensaje = document.getElementById("mensaje");
+
+isbnInput.addEventListener("input", function() {
+    const isbn = isbnInput.value;
+    const esValido = validarISBN(isbn);
+    const submitBtn = document.getElementById("guardar");
+
+    if (isbn === "") {
+        mensaje.textContent = ""; // Ocultar mensaje cuando el campo está vacío
+    } else {
+        mensaje.textContent = esValido ? "ISBN válido." : "ISBN no válido.";
+        mensaje.style.color = esValido ? "green" : "red";
+        // Deshabilitar o habilitar el botón según la validez del ISBN
+        submitBtn.disabled = !esValido;
+    }
+});
+
+function borrarDocumento(archivo) {
+    var fileInput = document.getElementById(archivo);
+    fileInput.value = "";
+}
+
+function validarDocumento(id) {
+    var fileInput = document.getElementById(id);
+    if (fileInput.files[0].size > 6097152 || fileInput.files[0].type != "application/pdf") {
+        alert("El tamaño del documento excede los 6MB o el tipo de archivo no es válido");
+        fileInput.value = "";
+    }
+}
+function validarSelect(select) {
+    return select.value !== "seleccione";
+}
+
+function actualizarEstadoBoton() {
+    var selects = document.querySelectorAll('#miFormulario select');
+    var submitBtn = document.getElementById("guardar");
+
+    // Verifica si todos los selects tienen una opción válida
+    var todosValidos = Array.from(selects).every(validarSelect);
+
+    // Habilita o deshabilita el botón según la validación
+    submitBtn.disabled = !todosValidos;
+}
+
+// Agrega un eventListener a cada select
+var selects = document.querySelectorAll('#miFormulario select');
+selects.forEach(function (select) {
+    select.addEventListener('change', function () {
+        // Actualiza el estado del botón cuando cambia un select
+        actualizarEstadoBoton();
+    });
+});
+
 

@@ -7,24 +7,49 @@
 
 html, body{
     height: 100%;
-    width: 100%;
     background-image: url(../img/fondo.jpg);
 }
-.label{
+
+label{
     color: black;
     font-weight: bold;
+    font-size: 16px;
+
 }
+
+.TitleCell {
+    color: #007A81;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    FONT-SIZE: 18px;
+    padding: 2px;
+    FONT-WEIGHT: bolder;
+    TEXT-ALIGN: center;
+    border-bottom:solid 2px #006065;
+}
+
 #libro{
-    width:100%;
-    height:auto;
-    border:3px solid brown;
-   border-radius:22px;
-   background-color:#fdf5d8;
-   padding:9px;
-   
+    background-color: white;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
  }
  #cuerpo{
     background-color: white;
     height: 100%;
-    
+}
+
+
+.container input[type="submit"] {
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+.container input[type="submit"]:hover {
+    background: #D31024;
+}
+
+/* Buttons' focus effect */
+.container input[type="submit"]:focus {
+    border-color: #D31024;
 }

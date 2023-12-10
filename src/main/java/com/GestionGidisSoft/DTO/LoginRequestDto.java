@@ -1,10 +1,5 @@
 package com.GestionGidisSoft.DTO;
 
-import lombok.*;
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class LoginRequestDto {
     private String email;
     private String clave;

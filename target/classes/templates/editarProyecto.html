@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/crearPro.css">
+    <title>Crear proyecto</title>
+</head>
+
+<body>
+
+    <!--Navbar-->
+    <div class="container" id="cuerpo">
+    <nav class="navbar navbar-expand-lg   static-top">
+        <div class="container">
+            <a class="navbar-brand" href="">
+                <img src="/img/logo_ufps.jpg" alt="..." height="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="inicio.html">Volver</a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="index.html">Salir <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Formulario-->
+    <div class="container" id="editProyecto">
+        <form onsubmit="event.preventDefault(); registroProyecto()">
+            <div class="form-group">
+                <label for="input">Titulo</label>
+                <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Titulo" required>
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-7">
+                    <div class="form-group">
+                        <label for="input">Tipo Proyecto</label>
+                        <input type="text" class="form-control" name="tipoProyecto" id="tipoProyecto" placeholder="Tipo Proyecto"
+                               required>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-2">
+                <div class="form-group">
+                    <label for="input">Mes Inicio</label>
+                    <input type="text" class="form-control col-sm-4" name="mesInicio" id="mesInicio" placeholder="Mes Inicio" required>
+                </div></div><br>
+
+                    <div class="col-xd-12 col-sm-2">
+                <div class="form-group">
+                    <label for="input">Mes Fin</label>
+                    <input type="text" class="form-control col-sm-4" name="mesFin" id="mesFin" placeholder="Mes Fin" required>
+                </div></div>
+                        <div class="col-sm-2"><br><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="financiado">
+                                <label class="form-check-label" for="financiado">
+                                    Financiado
+                                </label>
+                            </div>
+                        </div>
+
+                    <br>
+
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Año inicio</label>
+                        <input type="text" class="form-control" name="anioInicio" id="anioInicio" placeholder="Año inicio" required>
+                    </div>
+                </div>
+
+                <div class="col-xd-12 col-sm-2">
+                    <div class="form-group">
+                        <label for="input">Año Fin</label>
+                        <input type="text" class="form-control" name="anioFin" id="anioFin" placeholder="Año fin" required>
+                    </div>
+                </div>
+
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="input">Fuente de Financiación</label>
+                        <input type="text" name="fuenteFinanciacion" class="form-control" id="fuenteFinanciacion" placeholder="Fuente de financiación" required>
+                    </div>
+                </div>
+
+            </div><br>
+
+
+            <div class="form-group">
+                <label for="input">Resumen</label>
+                <input type="text" class="form-control" name="resumen" id="resumen" placeholder="Resumen" required>
+            </div><br>
+            <div class="row">
+                <div class="col-xd-12 col-sm-5">
+                    <div class="form-group">
+                        <label for="input">Ámbito</label>
+                        <input type="text" class="form-control" name="ambito" id="ambito" placeholder="Ámbito">
+                    </div>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label for="input">Instituciones</label>
+                        <input type="text" name="instituciones" class="form-control" id="instituciones" placeholder="Instituciones" required>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!--Boton-->
+            <br>
+            <button type="submit" class="btn btn-primary" value="registrar" id="guardar">Editar</button>
+        </form>
+    </div>
+    </div>
+</body>
+<script src="../static/js/editarProyecto.js"></script>
+
+</html>

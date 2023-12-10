@@ -1,20 +1,26 @@
 package com.GestionGidisSoft.DTO;
 
-import lombok.*;
-@Builder
 public class LoginResponseDto {
 
-    private boolean accedio;
+    private boolean accedio = false;
 
-    public LoginResponseDto(boolean accedio) {
-        this.accedio = accedio;
-    }
+    private boolean salio = false;
 
-    public boolean isAccedio() {
-        return accedio;
+    public LoginResponseDto() {
     }
 
     public void setAccedio(boolean accedio) {
         this.accedio = accedio;
+    }
+    public boolean getAccedio() {
+        return accedio;
+    }
+
+    public boolean getSalio() {
+        return salio;
+    }
+
+    public void setSalio(boolean salio) {
+        this.salio = salio;
     }
 }

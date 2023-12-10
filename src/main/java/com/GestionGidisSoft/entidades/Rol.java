@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Rol {
 
     @Id
-    private long rolId;
+    private long id;
 
     private String nombre;
 
@@ -17,11 +17,11 @@ public class Rol {
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
     public long getRolId() {
-        return rolId;
+        return id;
     }
 
     public void setRolId(long rolId) {
-        this.rolId = rolId;
+        this.id = rolId;
     }
 
     public String getNombre() {

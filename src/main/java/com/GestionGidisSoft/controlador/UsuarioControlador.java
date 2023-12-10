@@ -10,41 +10,46 @@ import com.GestionGidisSoft.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 
-@RestController
-@RequestMapping("/api/v1/usuarios")
+@Controller
+@RequestMapping("/usuarios")
 public class UsuarioControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
 
     @PostMapping("/guardar")
-    public ResponseEntity<RegistroResponseDto> guardarUsuario(@RequestBody Usuario usuario){
+    public ModelAndView guardarUsuario(@ModelAttribute("usuario") Usuario usuario){
+        ModelAndView model = new ModelAndView();
         try {
             Set<UsuarioRol> roles = new HashSet<>();
-
             Rol rol = new Rol();
             rol.setRolId(2L);
             rol.setNombre("DOCENTE");
-
             UsuarioRol usuarioRol = new UsuarioRol();
             usuarioRol.setUsuario(usuario);
             usuarioRol.setRol(rol);
-
             roles.add(usuarioRol);
-
             usuarioServicio.guardarUsuario(usuario, roles);
-
-            return new ResponseEntity(new RegistroResponseDto(true),HttpStatus.CREATED);
+            model.setViewName("redirect:/?registroExitoso=true");
+            return model;
+       //     return new ResponseEntity(new RegistroResponseDto(true),HttpStatus.CREATED);
         }catch (Exception e){
-            System.out.println(":::::::::::Error:::::::::::::::" + e.getMessage());
-            return new ResponseEntity(new RegistroResponseDto(false),HttpStatus.BAD_REQUEST);
+            model.addObject("mensaje", "ha ocurrido un error");
+            model.setViewName("redirect:registrarse?error=true");
+            return model;
+           // return new ResponseEntity(new RegistroResponseDto(false),HttpStatus.BAD_REQUEST);
         }
-
     }
 
     @GetMapping("/buscar/{username}")
@@ -54,18 +59,48 @@ public class UsuarioControlador {
 
     @DeleteMapping("/eliminar/{usuarioId}")
     public void eliminarUsuario(@PathVariable("usuarioId")  Long usuarioId){
-
         usuarioServicio.eliminar(usuarioId);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> loginUsuario(
-            @RequestBody LoginRequestDto loginRequestDto
-    ) {
+    public ModelAndView loginUsuario(HttpServletRequest request,
+                                     @ModelAttribute("usuario") LoginRequestDto loginRequestDto) {
+        HttpSession session = request.getSession();
+        ModelAndView model = new ModelAndView();
         if (usuarioServicio.loginUsuario(loginRequestDto)) {
-            return ResponseEntity.ok(new LoginResponseDto(true));
+            Usuario usuario = usuarioServicio.buscarUsuarioByEmail(loginRequestDto.getEmail());
+            Rol usuarioRol = usuarioServicio.consultarRolUsuario(usuario.getUsuarioId());
+            usuario.setUsuarioRol(usuarioRol.getNombre());
+            System.out.println("rol del usuario " + usuario.getSegundoNombre() + ": " + usuarioRol.getNombre());
+            session.setAttribute("usuario", usuario);
+            model.addObject("mensajeBienvenida", "bienvenida");
+            model.setViewName("redirect:/usuarios/home");
+            return model;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", null);
+            model.addObject("usuario", session.getAttribute("usuario"));
+            model.setViewName("redirect:/?error=true");
+            return model;
         }
-        return new ResponseEntity<> (new LoginResponseDto(false), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/home")
+    public ModelAndView goHomeGidis(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("inicio");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            request.removeAttribute("usuario");
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+
 
     }
+
 }
