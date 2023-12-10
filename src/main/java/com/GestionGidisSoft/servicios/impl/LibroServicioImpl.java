@@ -31,8 +31,18 @@ public class LibroServicioImpl implements LibroServico {
     }
 
     @Override
-    public Libro actualizarLibro(Libro libro) throws Exception {
-        return libroRepo.save(libro);
+    public String actualizarLibro(Libro libro) throws Exception {
+        if(libroRepo.actualizarLibro(libro.getLibroId(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
+                libro.getDisciplina(), libro.getEditorial(), libro.getIsbn(), libro.getLugarPublicacion(),
+                libro.getMedioDivulgacion(), libro.getTipoEditorial()) == 1) {
+            return "Libro actualizado exitosamente";
+        } else {
+            return "Hubo un error al actualizar el libro";
+        }
+//        libroRepo.actualizarLibro(libro);
+
+
+
     }
 
     @Override
@@ -63,4 +73,5 @@ public class LibroServicioImpl implements LibroServico {
         List<Libro> libros = libroRepo.librosPorUsuario(id);
         return libros;
     }
+
 }

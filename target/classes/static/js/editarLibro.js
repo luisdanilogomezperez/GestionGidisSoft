@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    cargarPaises()
+    cargarPaises(paisPublicacion);
     ComboAno()
     cargarMeses()
 
@@ -47,11 +47,12 @@ function cargarMeses() {
         select.add(option);
     }
 }
+
 function cargarPaises(paisPublicacion) {
     var select = document.getElementById("lugarPublicacion");
 
     // Hacer una solicitud a la API
-    fetch("https://restcountries.com/v2/all")
+    fetch("https://restcountries.com/v3.1/all")
         .then(function(response) {
         return response.json();
     })
@@ -59,11 +60,11 @@ function cargarPaises(paisPublicacion) {
         // Recorrer los datos y agregar opciones al select
         data.forEach(function(pais) {
             var option = document.createElement("option");
-            option.text = pais.name;
-            option.value = pais.name; // Puedes usar el código del país como valor si lo deseas
+            option.text = pais.name.common; // Acceder al nombre común del país
+            option.value = pais.name.common; // Puedes usar el código del país como valor si lo deseas
 
             // Establecer el atributo 'selected' si es el país de publicación
-            if (pais.name === paisPublicacion) {
+            if (pais.name.common === paisPublicacion) {
                 option.selected = true;
             }
 
@@ -74,6 +75,7 @@ function cargarPaises(paisPublicacion) {
         console.error("Error al cargar los países:", error);
     });
 }
+
 
 // Obtén el país de publicación desde el atributo de datos
 var paisPublicacion = document.getElementById("lugarLibro").getAttribute("data-lugarLibro");

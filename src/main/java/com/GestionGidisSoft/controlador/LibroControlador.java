@@ -79,7 +79,7 @@ public class LibroControlador {
             return mav;
         }
     }
-    @PostMapping("/save")
+    @PostMapping("/guardar")
     public ModelAndView guardarLibro(HttpServletRequest request, @ModelAttribute("libro") Libro libro) throws Exception {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
@@ -117,7 +117,7 @@ public class LibroControlador {
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             Libro libro = libroServico.buscarPorId(libroId);
-            System.out.println("año del libro ::::::::: " + libro.getAnio());
+            System.out.println("año del libro ::::::::: " + libro.getLibroId());
             mav.addObject("libro", libro);
             mav.setViewName("editarLibro");
             return mav;
@@ -129,7 +129,30 @@ public class LibroControlador {
             return mav;
         }
     }
+    @PostMapping("/editar")
+    public ModelAndView editarLibro(HttpServletRequest request, @ModelAttribute("libro") Libro libro) throws Exception {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+                Usuario usuario = (Usuario) session.getAttribute("usuario");
 
+            System.out.println("Titulo modificado: " + libro.getTitulo() + " / id ::: " + libro.getLibroId());
+
+                libroServico.actualizarLibro(libro);
+
+                List<Libro> libros = libroServico.findByUsuarioId(usuario.getUsuarioId());
+                mav.addObject("listaLibros", libros);
+                mav.addObject("usuario", usuario);
+                mav.setViewName("listarLibros");
+                return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
     @RequestMapping("/detalle/{libroId}")
     public ModelAndView goDetail(HttpServletRequest request, @PathVariable(value = "libroId") long libroId) {
 

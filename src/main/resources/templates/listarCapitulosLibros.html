@@ -17,106 +17,106 @@
 </head>
 <body>
 <!--Navbar-->
-<div class="container">
-    <nav class="navbar navbar-expand-lg static-top">
-        <div class="container" id="cuerpo">
-            <a class="navbar-brand" href="">
-                <img src="/img/logo_ufps.jpg" alt="..." height="100">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg static-top">
+            <div class="container" id="cuerpo">
+                <a class="navbar-brand" href="">
+                    <img src="/img/logo_ufps.jpg" alt="..." height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
 
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/usuarios/home}">Volver</a>
-                    </li>
-                    <li class="nav-item">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuarios/home}">Volver</a>
+                        </li>
+                        <li class="nav-item">
 
-                        <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!--tabla-->
-    <div class="container" id="libro">
-        <div class="container">
-            <div class="row" >
-                <div class="col-md-12 TitleCell">
-                    Capítulo de libro resultado de investigación
+                            <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="row" style="font-size: 16px">
-                    <div class="col col-md-8" >
-                        A continuación, ingrese los datos del libro completo resultado de investigación que usted ha registrado.<br/>
-                        Para registrar un nuevo Capítulo de libro de investigación, pulse el enlace<a th:href="@{/libros/nuevoCapitulo}" > "Crear" </a>
+            </div>
+        </nav>
+
+        <!--tabla-->
+        <div class="container" id="libro">
+            <div class="container">
+                <div class="row" >
+                    <div class="col-md-12 TitleCell">
+                        Capítulo de libro resultado de investigación
                     </div>
+                    <div class="row" style="font-size: 16px">
+                        <div class="col col-md-8" >
+                            A continuación, ingrese los datos del libro completo resultado de investigación que usted ha registrado.<br/>
+                            Para registrar un nuevo Capítulo de libro de investigación, pulse el enlace<a th:href="@{/libros/nuevoCapitulo}" > "Crear" </a>
+                        </div>
+                    </div>
+                    <br>
                 </div>
-                <br>
             </div>
-        </div>
-        <br>
-        <div class="container">
-            <table class="table table-bordered" id="tab_logic">
-                <thead>
-                <tr>
-                    <th style="width: 5%;" class="text-center">#</th>
-                    <th style="width: 40%;" class="text-center">T&iacute;tulo</th>
-                    <th style="width: 5%;" class="text-center">Año</th>
-                    <th style="width: 20%;" class="text-center">Disciplina</th>
-                    <th style="width: 25%;" class="text-center">Opciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="l, iterStat : ${listaLibros}" th:id="'fila-' + ${l.libroId}">
-                    <td th:text="${iterStat.index + 1}"></td>
-                    <td th:text="${l.titulo}"></td>
-                    <td th:text="${l.anio}"></td>
-                    <td th:text="${l.disciplina}"></td>
-                    <td>
-                        <button class="opciones btn btn-light">
-                            <a th:href="@{/libros/detalle/{libroId}(libroId=${l.libroId})}" class="links">
-                                Detalle
-                            </a>
-                        </button>
+            <br>
+            <div class="container">
+                <table class="table table-bordered" id="tab_logic">
+                    <thead>
+                    <tr>
+                        <th style="width: 5%;" class="text-center">#</th>
+                        <th style="width: 40%;" class="text-center">T&iacute;tulo</th>
+                        <th style="width: 5%;" class="text-center">Año</th>
+                        <th style="width: 20%;" class="text-center">Disciplina</th>
+                        <th style="width: 25%;" class="text-center">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="l, iterStat : ${listaLibros}" th:id="'fila-' + ${l.libroId}">
+                        <td th:text="${iterStat.index + 1}"></td>
+                        <td th:text="${l.titulo}"></td>
+                        <td th:text="${l.anio}"></td>
+                        <td th:text="${l.disciplina}"></td>
+                        <td>
+                            <button class="opciones btn btn-light">
+                                <a th:href="@{/libros/detalle/{libroId}(libroId=${l.libroId})}" class="links">
+                                    Detalle
+                                </a>
+                            </button>
 
-                        <button class="opciones btn btn-light">
-                            <a th:href="@{/libros/editar/{libroId}(libroId=${l.libroId})}" class="links">
-                                Editar
-                            </a>
-                        </button>
-                        <button class="opciones btn btn-danger">
-                            <a th:href="@{/libros/eliminar/{libroId}(libroId=${l.libroId})}" class="links">
-                                Eliminar
-                            </a>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div th:if="${#lists.isEmpty(listaLibros)}">
-            <div class="alert alert-secondary" style="text-align:center;" role="alert">
-                <span th:text="${mensaje}"></span></td>
+                            <button class="opciones btn btn-light">
+                                <a th:href="@{/libros/editar/{libroId}(libroId=${l.libroId})}" class="links">
+                                    Editar
+                                </a>
+                            </button>
+                            <button class="opciones btn btn-danger">
+                                <a th:href="@{/libros/eliminar/{libroId}(libroId=${l.libroId})}" class="links">
+                                    Eliminar
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${#lists.isEmpty(listaLibros)}">
+                <div class="alert alert-secondary" style="text-align:center;" role="alert">
+                    <span th:text="${mensaje}"></span></td>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script th:src="@{/js/verLibro.js}"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script th:src="@{/js/verLibro.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

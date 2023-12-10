@@ -1,6 +1,7 @@
 package com.GestionGidisSoft.entidades;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "libro", uniqueConstraints = @UniqueConstraint(columnNames = "ISBN"))
@@ -14,7 +15,17 @@ public class Libro {
 
     private String anio;
 
+    @Transient
+    private List<Usuario> coautores;
     private String mes;
+
+    public List<Usuario> getCoautores() {
+        return coautores;
+    }
+
+    public void setCoautores(List<Usuario> coautores) {
+        this.coautores = coautores;
+    }
 
     private String medioDivulgacion;
 

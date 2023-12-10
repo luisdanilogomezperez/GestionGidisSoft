@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface RolRepo extends JpaRepository<Rol, Long> {
-
     @Query(value = "SELECT UROL.* " +
             " FROM ROL UROL " +
             " INNER JOIN USUARIO_ROL USUR ON (UROL.ID = USUR.ROL_ID)" +

@@ -1,1 +1,12 @@
-com\GestionGidisSoft\GestionGidisSoftApplication.class
+com\GestionGidisSoft\entidades\Ponencia.class
+com\GestionGidisSoft\repositorios\EventoRepo.class
+com\GestionGidisSoft\repositorios\DemasTrabajoRepo.class
+com\GestionGidisSoft\entidades\CapituloLibro.class
+com\GestionGidisSoft\entidades\DemasTrabajo.class
+com\GestionGidisSoft\entidades\Evento.class
+com\GestionGidisSoft\repositorios\ProyectoDirigidoRepo.class
+com\GestionGidisSoft\repositorios\CapituloLibroRepo.class
+com\GestionGidisSoft\entidades\ProyectoInvestigacion.class
+com\GestionGidisSoft\entidades\ProyectoDirigido.class
+com\GestionGidisSoft\repositorios\PonenciaRepo.class
+com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.class

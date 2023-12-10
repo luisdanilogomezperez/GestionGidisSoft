@@ -13,7 +13,7 @@ public interface LibroServico {
 
     public void eliminarRelacionLibroUsuario(Long libroId, Long usuarioId);
 
-    public Libro actualizarLibro(Libro libro) throws Exception;
+    public String actualizarLibro(Libro libro) throws Exception;
 
     public List<Libro> buscarLibros();
 
@@ -24,5 +24,6 @@ public interface LibroServico {
     public void eliminar(long libroId);
 
     public List<Libro> findByUsuarioId(Long id);
+
 
 }

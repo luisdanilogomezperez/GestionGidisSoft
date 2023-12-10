@@ -38,6 +38,7 @@ public class CapituloLibro {
 
     private String disciplina;
 
+    @Transient
     List<Usuario> coautores;
 
     private String areaConocimiento;
