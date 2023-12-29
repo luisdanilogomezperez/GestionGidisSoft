@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+</head>
+<body>
+<div th:fragment="adjuntos">
+    <div class="col col-md-12">
+        <form th:action="@{/libros/guardar}" th:object="${libro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+            A continuación encontrará el listado de los documentos a adjuntar.
+            <ul>
+
+                <li>
+                    Documento de Evidencia
+                    <br>
+                    <input id="idDocEvidencia" type="file" accept="application/pdf" name="file_CLCDO" onchange="validarDocumento('idDocEvidencia')">
+                    <a id="idDocumentoEvidencia" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idDocEvidencia')">
+                        Borrar
+                    </a>
+                </li>
+                <li>
+                    Certificación de los créditos de la obra
+                    <br>
+                    <input id="idCertificadoObra" type="file" accept="application/pdf" name="file_CLCDO" onchange="validarDocumento('idCertificadoObra')">
+                    <a id="idCertificado" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idCertificadoObra')">
+                        Borrar
+                    </a>
+                </li>
+
+                <li>
+                    Certificación de la institución que avala
+                    <br>
+                    <input id="idInstitucionAvala" type="file" accept="application/pdf" name="file_CLRI" onchange="validarDocumento('idInstitucionAvala')">
+                    <a id="idInstitucion" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idInstitucionAvala')">
+                        Borrar
+                    </a>
+                </li>
+
+            </ul>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

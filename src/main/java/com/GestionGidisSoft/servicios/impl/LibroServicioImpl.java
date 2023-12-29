@@ -1,11 +1,13 @@
 package com.GestionGidisSoft.servicios.impl;
 
 import com.GestionGidisSoft.entidades.Libro;
+import com.GestionGidisSoft.entidades.Usuario;
 import com.GestionGidisSoft.repositorios.LibroRepo;
 import com.GestionGidisSoft.servicios.LibroServico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,14 +27,38 @@ public class LibroServicioImpl implements LibroServico {
         libroRepo.actualizarTablaIntermedia(libroId, usuarioId);
     }
 
+
+
+    @Override
+    public boolean insertarCoautor(Long libroId, Long autorId, Long coautorId) {
+        if(libroRepo.insertarCoautor(libroId, autorId, coautorId) == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // elimina todos los registros de la tabla coautores libro donde
+    // el id del libro y del autor coinsidan
     @Override
     public void eliminarRelacionLibroUsuario(Long libroId, Long usuarioId) {
-         libroRepo.deleteByLibroIdAndUsuarioId(libroId, usuarioId);
+
+    }
+
+    @Override
+    public void eliminarRegistrosAutorLibro(Long idLibro, Long idAutor) {
+        libroRepo.eliminarRegistrosAutorLibro(idLibro, idAutor);
+    }
+
+    //elimina un registro individual de la tabla coautores de la lista de coautores
+    @Override
+    public void eliminarRelacionCoautores(Long idLibro, Long idCoautor) {
+        libroRepo.eliminarCoautor(idLibro, idCoautor);
     }
 
     @Override
     public String actualizarLibro(Libro libro) throws Exception {
-        if(libroRepo.actualizarLibro(libro.getLibroId(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
+        if(libroRepo.actualizarLibro(libro.getIdlibro(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
                 libro.getDisciplina(), libro.getEditorial(), libro.getIsbn(), libro.getLugarPublicacion(),
                 libro.getMedioDivulgacion(), libro.getTipoEditorial()) == 1) {
             return "Libro actualizado exitosamente";

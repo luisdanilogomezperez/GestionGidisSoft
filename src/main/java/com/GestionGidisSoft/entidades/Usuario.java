@@ -12,61 +12,36 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @Column(name = "idusuario")
+    private Long idusuario;
 
     @Transient
     private String usuarioRol;
+    @Transient
+    private Long idUsuarioRol;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getUsuarioRol() {
-        return usuarioRol;
-    }
-
-    public void setUsuarioRol(String usuarioRol) {
-        this.usuarioRol = usuarioRol;
-    }
-
+    @Column(name = "username")
     private String username;
-
+    @Column(name = "clave")
     private String clave;
-
+    @Column(name = "primernombre")
     private String primerNombre;
-
+    @Column(name = "segundonombre")
     private String segundoNombre;
-
+    @Column(name = "primerapellido")
     private String primerApellido;
-
+    @Column(name = "segundoapellido")
     private String segundoApellido;
-
+    @Column(name = "telefono")
     private String telefono;
-
+    @Column(name = "direccion")
     private String direccion;
-
-
+    @Column(name = "documento")
     private String documento;
-
+    @Column(name = "email")
     private String email;
-
+    @Column(name = "enable")
     private boolean eable = true;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
-    @JsonIgnore
-    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
-
-    public long getUsuarioId() {
-        return id;
-    }
-
-    public void setUsuarioId(long usuarioId) {
-        this.id = usuarioId;
-    }
 
     public String getUsername() {
         return username;
@@ -156,11 +131,27 @@ public class Usuario {
         this.eable = eable;
     }
 
-    public Set<UsuarioRol> getUsuarioRoles() {
-        return usuarioRoles;
+    public Long getIdUsuarioRol() {
+        return idUsuarioRol;
     }
 
-    public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-        this.usuarioRoles = usuarioRoles;
+    public void setIdUsuarioRol(Long idUsuarioRol) {
+        this.idUsuarioRol = idUsuarioRol;
+    }
+
+    public Long getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(Long idusuario) {
+        this.idusuario = idusuario;
+    }
+
+    public String getUsuarioRol() {
+        return usuarioRol;
+    }
+
+    public void setUsuarioRol(String usuarioRol) {
+        this.usuarioRol = usuarioRol;
     }
 }

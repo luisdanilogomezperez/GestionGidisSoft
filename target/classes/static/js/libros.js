@@ -154,4 +154,29 @@ selects.forEach(function (select) {
     });
 });
 
+$('#registroModal').on('show.bs.modal', function (event) {
+    var modal = $(this);
+    // Carga el contenido del formulario desde otro archivo HTML
+    modal.find('.modal-body').load('formulario_registro_coautor.html');
+});
+
+// Función para mostrar el popup
+function mostrarPopup() {
+    document.getElementById("popup").style.display = "flex";
+    // Lógica para cargar dinámicamente los usuarios en el select
+    // Puedes hacer una solicitud AJAX aquí para obtener la lista de usuarios
+    cargarUsuarios();
+}
+
+// Función para cerrar el popup
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function actualizarCoautorId() {
+    var select = document.getElementById("idCoautor");
+    var coautorId = select.options[select.selectedIndex].getAttribute("data-id");
+    document.getElementById("coautorId").value = coautorId;
+}
+
 

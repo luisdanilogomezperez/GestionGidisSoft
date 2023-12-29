@@ -8,10 +8,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 @Repository
 public interface RolRepo extends JpaRepository<Rol, Long> {
-    @Query(value = "SELECT UROL.* " +
-            " FROM ROL UROL " +
-            " INNER JOIN USUARIO_ROL USUR ON (UROL.ID = USUR.ROL_ID)" +
-            " INNER JOIN USUARIO USUA ON (USUA.ID = USUR.USUARIO_ID)" +
-            " WHERE USUA.ID = :usuarioId", nativeQuery = true)
-    public Rol findByusuarioId(Long usuarioId);
+    @Query(value = "SELECT urol.* " +
+            " FROM rol urol " +
+            " INNER JOIN usuariorol usur ON (urol.idrol = usur.idrol)" +
+            " INNER JOIN usuario usua ON (usua.idusuario = usur.idusuario)" +
+            " WHERE usua.idusuario = :usuarioId", nativeQuery = true)
+    Rol findByusuarioId(Long usuarioId);
+
+    @Query(value = "SELECT COUNT(urol.idrol) FROM rol urol WHERE urol.idrol = :idrol", nativeQuery = true)
+    int existenRoles(Long idrol);
 }

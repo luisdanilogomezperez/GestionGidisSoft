@@ -31,16 +31,21 @@ public class UsuarioControlador {
     @PostMapping("/guardar")
     public ModelAndView guardarUsuario(@ModelAttribute("usuario") Usuario usuario){
         ModelAndView model = new ModelAndView();
+        boolean existenUsuarios = false;
         try {
-            Set<UsuarioRol> roles = new HashSet<>();
             Rol rol = new Rol();
-            rol.setRolId(2L);
-            rol.setNombre("DOCENTE");
-            UsuarioRol usuarioRol = new UsuarioRol();
-            usuarioRol.setUsuario(usuario);
-            usuarioRol.setRol(rol);
-            roles.add(usuarioRol);
-            usuarioServicio.guardarUsuario(usuario, roles);
+            if (usuarioServicio.existenUsuarios()) {
+                rol.setRolId(2L);
+                rol.setNombre("DOCENTE");
+                System.out.println("YA existen usuarios, tu rol el DOCENTE");
+            } else {
+                rol.setRolId(1L);
+                rol.setNombre("ADMIN");
+                System.out.println("NO existen usuarios, tu rol el ADMIN");
+            }
+            usuario.setEable(true);
+            usuarioServicio.guardarUsuario(usuario, rol);
+
             model.setViewName("redirect:/?registroExitoso=true");
             return model;
        //     return new ResponseEntity(new RegistroResponseDto(true),HttpStatus.CREATED);
@@ -69,7 +74,7 @@ public class UsuarioControlador {
         ModelAndView model = new ModelAndView();
         if (usuarioServicio.loginUsuario(loginRequestDto)) {
             Usuario usuario = usuarioServicio.buscarUsuarioByEmail(loginRequestDto.getEmail());
-            Rol usuarioRol = usuarioServicio.consultarRolUsuario(usuario.getUsuarioId());
+            Rol usuarioRol = usuarioServicio.consultarRolUsuario(usuario.getIdusuario());
             usuario.setUsuarioRol(usuarioRol.getNombre());
             System.out.println("rol del usuario " + usuario.getSegundoNombre() + ": " + usuarioRol.getNombre());
             session.setAttribute("usuario", usuario);

@@ -1,0 +1,14 @@
+version: "5"
+services:
+  gidissoftufps:
+    image: mysql:latest
+    container_name: "gidissoft"
+    ports:
+      - 27017:27017
+  gidissoft:
+    image: gidissoftufps:latest
+    container_name: "gidissoft"
+    ports:
+      - 9090:8080
+    links:
+      - gidissoftufps

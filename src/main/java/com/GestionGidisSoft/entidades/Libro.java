@@ -9,40 +9,35 @@ public class Libro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long libroId;
-
+    @Column(name = "idlibro ")
+    private Long idlibro;
+    @Column(name = "titulo")
     private String titulo;
-
+    @Column(name = "isbn")
+    private String isbn;
+    @Column(name = "anio")
     private String anio;
+    @Column(name = "mes")
+    private String mes;
+    @Column(name = "disciplina")
+    private String disciplina;
+    @Column(name = "editorial")
+    private String editorial;
+    @Column(name = "tipoeditorial")
+    private String tipoEditorial;
+    @Column(name = "mediodivulgacion")
+    private String medioDivulgacion;
+    @Column(name = "lugarpublicacion")
+    private String lugarPublicacion;
+    @Column(name = "documentoevidencia")
+    private String documentoEvidencia;
+    @Column(name = "certificadocreditos")
+    private String certificadoCreditos;
+    @Column(name = "certificadoinstitucionavala")
+    private String certificadoInstitucionAvala;
 
     @Transient
     private List<Usuario> coautores;
-    private String mes;
-
-    public List<Usuario> getCoautores() {
-        return coautores;
-    }
-
-    public void setCoautores(List<Usuario> coautores) {
-        this.coautores = coautores;
-    }
-
-    private String medioDivulgacion;
-
-    private String documentoEvidencia;
-    private String disciplina;
-
-    private String isbn;
-
-    private String lugarPublicacion;
-
-    private String editorial;
-
-    private String tipoEditorial;
-
-    private String certificadoCreditos;
-
-    private String certificadoInstitucionAvala;
 
     public Libro() {
     }
@@ -65,12 +60,19 @@ public class Libro {
         this.certificadoInstitucionAvala = certificadoInstitucionAvala;
     }
 
-    public Long getLibroId() {
-        return libroId;
+    public List<Usuario> getCoautores() {
+        return coautores;
     }
 
-    public void setLibroId(Long libroId) {
-        this.libroId = libroId;
+    public void setCoautores(List<Usuario> coautores) {
+        this.coautores = coautores;
+    }
+    public Long getIdlibro() {
+        return idlibro;
+    }
+
+    public void setIdlibro(Long idlibro) {
+        this.idlibro = idlibro;
     }
 
     public String getTitulo() {

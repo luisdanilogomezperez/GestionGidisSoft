@@ -9,19 +9,18 @@ import javax.persistence.*;
 public class Rol {
 
     @Id
-    private long id;
+    @Column(name = "idrol")
+    private Long idrol;
 
+    @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rol")
-    private Set<UsuarioRol> usuarioRoles = new HashSet<>();
-
     public long getRolId() {
-        return id;
+        return idrol;
     }
 
-    public void setRolId(long rolId) {
-        this.id = rolId;
+    public void setRolId(Long rolId) {
+        this.idrol = rolId;
     }
 
     public String getNombre() {
@@ -32,11 +31,4 @@ public class Rol {
         this.nombre = nombre;
     }
 
-    public Set<UsuarioRol> getUsuarioRoles() {
-        return usuarioRoles;
-    }
-
-    public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-        this.usuarioRoles = usuarioRoles;
-    }
 }

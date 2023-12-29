@@ -5,10 +5,11 @@ import com.GestionGidisSoft.entidades.Rol;
 import com.GestionGidisSoft.entidades.Usuario;
 import com.GestionGidisSoft.entidades.UsuarioRol;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UsuarioServicio {
-    public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception;
+    public Usuario guardarUsuario(Usuario usuario, Rol rol) throws Exception;
 
     public Usuario actualizarUsuario(Usuario usuario) throws Exception;
 
@@ -20,7 +21,13 @@ public interface UsuarioServicio {
 
     public void eliminar(long usuarioId);
 
-    boolean loginUsuario(LoginRequestDto loginRequestDto);
+    public boolean loginUsuario(LoginRequestDto loginRequestDto);
 
-    Rol consultarRolUsuario(Long usuarioId);
+    public Rol consultarRolUsuario(Long usuarioId);
+
+    public List<Usuario> listarAutores(Long idLibro, Long idAutor);
+
+    public List<Usuario> listarCoautores(Long idLibro, Long idAutor);
+
+    public boolean existenUsuarios();
 }
