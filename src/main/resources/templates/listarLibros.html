@@ -44,15 +44,15 @@
         </nav>
 
         <!--tabla-->
-        <div class="container" id="libro">
+        <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
             <div class="container">
                 <div class="row" >
                     <div class="col-md-12 TitleCell">
                         Libro completo resultado de investigación
                     </div>
                     <div class="row" style="font-size: 16px">
-                        <div class="col col-md-8" >
-                            A continuación, ingrese los datos del libro completo resultado de investigación que usted ha registrado.<br/>
+                        <div class="col col-12" >
+                            A continuación puede visualizar la información de los libros completos resultado de investigación que usted ha registrado.<br/>
                             Para registrar un nuevo libro de investigación, pulse el enlace <a th:href="@{/libros/nuevo}" >"Crear" </a>
                         </div>
                     </div>
@@ -72,20 +72,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="l, iterStat : ${listaLibros}" th:id="'fila-' + ${l.idlibro}">
+                        <tr th:each="l, iterStat : ${listaLibros}" th:id="'fila-' + ${l.idLibro}">
                             <td th:text="${iterStat.index + 1}" class="text-center"></td>
                             <td th:text="${l.titulo}"></td>
                             <td th:text="${l.anio}" class="text-center"></td>
                             <td th:text="${l.disciplina}"></td>
                             <td class="text-center">
-                                <a th:href="@{/libros/detalle/{libroId}(libroId=${l.idlibro})}" class="links">
+                                <a th:href="@{/libros/detalle/{libroId}(libroId=${l.idLibro})}" class="links">
                                     <img tittle="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
                                 </a>
 
-                                <a th:href="@{/libros/editar/{libroId}(libroId=${l.idlibro})}" class="links">
+                                <a th:href="@{/libros/editar/{libroId}(libroId=${l.idLibro})}" class="links">
                                     <img tittle="Editar" src="/img/editar.png" alt="Editar">
                                 </a>
-                                <a th:href="@{/libros/eliminar/{libroId}(libroId=${l.idlibro})}" class="links">
+                                <a th:href="@{/libros/eliminar/{libroId}(libroId=${l.idLibro})}" class="links">
                                     <img tittle="Eliminar" src="/img/eliminar.png" alt="Eliminar">
                                 </a>
                             </td>

@@ -44,7 +44,7 @@
                     <label for="enlaces" >Libro</label>
                 </div>
                 <div class="items">
-                    <a th:href="@{/libros/verCapitulosLibros}"><img src="/img/capituloLibro.png" alt="" id="sal"></a>
+                    <a th:href="@{/capitulosLibro/verCapitulosLibros}"><img src="/img/capituloLibro.png" alt="" id="sal"></a>
                     <br>
                     <label for="enlaces" >Capitulo de Libro</label>
                 </div>
@@ -77,13 +77,6 @@
                     <a th:href="@{/libros/verDemasTrabajos}"><img src="/img/demasTrabajos.png" alt="" ></a>
                     <br>
                     <label for="enlaces">Demás Trabajos</label>
-                </div>
-                <div th:if="${usuario.usuarioRol eq 'ADMIN'}">
-                    <div class="items">
-                        <a th:href="@{/usuarios/admin/gestionarUsuarios}"><img src="/img/gestionusuarios.png" alt="" ></a>
-                        <br>
-                        <label for="enlaces">Gestionar Usuarios</label>
-                    </div>
                 </div>
             </div>
         </div>

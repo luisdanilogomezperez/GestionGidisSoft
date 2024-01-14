@@ -23,15 +23,13 @@ public class LibroServicioImpl implements LibroServico {
     }
 
     @Override
-    public void actualizarTablaIntermedia(Long libroId, Long usuarioId) {
-        libroRepo.actualizarTablaIntermedia(libroId, usuarioId);
+    public void actualizarTablaIntermedia(Long idLibro, Long idAutor) {
+        libroRepo.actualizarTablaIntermedia(idLibro, idAutor);
     }
 
-
-
     @Override
-    public boolean insertarCoautor(Long libroId, Long autorId, Long coautorId) {
-        if(libroRepo.insertarCoautor(libroId, autorId, coautorId) == 1) {
+    public boolean insertarCoautor(Long idLibro, Long idAutor, Long idCoautor) {
+        if(libroRepo.insertarCoautor(idLibro, idAutor, idCoautor) == 1) {
             return true;
         } else {
             return false;
@@ -41,7 +39,7 @@ public class LibroServicioImpl implements LibroServico {
     // elimina todos los registros de la tabla coautores libro donde
     // el id del libro y del autor coinsidan
     @Override
-    public void eliminarRelacionLibroUsuario(Long libroId, Long usuarioId) {
+    public void eliminarRelacionLibroUsuario(Long idLibro, Long idAutor) {
 
     }
 
@@ -58,9 +56,10 @@ public class LibroServicioImpl implements LibroServico {
 
     @Override
     public String actualizarLibro(Libro libro) throws Exception {
-        if(libroRepo.actualizarLibro(libro.getIdlibro(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
+        if(libroRepo.actualizarLibro(libro.getIdLibro(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
                 libro.getDisciplina(), libro.getEditorial(), libro.getIsbn(), libro.getLugarPublicacion(),
-                libro.getMedioDivulgacion(), libro.getTipoEditorial()) == 1) {
+                libro.getMedioDivulgacion(), libro.getTipoEditorial(), libro.getDocumentoEvidencia(),
+                libro.getCertificadoCreditos(), libro.getCertificadoInstitucionAvala()) == 1) {
             return "Libro actualizado exitosamente";
         } else {
             return "Hubo un error al actualizar el libro";
@@ -90,13 +89,13 @@ public class LibroServicioImpl implements LibroServico {
     }
 
     @Override
-    public void eliminar(long libroId) {
-        libroRepo.deleteById(libroId);
+    public void eliminar(long idLibro) {
+        libroRepo.deleteById(idLibro);
     }
 
     @Override
-    public List<Libro> findByUsuarioId(Long id) {
-        List<Libro> libros = libroRepo.librosPorUsuario(id);
+    public List<Libro> findByUsuarioId(Long idAutor) {
+        List<Libro> libros = libroRepo.librosPorUsuario(idAutor);
         return libros;
     }
 

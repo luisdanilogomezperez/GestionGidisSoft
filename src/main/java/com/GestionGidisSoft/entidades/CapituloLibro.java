@@ -8,46 +8,55 @@ public class CapituloLibro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idcapitulo")
     private Long idCapitulo;
 
+    @Column(name = "idlibro")
     private Long idLibro;
-
+    @Transient
     private String tituloLibro;
-
+    @Column(name = "titulo")
     private String titulo;
-
+    @Column(name = "anio")
     private String anio;
-
+    @Column(name = "mes")
     private String mes;
-
+    @Column(name = "mediodivulgacion")
     private String medioDivulgacion;
-
+    @Column(name = "documentoevidencia")
     private String documentoEvidencia;
-
+    @Column(name = "paginainicial")
     private String paginaInicial;
-
-    private String pagininaFinal;
-
+    @Column(name = "paginafinal")
+    private String paginaFinal;
+    @Column(name = "numeropaginas")
     private String numeroPaginas;
-
+    @Column(name = "serielibro")
     private String serieLibro;
-
+    @Column(name = "edicion")
     private String edicion;
-
+    @Column(name = "lugarpublicacion")
     private String lugarPublicacion;
-
+    @Column(name = "disciplina")
     private String disciplina;
-
     @Transient
     List<Usuario> coautores;
-
+    @Column(name = "areaconocimiento")
     private String areaConocimiento;
-
+    @Column(name = "certificadoinstitucionavala")
     private String certificadoInstitucionAvala;
-
+    @Column(name = "certificadocreditos")
     private String certificadoCreditos;
 
     public CapituloLibro() {
+    }
+
+    public String getPaginaFinal() {
+        return paginaFinal;
+    }
+
+    public void setPaginaFinal(String paginaFinal) {
+        this.paginaFinal = paginaFinal;
     }
 
     public Long getIdCapitulo() {
@@ -120,14 +129,6 @@ public class CapituloLibro {
 
     public void setPaginaInicial(String paginaInicial) {
         this.paginaInicial = paginaInicial;
-    }
-
-    public String getPagininaFinal() {
-        return pagininaFinal;
-    }
-
-    public void setPagininaFinal(String pagininaFinal) {
-        this.pagininaFinal = pagininaFinal;
     }
 
     public String getNumeroPaginas() {

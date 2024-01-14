@@ -38,8 +38,8 @@
             </div>
         </div>
     </nav>
-    <div class="container" id="libro">
-        <form th:action="@{/libros/save}" th:object="${libro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+    <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+        <form th:action="@{/capitulosLibro/guardar}" th:object="${capituloLibro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
             <div class="container">
                 <div class="row">
                     <div class="col col-md-12 TitleCell">
@@ -47,14 +47,10 @@
                     </div>
                 </div>
                 <div class="row" style="font-size: 16px; text-align:justify;">
-                    <div class="col col-md-8" >
-                        A continuación ingrese los datos del libro completo resultado de investigación. <br/>Recuerde que los campos marcados con asterisco (*) son obligatorios.
-
+                    <div class="col col-12" >
+                        A continuación, ingrese los datos del cap&iacute;tulo libro completo resultado de investigación. <br>
+                        Recuerde que los campos marcados con asterisco (*) son obligatorios.<br>
                         <strong>Recomendaci&oacute;n:</strong> Verifique la informaci&oacute;n diligenciada antes de pulsar la opción &quot;Guardar&quot;.
-
-                        Una vez guardada esta informaci&oacute;n se desplegar&aacute;n las opciones para registrar coautores, palabras clave, referencias en revistas, referencias en libros, &aacute;reas de conocimiento y reconocimientos.
-
-
                     </div>
                 </div>
             </div>
@@ -66,79 +62,110 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xd-12 col-sm-12">
+                    <div class="col-lg-12 col-xs-12 col-sm-12">
                         <div class="form-group">
                             <label for="titulo">Titulo(*)</label>
-                            <input th:field="*{titulo}" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required/>
+                            <input style="max-width:500px;" th:field="*{titulo}" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required/>
+                            <br>
                         </div>
                     </div>
-                    <br>
-                    <div class="col-xd-12 col-sm-6 col-ld-12" >
+                    <br><br>
+                    <div class="col-lg-4 col-xs-14 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">P&aacute;gina inicial(*)</label>
+                            <input style="max-width:100px;" type="text" th:field="*{paginaInicial}" class="form-control" id="paginaInicial" required />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-14 col-xs-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">P&aacute;gina final(*)</label>
+                            <input style="max-width:100px;" type="text" th:field="*{paginaFinal}" class="form-control" id="paginaFinal" required />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Numero de p&aacute;ginas(*)</label>
+                            <input style="max-width:100px;" type="text" th:field="*{numeroPaginas}" class="form-control" name="numeroPaginas" id="numeroPaginas" required />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="input">Año(*)</label>
+                            <div id="anioLibro" th:attr="data-anioLibro=*{anio}"></div>
+                            <select style="width:200px;" th:field="*{anio}" class="form-control" name="anio" id="anio" required>
+                                <option value=""></option>
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-xs-6 col-sm-6">
+                        <div class="form-group">
+                            <label for="input">Mes(*)</label>
+                            <div id="mesLibro" th:attr="data-mesLibro=*{mes}"></div>
+                            <select style="width:200px;" th:field="*{mes}" class="form-control" id="meses" required>
+                                <option value=""></option>
+                                <!-- Las opciones se cargarán desde JavaScript -->
+                            </select><br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Serie(*)</label>
+                            <input type="text" th:field="*{serieLibro}" class="form-control" name="serieLibro" id="serieLibro" required />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 col-sm-4">
+                        <div class="form-group">
+                            <label for="input">Edici&oacute;n(*)</label>
+                            <input type="text" th:field="*{edicion}" class="form-control" name="edicion" id="edicion" required />
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-lg-4" >
                         <div class="form-group">
                             <label for="input">Lugar de Publicación(*)</label>
                             <div id="lugarLibro" th:attr="data-lugarLibro=*{lugarPublicacion}"></div>
                             <select th:field="*{lugarPublicacion}" class="form-control" id="lugarPublicacion" required>
                                 <option value=""></option>
-                            </select>
+                            </select><br>
                         </div>
                     </div>
-                    <div class="col-ld-6 col-xd-6 col-sm-3">
+                    <div class="col-lg-12 col-xs-12 col-sm-12" >
                         <div class="form-group">
-                            <label for="input">Año(*)</label>
-                            <div id="anioLibro" th:attr="data-anioLibro=*{anio}"></div>
-                            <select th:field="*{anio}" class="form-control" name="anio" id="anio" required>
+                            <label for="input">Libro</label>
+                            <!-- Contenido del modal, como tu lista de usuarios -->
+                            <select style="max-width:500px;" th:field="*{idLibro}" class="form-control" id="idLibro" required onchange="actualizarCoautorId()">
                                 <option value=""></option>
-                            </select>
+                                <option th:each="libro : ${listaLibros}" th:data-id="${libro.idLibro}" th:value="${libro.idLibro}"
+                                        th:text="${libro.titulo}"></option>
+                            </select><br>
                         </div>
                     </div>
-                    <div class="col-ld-6 col-xd-6 col-sm-3">
+                    <div class="col-lg-4 col-xs-4 col-sm-6">
                         <div class="form-group">
-                            <label for="input">Mes(*)</label>
-                            <div id="mesLibro" th:attr="data-mesLibro=*{mes}"></div>
-                            <select th:field="*{mes}" class="form-control" id="meses" required>
-                                <option value=""></option>
-                                <!-- Las opciones se cargarán desde JavaScript -->
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-ld-6 col-xd-6 col-sm-3" >
-                        <div class="form-group">
-                            <label for="isbn">ISBN(*)</label>
-                            <input type="text" th:file="*{isbn}" class="form-control" id="isbn" name="isbn" maxlength="13" size="13" required/> <font size="0.5"> Ej: 978-958-15481-8-8</font>
-                            <p id="mensaje"></p>
-                        </div>
-                    </div>
-                    <div class="col-xd-12 col-sm-6">
-                        <div class="form-group">
-                            <label for="input">Medio de divulgación</label>
-                            <select th:field="*{medioDivulgacion}" class="form-control" id="medioDivulgacion" required>
+                            <label for="input">Medio de divulgaci&oacute;n</label>
+                            <select style="width:80%;" th:field="*{medioDivulgacion}" class="form-control" id="medioDivulgacion" required>
                                 <option value=""></option>
                                 <option value="Papel">Papel</option>
                                 <option value="Electronico">Electronico</option>
-                            </select>
+                            </select><br>
                         </div>
                     </div>
-                    <div class="col-xd-12 col-sm-4">
-                        <div class="form-group">
-                            <label for="input">Tipo de editorial(*)</label>
-                            <select th:field="*{tipoEditorial}" class="form-control" id="tipoEditorial" required>
-                                <option value=""></option>
-                                <option value="Editorial Nacional">Editorial Nacional</option>
-                                <option value="Editorial Internacional">Editorial Internacional</option>
-                                <option value="Libro indexado en el Book Citation Index (BCI) / Libro Indexado en Scopus">Libro indexado en el Book Citation Index (BCI) / Libro Indexado en Scopus</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xd-12 col-sm-4">
-                        <div class="form-group">
-                            <label for="input">Editorial(*)</label>
-                            <input type="text" th:field="*{editorial}" class="form-control" name="editorial" id="editorial" required />
-                        </div>
-                    </div>
-                    <div class="col-xd-12 col-sm-4">
+                    <div class="col-lg-4 col-xs-4 col-sm-6">
                         <div class="form-group">
                             <label for="input">Disciplina(*)</label>
-                            <input type="text" th:field="*{disciplina}" class="form-control" name="disciplina" id="disciplina" required/>
+                            <input style="width:80%;" type="text" th:field="*{disciplina}" class="form-control" name="disciplina" id="disciplina" required/>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-xs-4 col-sm-6">
+                        <div class="form-group">
+                            <label for="input">&Aacute;rea de conocimiento(*)</label>
+                            <input style="width:300px;" type="text" th:field="*{areaConocimiento}" class="form-control" name="areaConocimiento" id="areaConocimiento" required /><br><br>
+                            <br>
                         </div>
                     </div>
                 </div>

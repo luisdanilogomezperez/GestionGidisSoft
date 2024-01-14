@@ -65,8 +65,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public void eliminar(long usuarioId) {
-        usuarioRepo.deleteById(usuarioId);
+    public void eliminar(long idUsuario) {
+        usuarioRepo.deleteById(idUsuario);
     }
 
     @Override
@@ -75,8 +75,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public Rol consultarRolUsuario(Long usuarioId) {
-        return rolRepo.findByusuarioId(usuarioId);
+    public Rol consultarRolUsuario(Long idUsuario) {
+        return rolRepo.findByusuarioId(idUsuario);
     }
 
     @Override

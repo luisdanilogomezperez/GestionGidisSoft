@@ -44,16 +44,16 @@
         </nav>
 
         <!--tabla-->
-        <div class="container" id="libro">
+        <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
             <div class="container">
                 <div class="row" >
                     <div class="col-md-12 TitleCell">
                         Capítulo de libro resultado de investigación
                     </div>
                     <div class="row" style="font-size: 16px">
-                        <div class="col col-md-8" >
-                            A continuación, ingrese los datos del libro completo resultado de investigación que usted ha registrado.<br/>
-                            Para registrar un nuevo Capítulo de libro de investigación, pulse el enlace<a th:href="@{/libros/nuevoCapitulo}" > "Crear" </a>
+                        <div class="col col-12" >
+                            A continuación puede visualizar la información de los capítulos de libro publicados que usted ha registrado.<br/>
+                            Para registrar un nuevo Capítulo, pulse el enlace<a th:href="@{/capitulosLibro/nuevoCapituloLibro}" > "Crear" </a>
                         </div>
                     </div>
                     <br>
@@ -65,33 +65,34 @@
                     <thead>
                     <tr>
                         <th style="width: 5%;" class="text-center">#</th>
-                        <th style="width: 40%;" class="text-center">T&iacute;tulo Capitulo</th>
-<!--                        <th style="width: 40%;" class="text-center">T&iacute;tulo del Libro</th>-->
+                        <th style="width: 30%;" class="text-center">T&iacute;tulo Capitulo</th>
+                        <th style="width: 30%;" class="text-center">T&iacute;tulo del Libro</th>
                         <th style="width: 5%;" class="text-center">Año</th>
-                        <th style="width: 20%;" class="text-center">Disciplina</th>
-                        <th style="width: 25%;" class="text-center">Opciones</th>
+                        <th style="width: 15%;" class="text-center">Disciplina</th>
+                        <th style="width: 15%;" class="text-center">Opciones</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="l, iterStat : ${listaLibros}" th:id="'fila-' + ${l.libroId}">
+                    <tr th:each="cl, iterStat : ${listaCapitulosLibros}" th:id="'fila-' + ${cl.idCapitulo}">
                         <td th:text="${iterStat.index + 1}"></td>
-                        <td th:text="${l.titulo}"></td>
-                        <td th:text="${l.anio}"></td>
-                        <td th:text="${l.disciplina}"></td>
+                        <td th:text="${cl.titulo}"></td>
+                        <td th:text="${cl.tituloLibro}"></td>
+                        <td th:text="${cl.anio}"></td>
+                        <td th:text="${cl.disciplina}"></td>
                         <td>
                             <button class="opciones btn btn-light">
-                                <a th:href="@{/libros/detalle/{libroId}(libroId=${l.libroId})}" class="links">
+                                <a th:href="@{/capitulosLibro/detalle/{idCapituloLibro}(idCapituloLibro=${cl.idCapitulo})}" class="links">
                                     Detalle
                                 </a>
                             </button>
 
                             <button class="opciones btn btn-light">
-                                <a th:href="@{/libros/editar/{libroId}(libroId=${l.libroId})}" class="links">
+                                <a th:href="@{/capitulosLibro/editar/{idCapituloLibro}(idCapituloLibro=${cl.idCapitulo})}" class="links">
                                     Editar
                                 </a>
                             </button>
                             <button class="opciones btn btn-danger">
-                                <a th:href="@{/libros/eliminar/{libroId}(libroId=${l.libroId})}" class="links">
+                                <a th:href="@{/capitulosLibro/eliminar/{idCapituloLibro}(idCapituloLibro=${cl.idCapitulo})}" class="links">
                                     Eliminar
                                 </a>
                             </button>
@@ -100,7 +101,7 @@
                     </tbody>
                 </table>
             </div>
-            <div th:if="${#lists.isEmpty(listaLibros)}">
+            <div th:if="${#lists.isEmpty(listaCapitulosLibros)}">
                 <div class="alert alert-secondary" style="text-align:center;" role="alert">
                     <span th:text="${mensaje}"></span></td>
                 </div>

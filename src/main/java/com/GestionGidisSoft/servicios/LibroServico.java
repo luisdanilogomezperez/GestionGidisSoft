@@ -10,15 +10,15 @@ public interface LibroServico {
 
     public Libro guardarLibro(Libro libro) throws Exception;
 
-    public void actualizarTablaIntermedia(Long libroId, Long usuarioId);
+    public void actualizarTablaIntermedia(Long idLibro, Long idAutor);
 
-    public boolean insertarCoautor(Long libroId, Long autorId, Long coautorId);
+    public boolean insertarCoautor(Long idLibro, Long idAutor, Long idCoautor);
 
-    public void eliminarRelacionLibroUsuario(Long libroId, Long usuarioId);
+    public void eliminarRelacionLibroUsuario(Long idLibro, Long idAutor);
 
     void eliminarRegistrosAutorLibro(Long idLibro, Long idAutor);
 
-    void eliminarRelacionCoautores(Long idLibro, Long idcoautor);
+    void eliminarRelacionCoautores(Long idLibro, Long idCoautor);
 
 
     public String actualizarLibro(Libro libro) throws Exception;
@@ -29,9 +29,9 @@ public interface LibroServico {
 
     public Optional<Libro> findByIsbn(String isbn);
 
-    public void eliminar(long libroId);
+    public void eliminar(long idLibro);
 
-    public List<Libro> findByUsuarioId(Long id);
+    public List<Libro> findByUsuarioId(Long idAutor);
 
 
 }

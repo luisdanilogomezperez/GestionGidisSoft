@@ -1,5 +1,6 @@
 package com.GestionGidisSoft.servicios.impl;
 
+import com.GestionGidisSoft.Constantes.Format;
 import com.GestionGidisSoft.servicios.ArchivosServicio;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -19,14 +20,23 @@ import java.util.stream.Stream;
 @Service
 public class ArchivosServicioImpl implements ArchivosServicio {
 
-    private final Path UPLOADS_FOLDER  = Paths.get("archivosCargados") ;
+    private final Path UPLOADS_FOLDER  = Paths.get(Format.ARCHIVOS_CARGADOS_PATH) ;
 
     @Override
     public String guardarSoloUno(MultipartFile file) throws Exception {
-        String nombreArchivo = file.getOriginalFilename().replace(" ", "_");
-        String uniqueFilename = UUID.randomUUID().toString() + "_" + nombreArchivo;
-        Files.copy(file.getInputStream(), this.UPLOADS_FOLDER.resolve(uniqueFilename));
-        return uniqueFilename;
+        try {
+            if (!Files.exists(UPLOADS_FOLDER)) {
+                Files.createDirectories(UPLOADS_FOLDER);
+            }
+            String nombreArchivo = file.getOriginalFilename().replace(" ", "_");
+            String uniqueFilename = UUID.randomUUID().toString() + "_" + nombreArchivo;
+            Path filePath = this.UPLOADS_FOLDER.resolve(uniqueFilename);
+            Files.copy(file.getInputStream(), UPLOADS_FOLDER.resolve(uniqueFilename));
+            return uniqueFilename;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IOException("Error al guardar el archivo en el servicio");
+        }
     }
 
     @Override

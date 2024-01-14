@@ -10,7 +10,7 @@ public class Libro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idlibro ")
-    private Long idlibro;
+    private Long idLibro;
     @Column(name = "titulo")
     private String titulo;
     @Column(name = "isbn")
@@ -50,12 +50,12 @@ public class Libro {
         this.anio = anio;
         this.mes = mes;
         this.medioDivulgacion = medioDivulgacion;
-        this.documentoEvidencia = documentoEvidencia;
         this.disciplina = disciplina;
         this.isbn = isbn;
         this.lugarPublicacion = lugarPublicacion;
         this.editorial = editorial;
         this.tipoEditorial = tipoEditorial;
+        this.documentoEvidencia = documentoEvidencia;
         this.certificadoCreditos = certificadoCreditos;
         this.certificadoInstitucionAvala = certificadoInstitucionAvala;
     }
@@ -67,12 +67,11 @@ public class Libro {
     public void setCoautores(List<Usuario> coautores) {
         this.coautores = coautores;
     }
-    public Long getIdlibro() {
-        return idlibro;
+    public Long getIdLibro() {
+        return idLibro;
     }
-
-    public void setIdlibro(Long idlibro) {
-        this.idlibro = idlibro;
+    public void setIdLibro(Long idLibro) {
+        this.idLibro = idLibro;
     }
 
     public String getTitulo() {

@@ -1,5 +1,6 @@
 package com.GestionGidisSoft.controlador;
 
+import com.GestionGidisSoft.Constantes.Format;
 import com.GestionGidisSoft.DTO.LoginResponseDto;
 import com.GestionGidisSoft.entidades.Libro;
 import com.GestionGidisSoft.entidades.Usuario;
@@ -7,11 +8,21 @@ import com.GestionGidisSoft.servicios.ArchivosServicio;
 import com.GestionGidisSoft.servicios.LibroServico;
 import com.GestionGidisSoft.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +39,7 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/libros")
 public class LibroControlador {
+
 
     @Autowired
     ArchivosServicio archivosServicio;
@@ -95,7 +107,7 @@ public class LibroControlador {
             } else {
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
                 libroServico.guardarLibro(libro);
-                libroServico.actualizarTablaIntermedia( libro.getIdlibro(), usuario.getIdusuario());
+                libroServico.actualizarTablaIntermedia( libro.getIdLibro(), usuario.getIdusuario());
                 List<Libro> libros = libroServico.findByUsuarioId(usuario.getIdusuario());
                 mav.addObject("listaLibros", libros);
                 mav.addObject("usuario", usuario);
@@ -119,7 +131,7 @@ public class LibroControlador {
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             Libro libro = libroServico.buscarPorId(libroId);
-            System.out.println("año del libro ::::::::: " + libro.getIdlibro());
+            System.out.println("año del libro ::::::::: " + libro.getIdLibro());
 
             mav.addObject("libro", libro);
             mav.setViewName("editarLibro");
@@ -138,9 +150,9 @@ public class LibroControlador {
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
-
-            System.out.println("Titulo modificado: " + libro.getTitulo() + " / id ::: " + libro.getIdlibro());
-
+                libro.setDocumentoEvidencia(null);
+                libro.setCertificadoCreditos(null);
+                libro.setCertificadoInstitucionAvala(null);
                 libroServico.actualizarLibro(libro);
 
                 List<Libro> libros = libroServico.findByUsuarioId(usuario.getIdusuario());
@@ -208,31 +220,6 @@ public class LibroControlador {
             return mav;
         }
     }
-
-    @GetMapping("/verCapitulosLibros")
-    public ModelAndView goCapitulosLibros(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        ModelAndView mav = new ModelAndView();
-
-        if (session.getAttribute("usuario") != null) {
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
-            List<Libro> libros = libroServico.findByUsuarioId(usuario.getIdusuario());
-            System.out.println("usuario en sesión: " + usuario.getPrimerNombre());
-            if (libros.isEmpty()){
-                mav.addObject("mensaje", "Aun no hay registros");
-            }
-            mav.addObject("listaLibros", libros);
-            mav.addObject("usuario", usuario);
-            mav.setViewName("listarCapitulosLibros");
-            return mav;
-        } else {
-            System.out.println("error de logueo");
-            session.setAttribute("usuario", new Usuario());
-            mav.addObject("usuario", session.getAttribute("usuario"));
-            mav.setViewName("redirect:/");
-            return mav;
-        }
-    }
     @PostMapping("/agregarCoautor")
     public ModelAndView insertarCoautor(HttpServletRequest request, @RequestParam("coautorId") Long coautorId,
                                         @RequestParam("idLibro") Long idLibro){
@@ -244,9 +231,9 @@ public class LibroControlador {
         return mav;
     }
 
-    @GetMapping("/eliminarCoautor/{idlibro}/{idCoautor}")
+    @GetMapping("/eliminarCoautor/{idLibro}/{idCoautor}")
     public ModelAndView eliminarCoautor(HttpServletRequest request, @PathVariable("idCoautor") Long idCoautor,
-                                        @PathVariable("idlibro") Long idLibro){
+                                        @PathVariable("idLibro") Long idLibro){
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -256,15 +243,85 @@ public class LibroControlador {
     }
 
     @PostMapping("/adjuntarArchivo")
-    public String subirArchivo(@RequestParam("file") MultipartFile file, @RequestParam("nombreCampo") String nombre){
-        String error = "";
-        String nombreArchivo = "";
-        try {
-            nombreArchivo = archivosServicio.guardarSoloUno(file);
-            return nombreArchivo;
-        }catch (Exception e){
+    public ModelAndView subirArchivo(HttpServletRequest request,
+                               @RequestParam("documentoEvidencia") MultipartFile documentoEvidencia,
+                               @RequestParam("certificadoCreditos") MultipartFile certificadoCreditos,
+                               @RequestParam("certificadoInstitucionAvala") MultipartFile certificadoInstitucionAvala,
+                               @RequestParam("idLibro") String idLibro){
+        Libro libro = libroServico.buscarPorId(Integer.parseInt(idLibro));
 
-            return ":: Error al subir el archivo :: " + e.getCause().getMessage();
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        mav.setViewName("redirect:/libros/detalle/"+idLibro);
+        try {
+            if (documentoEvidencia != null && !documentoEvidencia.isEmpty()) {
+                String nombreArchivoActualEvidencia = libro.getDocumentoEvidencia();
+                if (nombreArchivoActualEvidencia != null && !nombreArchivoActualEvidencia.isEmpty()) {
+                    eliminarArchivo(nombreArchivoActualEvidencia);
+                } else {
+                    System.out.println("No hay archivos para eliminar");
+                }
+                libro.setDocumentoEvidencia(archivosServicio.guardarSoloUno(documentoEvidencia));
+            }
+            if (certificadoCreditos != null && !certificadoCreditos.isEmpty()) {
+                String nombreArchivoActualCreditos = libro.getCertificadoCreditos();
+                if (nombreArchivoActualCreditos != null && !nombreArchivoActualCreditos.isEmpty()) {
+                    eliminarArchivo(nombreArchivoActualCreditos);
+                } else {
+                    System.out.println("No hay archivos para eliminar");
+                }
+                libro.setCertificadoCreditos(archivosServicio.guardarSoloUno(certificadoCreditos));
+            }
+            if (certificadoInstitucionAvala != null && !certificadoInstitucionAvala.isEmpty()) {
+                String nombreArchivoActualAvala = libro.getCertificadoInstitucionAvala();
+                if (nombreArchivoActualAvala != null && !nombreArchivoActualAvala.isEmpty()) {
+                    eliminarArchivo(nombreArchivoActualAvala);
+                } else {
+                    System.out.println("No hay archivos para eliminar");
+                }
+                libro.setCertificadoInstitucionAvala(archivosServicio.guardarSoloUno(certificadoInstitucionAvala));
+            }
+            libroServico.actualizarLibro(libro);
+
+            return mav;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println(":: Error al subir el archivo :: ");
+            return mav;
+        }
+    }
+
+    @GetMapping("/descargar/archivo/{nombreArchivo}")
+    public ResponseEntity<Resource> descargarArchivo(@PathVariable String nombreArchivo) {
+        try {
+            // Construye la ruta completa al archivo utilizando el nombre almacenado en la base de datos
+            Path archivoPath = Paths.get(Format.ARCHIVOS_CARGADOS_PATH).resolve(nombreArchivo).normalize();
+            Resource resource = new UrlResource(archivoPath.toUri());
+
+            if (resource.exists() && resource.isReadable()) {
+                // Si el archivo existe y es legible, devuelve una respuesta con el archivo
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                        .body(resource);
+            } else {
+                // Si el archivo no existe o no es legible, devuelve una respuesta 404
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException e) {
+            // Maneja las excepciones
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    private void eliminarArchivo(String nombreArchivo) {
+        if (nombreArchivo != null && !nombreArchivo.isEmpty()) {
+            try {
+                Path archivoEliminar = Paths.get(Format.ARCHIVOS_CARGADOS_PATH, nombreArchivo);
+                Files.deleteIfExists(archivoEliminar);
+            } catch (IOException e) {
+                System.out.println("Error al eliminar el archivo: " + e.getMessage());
+            }
         }
     }
 }

@@ -78,7 +78,6 @@ public class UsuarioControlador {
             usuario.setUsuarioRol(usuarioRol.getNombre());
             System.out.println("rol del usuario " + usuario.getSegundoNombre() + ": " + usuarioRol.getNombre());
             session.setAttribute("usuario", usuario);
-            model.addObject("mensajeBienvenida", "bienvenida");
             model.setViewName("redirect:/usuarios/home");
             return model;
         } else {
@@ -94,9 +93,15 @@ public class UsuarioControlador {
     public ModelAndView goHomeGidis(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
-        if (session.getAttribute("usuario") != null) {
-            mav.addObject("usuario", session.getAttribute("usuario"));
-            mav.setViewName("inicio");
+        Usuario usuario = (Usuario) session.getAttribute("usuario");
+        if (usuario != null) {
+            mav.addObject("usuario", usuario);
+            Rol usuarioRol = usuarioServicio.consultarRolUsuario(usuario.getIdusuario());
+            if (usuarioRol.getNombre().equals("ADMIN")) {
+                mav.setViewName("inicioAdmin");
+            } else {
+                mav.setViewName("inicio");
+            }
             return mav;
         } else {
             System.out.println("error de logueo");
