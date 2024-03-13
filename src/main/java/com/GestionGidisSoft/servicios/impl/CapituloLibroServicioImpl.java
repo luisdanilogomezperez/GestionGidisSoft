@@ -29,8 +29,8 @@ public class CapituloLibroServicioImpl implements CapituloLibroServicio {
     }
 
     @Override
-    public boolean insertarCoautor(Long idCapitulo, Long idAutor, Long idCoautor) {
-        if(capituloLibroRepo.insertarCoautorCapitulo(idCapitulo, idAutor, idCoautor) == 1) {
+    public boolean insertarCoautor(Long idAutor, Long idCoautor, Long idCapitulo) {
+        if(capituloLibroRepo.insertarCoautorCapitulo(idAutor, idCoautor, idCapitulo) == 1) {
             return true;
         } else {
             return false;
@@ -43,8 +43,8 @@ public class CapituloLibroServicioImpl implements CapituloLibroServicio {
     }
 
     @Override
-    public void eliminarRegistrosAutorCapituloLibro(Long idCapituloLibro, Long idAutor) {
-        capituloLibroRepo.eliminarRegistrosAutorCapitulo(idAutor,idCapituloLibro);
+    public void eliminarRegistrosCoautoresCapituloLibro(Long idCapitulo, Long idAutor) {
+        capituloLibroRepo.eliminarCoautoresLibro(idCapitulo, idAutor);
     }
 
     //elimina un registro individual de la tabla coautores de la lista de coautores

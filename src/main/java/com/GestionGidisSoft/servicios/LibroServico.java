@@ -8,30 +8,26 @@ import java.util.Optional;
 
 public interface LibroServico {
 
-    public Libro guardarLibro(Libro libro) throws Exception;
+    Libro guardarLibro(Libro libro) throws Exception;
 
-    public void actualizarTablaIntermedia(Long idLibro, Long idAutor);
+    void actualizarTablaIntermedia(Long idLibro, Long idAutor);
 
-    public boolean insertarCoautor(Long idLibro, Long idAutor, Long idCoautor);
-
-    public void eliminarRelacionLibroUsuario(Long idLibro, Long idAutor);
+    boolean insertarCoautor(Long idLibro, Long idAutor, Long idCoautor);
+    void eliminarRelacionLibroUsuario(Long idLibro, Long idAutor);
 
     void eliminarRegistrosAutorLibro(Long idLibro, Long idAutor);
 
     void eliminarRelacionCoautores(Long idLibro, Long idCoautor);
 
+    String actualizarLibro(Libro libro) throws Exception;
 
-    public String actualizarLibro(Libro libro) throws Exception;
+    List<Libro> buscarLibros();
 
-    public List<Libro> buscarLibros();
+    Libro buscarPorId(long idLibro);
 
-    public Libro buscarPorId(long idLibro);
+    Optional<Libro> findByIsbn(String isbn);
 
-    public Optional<Libro> findByIsbn(String isbn);
+    void eliminar(long idLibro);
 
-    public void eliminar(long idLibro);
-
-    public List<Libro> findByUsuarioId(Long idAutor);
-
-
+    List<Libro> findByUsuarioId(Long idAutor);
 }

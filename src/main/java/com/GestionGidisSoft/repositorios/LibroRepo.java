@@ -26,6 +26,12 @@ public interface LibroRepo extends JpaRepository<Libro, Long> {
             "VALUES (:idAutor, :idCoautor, :idLibro )", nativeQuery = true)
     int insertarCoautor(Long idLibro, Long idAutor, Long idCoautor);
 
+    @Transactional
+    @Modifying
+    @Query(value = " DELETE FROM coautoreslibro " +
+            "  WHERE idlibro = :idLibro AND idusuario = :idAutor ", nativeQuery = true)
+    int eliminarCoautoresLibro(Long idLibro, Long idAutor);
+
     @Query(value = " SELECT * FROM libro "
             + " WHERE idlibro = :idLibro", nativeQuery = true)
     Libro buscarPorId(Long idLibro);

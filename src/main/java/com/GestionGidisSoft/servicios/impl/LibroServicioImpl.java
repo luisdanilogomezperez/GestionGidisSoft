@@ -40,7 +40,7 @@ public class LibroServicioImpl implements LibroServico {
     // el id del libro y del autor coinsidan
     @Override
     public void eliminarRelacionLibroUsuario(Long idLibro, Long idAutor) {
-
+        libroRepo.eliminarCoautoresLibro(idLibro, idAutor);
     }
 
     @Override

@@ -37,14 +37,20 @@ public interface CapituloLibroRepo extends JpaRepository<CapituloLibro, Long> {
     @Transactional
     @Modifying
     @Query(value = " INSERT INTO coautorescapitulolibro (idautor, idcoautor, idcapitulolibro) " +
-            "VALUES (:idAutor, :idCoautor, :idcapituloLibro )", nativeQuery = true)
-    int insertarCoautorCapitulo(Long idAutor, Long idCoautor, Long idcapituloLibro);
+            "VALUES (:idAutor, :idCoautor, :idCapituloLibro )", nativeQuery = true)
+    int insertarCoautorCapitulo(Long idAutor, Long idCoautor, Long idCapituloLibro);
 
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM coautorescapitulolibro "
-            + " WHERE idlibro = :idLibro AND idcoautor = :idCoautor", nativeQuery = true)
-    void eliminarCoautorCapitulo(Long idLibro, Long idCoautor);
+            + " WHERE idcapitulolibro = :idCapituloLibro AND idcoautor = :idCoautor", nativeQuery = true)
+    void eliminarCoautorCapitulo(Long idCapituloLibro, Long idCoautor);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM coautorescapitulolibro "
+            + " WHERE idcapitulolibro = :idCapituloLibro AND idautor = :idAutor", nativeQuery = true)
+    int eliminarCoautoresLibro(Long idCapituloLibro, Long idAutor);
 
     @Transactional
     @Modifying

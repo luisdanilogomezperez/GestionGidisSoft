@@ -33,7 +33,7 @@
                     <ul class="navbar-nav ms-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/usuarios/home}">Inicio<i class="fa-solid fa-house"></i></a>
+                            <a class="nav-link" th:href="@{/usuarios/home}">Inicio <i class="fa-solid fa-house-user"></i></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
@@ -47,19 +47,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-md-12 TitleCell">
-                        Libro completo resultado de investigación
+                        Capítulo en libro resultado de investigación
                     </div>
                 </div>
                 <div class="row" style="font-size: 16px">
                     <div class="col col-12" >
-                        A continuación, ingrese los datos del libro completo resultado de investigación. Recuerde que los campos marcados con asterisco (*) son obligatorios.
-                        <br/>
-                        <strong>Recomendaci&oacute;n:</strong> Verifique la informaci&oacute;n diligenciada antes de pulsar la opción &quot;Guardar&quot;.
-                        <br>
-                        Una vez guardada esta informaci&oacute;n se desplegar&aacute;n las opciones para registrar coautores, palabras clave, referencias en revistas, referencias en libros, &aacute;reas de conocimiento y reconocimientos.
-                        <br>
-                        Pulse el enlace <a th:href="@{/libros/verLibros}">"Regresar"</a> para volver al listado de libros resultado de investigaci&oacute;n
-                    </div>
+                        A continuación puede visualizar la información registrada.
+                        Para volver al listado de los capítulos de libro pulse el enlace "<a th:href="@{/capitulosLibro/verCapitulosLibros}">Regresar</a>"
+                     </div>
                 </div>
             </div>
             <br>
@@ -67,18 +62,19 @@
                 <div class="row">
                     <div class="col-md-12 col-xs-12">
                         <p class="conNegrita" >
-                            <label class="">Titulo del libro</label>
+                            <label class="">T&iacute;tulo del Cap&iacute;tulo</label>
                         </p>
                         <p>
-                            <span th:text="${libro.titulo}"></span>
+                            <span th:text="${capituloLibro.titulo}"></span>
                         </p>
+
                     </div>
-                    <div class="col-xd-12 col-sm-6 col-md-3">
+                    <div class="col-xd-12 col-sm-12 col-md-12">
                         <p class="conNegrita">
-                            <label>Editorial</label>
+                            <label>T&iacute;tulo del libro</label>
                         </p>
                         <p>
-                            <span th:text="${libro.editorial}"></span>
+                            <span th:text="${capituloLibro.tituloLibro}"></span>
                         </p>
                     </div>
                     <div class="col-xd-3 col-sm-3 col-md-3">
@@ -86,7 +82,7 @@
                             <label>Año</label>
                         </p>
                         <p>
-                            <span th:text="${libro.anio}"></span>
+                            <span th:text="${capituloLibro.anio}"></span>
                         </p>
                     </div>
                     <div class="col-md-3 col-xd-3 col-sm-3">
@@ -94,15 +90,39 @@
                             <label>mes</label>
                         </p>
                         <p>
-                            <span th:text="${libro.mes}"></span>
+                            <span th:text="${capituloLibro.mes}"></span>
                         </p>
                     </div>
                     <div class="col-xd-6 col-sm-6 col-md-3">
                         <p class="conNegrita">
-                            <label>ISBN</label>
+                            <label>P&aacute;gina inicial</label>
                         </p>
                         <p>
-                            <span th:text="${libro.isbn}"></span>
+                            <span th:text="${capituloLibro.paginaInicial}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>P&aacute;gina final</label>
+                        </p>
+                        <p>
+                            <span th:text="${capituloLibro.paginaFinal}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>N&uacute;mero de p&aacute;ginas</label>
+                        </p>
+                        <p>
+                            <span th:text="${capituloLibro.numeroPaginas}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Edici&oacute;n</label>
+                        </p>
+                        <p>
+                            <span th:text="${capituloLibro.edicion}"></span>
                         </p>
                     </div>
                     <div class="col-md-3 col-xd-6 col-sm-6">
@@ -110,7 +130,7 @@
                             <label>Lugar de publicación</label>
                         </p>
                         <p>
-                            <span th:text="${libro.lugarPublicacion}"></span>
+                            <span th:text="${capituloLibro.lugarPublicacion}"></span>
                         </p>
                     </div>
                     <div class="col-xd-12 col-sm-6 col-md-3">
@@ -118,7 +138,7 @@
                             <label>Medio de divulgación</label>
                         </p>
                         <p>
-                            <span th:text="${libro.medioDivulgacion}"></span>
+                            <span th:text="${capituloLibro.medioDivulgacion}"></span>
                         </p>
                     </div>
                     <div class="col-xd-12 col-sm-6 col-md-3">
@@ -126,9 +146,18 @@
                             <label>Disciplina</label>
                         </p>
                         <p>
-                            <span th:text="${libro.disciplina}"></span>
+                            <span th:text="${capituloLibro.disciplina}"></span>
                         </p>
                     </div>
+                    <div class="col-xd-12 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>&Aacute;rea de conocimiento</label>
+                        </p>
+                        <p>
+                            <span th:text="${capituloLibro.areaConocimiento}"></span>
+                        </p>
+                    </div>
+
                     <div class="col-xd-12 col-sm-12 col-md-12">
                         <label>Autor</label>
                         <p th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}" ></p>
@@ -139,24 +168,29 @@
                             </button>
                         </p>
                     </div>
+<!--                    <div id="listaCoautores" th:include="/coautores"  >-->
+                    </div>
+
                     <div class="" th:fragment="listaCoautores">
                         <div class="container">
                             <ul>
                                 <li th:each="coautor : ${listaCoautores}">
-                                    <span th:text="${#strings.concat(coautor.primerNombre, ' ', coautor.segundoNombre, ' ', coautor.primerApellido, ' ', coautor.segundoApellido, '  ')}"></span>(<a th:href="@{/libros/eliminarCoautor/{idLibro}/{idCoautor}(idCoautor=${coautor.idusuario},idLibro=${libro.idLibro})}" class="links">
-                                    eliminar
-                                </a>)
+                                    <span th:text="${#strings.concat(coautor.primerNombre, ' ', coautor.segundoNombre, ' ', coautor.primerApellido, ' ', coautor.segundoApellido, '  ')}"></span>
+                                    (<a th:href="@{/capitulosLibro/eliminarCoautor/{idCapituloLibro}/{idCoautor}(idCoautor=${coautor.idusuario},idCapituloLibro=${capituloLibro.idCapitulo})}" class="links">
+                                        eliminar
+                                    </a>)
                                 </li>
                             </ul>
                         </div>
                     </div>
+
                     <div id="popup" class="popup">
                         <div class="popup-content">
-                            <form th:action="@{/libros/agregarCoautor}" th:object="${usuarioCoautor}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                            <form th:action="@{/capitulosLibro/agregarCoautor}" th:object="${usuarioCoautor}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
                                 <span class="close" onclick="cerrarPopup()">&times;</span>
                                 <h3>Agregar Coautor</h3>
                                 <h6>Para agregar un coautor, seleccione uno de la lista y luego haga clic en el bot&oacute;n "Agregar"</h6>
-                                <input type="hidden" th:name="idLibro" th:id="idLibro" th:value="${libro.idLibro}" />
+                                <input type="hidden" th:name="idCapituloLibro" th:id="idCapituloLibro" th:value="${capituloLibro.idCapitulo}" />
                                 <br><br>
                                 <div th:if="${#lists.isEmpty(autoresList)}">
                                     <div class="alert alert-secondary" style="text-align:center;" role="alert">
@@ -171,20 +205,20 @@
                                     </select><br><br>
                                     <button type="submit" class="btn btn-danger">Agregar</button>
                                 </div>
+                                <!--                                <button type="submit" class="btn btn-danger" onclick="">Agregar</button>-->
                             </form>
                         </div>
                     </div>
-                </div>
                     <div th:fragment="adjuntos" >
                         <div class="col col-md-12">
-                            <form th:action="@{/libros/adjuntarArchivo}" th:object="${libro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                            <form th:action="@{/capitulosLibro/adjuntarArchivo}" th:object="${capituloLibro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
                                 A continuación encontrará el listado de los documentos a adjuntar.
                                 <br>
-                                <input th:value="${libro.idLibro}" type="hidden" class="form-control" name="idLibro" id="idLibro" placeholder="" required/>
+                                <input th:value="${capituloLibro.idCapitulo}" type="hidden" class="form-control" name="idLibro" id="idLibro" placeholder="" required/>
                                 <ul>
                                     <li>
                                         Documento de Evidencia -
-                                        <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.documentoEvidencia})}"
+                                        <a th:href="@{/capitulosLibro/descargar/archivo/{nombreArchivo}(nombreArchivo=${capituloLibro.documentoEvidencia})}"
                                            target="_blank" download="documento_evidencia.pdf">
                                             <img tittle="Descargar pdf" src="/img/pdf.png" alt="Descargar">
                                         </a>
@@ -198,7 +232,7 @@
                                     </li>
                                     <li>
                                         Certificación de los créditos de la obra -
-                                        <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.certificadoCreditos})}"
+                                        <a th:href="@{/capitulosLibro/descargar/archivo/{nombreArchivo}(nombreArchivo=${capituloLibro.certificadoCreditos})}"
                                            target="_blank" download="certificado_creditos.pdf">
                                             <img title="Descargar pdf" src="/img/pdf.png" alt="Eliminar">
                                         </a>
@@ -212,7 +246,7 @@
                                     </li>
                                     <li>
                                         Certificación de la institución que avala -
-                                        <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.certificadoInstitucionAvala})}"
+                                        <a th:href="@{/capitulosLibro/descargar/archivo/{nombreArchivo}(nombreArchivo=${capituloLibro.certificadoInstitucionAvala})}"
                                            target="_blank" download="certificado_institucion_avala.pdf">
                                             <img tittle="Descargar pdf" src="/img/pdf.png" alt="Descargar">
                                         </a>

@@ -1,121 +1,164 @@
-async function listarArticulos(){
-    let data = {};
-    const request = await fetch('/api/v1/articulo', {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
+
+function onLoad(){
+    ComboAno();
+    cargarMeses();
+//    cargarIdiomas();
+}
+
+window.onload = onLoad;
+
+// Función para cargar los meses en el select
+function cargarMeses() {
+    var select = document.getElementById("meses");
+    var meses = [
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    ]
+
+    // Recorremos el array de meses y agregamos cada uno como una opción
+    for (var i = 0; i < meses.length; i++) {
+        var option = document.createElement("option");
+        option.text = meses[i];
+        option.value = meses[i]; // El valor será el nombre del mes
+        select.add(option);
+    }
+}
+
+function ComboAno(){
+    var n = (new Date()).getFullYear()
+    var select = document.getElementById("anio");
+    for(var i = n; i>=1900; i--)select.options.add(new Option(i,i));
+}
+
+function cargarPaises() {
+    var select = document.getElementById("lugarPublicacion");
+
+    // Hacer una solicitud a la API
+    fetch("https://restcountries.com/v2/all")
+        .then(function(response) {
+        return response.json();
     })
-            const res = await request.json();
-            if(!res){
-                document.getElementById("tbody").innerHTML = "<td>No hay artículos disponibles</td>"
-            }
-            else{
-                console.log(res)
-                document.getElementById("tbody").innerHTML = ""
-                for (let i = 0; i < res.length; i++){
-                    let titulo = res[i].titulo
-                    let ciudad = res[i].ciudad
-                    let coautores = res[i].coautores
-                    let digitalObjectIdentifierDOI = res[i].digitalObjectIdentifierDOI
-                    let id = res[i].id
-
-                    document.getElementById("tbody").innerHTML +=
-                        ` <tr>
-        <td>${titulo}</td>
-        <td>${ciudad}</td>
-        <td>${coautores}</td>
-        <td>${digitalObjectIdentifierDOI}</td>
-        <td>
-          <div class="dropdown show">
-            <a class="btn dropdown-toggle" src="img/puntos.png" href="#" role="button" id="desplegable"
-              data-toggle="dropdown" aria-haspopup="true">
-              <img src="../img/puntos.png" class="align-right" height="30px" width="30px">
-            </a>
-
-
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" onclick="verArt(${id})" data-toggle="modal" style="background-color:#FFFFFF" id="btn-abrir-popup3"
-                href="verArticulo.html?id=${id}">Ver</a>
-              <a class="dropdown-item" onclick="eliminarArticulo('${id}')" data-toggle="modal" style="background-color:#FFFFFF"
-                >Eliminar</a>
-              <a class="dropdown-item" onclick="editarArt(${id})" data-toggle="modal" style="background-color:#FFFFFF" id="btn-abrir-popup2"
-                href="editarArticulo.html">Editar</a>
-              
-            </div>
-          </div>
-        </td>
-
-      </tr>
-        `
-                }
-
-            }
-
-}
-
-function verArt(id){
-    window.location.href=`verArticulo.html?id=${id}`
-}
-
-function editarArt(id){
-    window.location.href=`editarArticulo.html?id=${id}`
-}
-
-listarArticulos()
-
-
-async function registroArticulo() {
-    let data = {};
-
-    data.titulo = document.getElementById('titulo').value;
-    data.coautores = document.getElementById('coautores').value;
-    data.nombreRevista = document.getElementById('nombreRevista').value;
-    data.fasciculoRevista = document.getElementById('fasciculoRevista').value;
-    data.ciudad = document.getElementById('ciudad').value;
-    data.serieRevista = document.getElementById('serieRevista').value;
-    data.digitalObjectIdentifierDOI = document.getElementById('digitalObjectIdentifierDOI').value;
-    data.medioDivulgacion = document.getElementById('medioDivulgacion').value;
-    data.idioma = document.getElementById('idioma').value;
-    data.volumen = document.getElementById('volumen').value;
-    data.tipoArticulo = document.getElementById('tipoArticulo').value;
-    data.paginaInicial = document.getElementById('paginaInicial').value;
-    data.paginaFinal = document.getElementById('paginaFinal').value;
-
-
-    const request = await fetch('/api/v1/articulo/guardar', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json())
-        .then(data => {
-            if (data.guardo) {
-                alert("Artículo Registrado Correctamente");
-                window.location.href = 'viewArticulos.html';
-            }
-            else
-                alert("No se registró");
-        }).catch( err => {
-            alert("Error de registro.");
+        .then(function(data) {
+        // Recorrer los datos y agregar opciones al select
+        data.forEach(function(pais) {
+            var option = document.createElement("option");
+            option.text = pais.name;
+            option.value = pais.name; // Puedes usar el código del país como valor si lo deseas
+            select.add(option);
         });
-}
-
-async function eliminarArticulo(id) {
-    const request = await fetch(`/api/v1/articulo/borrar/${id}`, {
-        method: 'GET',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
     })
-
-    window.alert("Se eliminó correctamente")
-    listarArticulos()
-
+        .catch(function(error) {
+        console.error("Error al cargar los países:", error);
+    });
 }
 
+function validarDOI(doi) {
+    // Expresión regular para validar el formato del DOI
+    const doiRegex = /^10\.\d{4,9}\/[-._;()/:A-Z0-9]+$/i;
+
+    // Limpiar cualquier espacio o guión del DOI
+    doi = doi.replace(/[-\s]/g, "");
+
+    if (doiRegex.test(doi)) {
+        return true;
+    }
+
+    return false;
+}
+
+const doiInput = document.getElementById("digitalObjectIdentifierDOI");
+const mensaje = document.getElementById("mensaje");
+
+doiInput.addEventListener("input", function() {
+    const doi = doiInput.value;
+    const esValido = validarDOI(doi);
+    const submitBtn = document.getElementById("guardar");
+
+    if (doi === "") {
+        mensaje.textContent = ""; // Ocultar mensaje cuando el campo está vacío
+    } else {
+        mensaje.textContent = esValido ? "DOI válido." : "DOI no válido.";
+        mensaje.style.color = esValido ? "green" : "red";
+        // Deshabilitar o habilitar el botón según la validez del DOI
+        submitBtn.disabled = !esValido;
+    }
+});
+//
+//function cargarIdiomas() {
+//    var select = document.getElementById("idioma"); // Asegúrate de que el ID coincida con tu select
+//
+//    // Hacer una solicitud a la API de ISO 639-2
+//    fetch("https://restcountries.com/v3.1/all")
+//        .then(function(response) {
+//        return response.json();
+//    })
+//        .then(function(data) {
+//        var idiomasUnicos = new Set();
+//
+//        // Recorrer los datos y agregar idiomas al conjunto
+//        data.forEach(function(infoPais) {
+//            if (infoPais.languages) {
+//                infoPais.languages.forEach(function(idioma) {
+//                    idiomasUnicos.add(idioma);
+//                });
+//            }
+//        });
+//
+//        // Convertir el conjunto a un array y ordenar alfabéticamente
+//        var arrayIdiomas = Array.from(idiomasUnicos).sort();
+//
+//        // Agregar opciones al select
+//        arrayIdiomas.forEach(function(idioma) {
+//            var option = document.createElement("option");
+//            option.text = idioma;
+//            option.value = idioma; // Puedes ajustar el valor según tus necesidades
+//            select.add(option);
+//        });
+//    })
+//        .catch(function(error) {
+//        console.error("Error al cargar los idiomas:", error);
+//    });
+//}
+//
+// JavaScript
+// JavaScript
+document.addEventListener("DOMContentLoaded", function() {
+    var paisSelect = document.getElementById("pais");
+    var ciudadSelect = document.getElementById("ciudad");
+
+    // Obtener información de países al cargar la página
+    fetch("https://restcountries.com/v2/all")
+        .then(response => response.json())
+        .then(data => {
+        // Agregar opciones de países
+        data.forEach(pais => {
+            var option = document.createElement("option");
+            option.text = pais.name;
+            option.value = pais.alpha2Code; // Usamos el código del país como valor
+            paisSelect.add(option);
+        });
+    })
+        .catch(error => console.error("Error al obtener países:", error));
+
+    // Agregar evento change al select de país
+    paisSelect.addEventListener("change", function() {
+        var selectedPaisCode = paisSelect.value;
+
+        // Limpiar select de ciudades
+        ciudadSelect.innerHTML = "<option value=''>Seleccione una ciudad</option>";
+
+        // Obtener información de ciudades para el país seleccionado
+        fetch(`http://api.geonames.org/searchJSON?country=${selectedPaisCode}&username=TOKIO`)
+            .then(response => response.json())
+            .then(data => {
+            // Agregar opciones de ciudades
+            data.geonames.forEach(ciudad => {
+                var option = document.createElement("option");
+                option.text = ciudad.name;
+                option.value = ciudad.name;
+                ciudadSelect.add(option);
+            });
+        })
+            .catch(error => console.error("Error al obtener ciudades:", error));
+    });
+});

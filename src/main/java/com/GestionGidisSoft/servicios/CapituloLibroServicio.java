@@ -7,26 +7,27 @@ import java.util.Optional;
 
 public interface CapituloLibroServicio {
 
-    public CapituloLibro guardarCapituloLibro(CapituloLibro capituloLibro) throws Exception;
+    CapituloLibro guardarCapituloLibro(CapituloLibro capituloLibro) throws Exception;
 
-    public void agregarRegistroAutorCapitulo(Long idCapituloLibro, Long idUsuario);
+    void agregarRegistroAutorCapitulo(Long idCapituloLibro, Long idAutor);
 
-    public boolean insertarCoautor(Long idCapituloLibro, Long autorId, Long coautorId);
+    boolean insertarCoautor(Long idAutor, Long idCoautor, Long idCapituloLibro);
 
-    public void eliminarRegistrosAutorCapitulo(Long idCapituloLibro, Long usuarioId);
+    void eliminarRegistrosAutorCapitulo(Long idCapituloLibro, Long idAutor);
 
-    void eliminarRegistrosAutorCapituloLibro(Long idCapituloLibro, Long idAutor);
+    void eliminarRegistrosCoautoresCapituloLibro(Long idCapituloLibro, Long idAutor);
 
-    void eliminarRelacionCoautores(Long idCapituloLibro, Long idcoautor);
+    void eliminarRelacionCoautores(Long idCapituloLibro, Long idCoautor);
 
 
-    public String actualizarCapituloLibro(CapituloLibro libro) throws Exception;
+    String actualizarCapituloLibro(CapituloLibro capituloLibro) throws Exception;
 
-    public List<CapituloLibro> buscarCapitulosLibros();
+    List<CapituloLibro> buscarCapitulosLibros();
 
-    public CapituloLibro buscarPorId(long idCapituloLibro);
+    CapituloLibro buscarPorId(long idCapituloLibro);
 
-    public void eliminar(long idCapituloLibro);
+    void eliminar(long idCapituloLibro);
 
-    public List<CapituloLibro> findByUsuarioId(Long id);
+    List<CapituloLibro> findByUsuarioId(Long id);
+
 }

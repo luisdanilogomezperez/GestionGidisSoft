@@ -80,13 +80,25 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public List<Usuario> listarAutores(Long idLibro, Long idAutor) {
-        List<Usuario> listaAutores = usuarioRepo.listarCoautoresLibros(idLibro, idAutor);
+    public List<Usuario> listarAutoresLibros(Long idLibro, Long idAutor) {
+        List<Usuario> listaAutores = usuarioRepo.listarNoCoautoresLibros(idLibro, idAutor);
         return listaAutores;
     }
     @Override
-    public List<Usuario> listarCoautores(Long idLibro, Long idAutor) {
+    public List<Usuario> listarCoautoresLibros(Long idLibro, Long idAutor) {
         List<Usuario> coautores =  usuarioRepo.listarCoautores(idLibro, idAutor);
+        return coautores;
+    }
+
+    @Override
+    public List<Usuario> listarAutoresCapitulosLibros(Long idCapituloLibro, Long idAutor) {
+        List<Usuario> autores =  usuarioRepo.listarNoCoautoresCapituloLibros(idCapituloLibro, idAutor);
+        return autores;
+    }
+
+    @Override
+    public List<Usuario> listarCoautoresCapitulosLibros(Long idCapituloLibro, Long idAutor) {
+        List<Usuario> coautores =  usuarioRepo.listarCoautoresCapituloLibro(idCapituloLibro, idAutor);
         return coautores;
     }
 

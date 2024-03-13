@@ -12,60 +12,6 @@
     <link rel="stylesheet" th:href="@{/css/libro.css}">
 </head>
 <body>
-<div th:fragment="adjuntos" >
-    <div class="col col-md-12">
-        <form th:action="@{/libros/adjuntarArchivo}" th:object="${libro}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
-            A continuación encontrará el listado de los documentos a adjuntar.
-            <br>
-            <input th:value="${libro.idLibro}" type="hidden" class="form-control" name="idLibro" id="idLibro" placeholder="" required/>
-            <ul>
-                <li>
-                    Documento de Evidencia -
-                    <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.documentoEvidencia})}"
-                       target="_blank" download="documento_evidencia.pdf">
-                        <img tittle="Descargar pdf" src="/img/pdf.png" alt="Descargar">
-                    </a>
-                    <br>
-                    <input id="idDocEvidencia" type="file" accept="application/pdf" name="documentoEvidencia" onchange="validarDocumento('idDocEvidencia')">
-                    <a id="idDocumentoEvidencia" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idDocEvidencia')">
-                        Borrar
-                    </a>
-                    <br>
-                    <br>
-                </li>
-                <li>
-                    Certificación de los créditos de la obra -
-                    <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.certificadoCreditos})}"
-                       target="_blank" download="certificado_creditos.pdf">
-                        <img title="Descargar pdf" src="/img/pdf.png" alt="Eliminar">
-                    </a>
-                    <br>
-                    <input id="idCertificadoObra" type="file" accept="application/pdf" name="certificadoCreditos" onchange="validarDocumento('idCertificadoObra')">
-                    <a id="idCertificado" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idCertificadoObra')">
-                        Borrar
-                    </a>
-                    <br>
-                    <br>
-                </li>
-                <li>
-                    Certificación de la institución que avala -
-                    <a th:href="@{/libros/descargar/archivo/{nombreArchivo}(nombreArchivo=${libro.certificadoInstitucionAvala})}"
-                       target="_blank" download="certificado_institucion_avala.pdf">
-                        <img tittle="Descargar pdf" src="/img/pdf.png" alt="Descargar">
-                    </a>
-                    <br>
-                    <input id="idInstitucionAvala" type="file" accept="application/pdf" name="certificadoInstitucionAvala" onchange="validarDocumento('idInstitucionAvala')">
-                    <a id="idInstitucion" href="#?documento=borrar" class="thickbox" onclick="borrarDocumento('idInstitucionAvala')">
-                        Borrar
-                    </a>
-                    <br>
-                    <br>
-                </li>
-            </ul>
-            <button class="btn btn-danger" style="margin-left: 20px; height:35px; width:150px;" type="submit">Cargar Archivos</button>
-        </form>
 
-    </div>
-</div>
 </body>
 </html>

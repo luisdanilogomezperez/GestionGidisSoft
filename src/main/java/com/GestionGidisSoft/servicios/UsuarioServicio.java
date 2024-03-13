@@ -25,9 +25,13 @@ public interface UsuarioServicio {
 
     public Rol consultarRolUsuario(Long usuarioId);
 
-    public List<Usuario> listarAutores(Long idLibro, Long idAutor);
+    public List<Usuario> listarAutoresLibros(Long idLibro, Long idAutor);
 
-    public List<Usuario> listarCoautores(Long idLibro, Long idAutor);
+    public List<Usuario> listarCoautoresLibros(Long idLibro, Long idAutor);
+
+    public List<Usuario> listarAutoresCapitulosLibros(Long idCapituloLibro, Long idAutor);
+
+    public List<Usuario> listarCoautoresCapitulosLibros(Long idCapituloLibro, Long idAutor);
 
     public boolean existenUsuarios();
 }

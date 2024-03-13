@@ -125,8 +125,12 @@ function borrarDocumento(archivo) {
 
 function validarDocumento(id) {
     var fileInput = document.getElementById(id);
-    if (fileInput.files[0].size > 6097152 || fileInput.files[0].type != "application/pdf") {
-        alert("El tamaño del documento excede los 6MB o el tipo de archivo no es válido");
+    if (fileInput.files[0].size > 20097152) {
+        alert("El tamaño del documento excede los 20MB");
+        fileInput.value = "";
+    }
+    if (fileInput.files[0].type != "application/pdf") {
+        alert("El tipo de archivo no es válido");
         fileInput.value = "";
     }
 }
@@ -163,9 +167,6 @@ $('#registroModal').on('show.bs.modal', function (event) {
 // Función para mostrar el popup
 function mostrarPopup() {
     document.getElementById("popup").style.display = "flex";
-    // Lógica para cargar dinámicamente los usuarios en el select
-    // Puedes hacer una solicitud AJAX aquí para obtener la lista de usuarios
-    cargarUsuarios();
 }
 
 // Función para cerrar el popup
@@ -173,10 +174,5 @@ function cerrarPopup() {
     document.getElementById("popup").style.display = "none";
 }
 
-function actualizarCoautorId() {
-    var select = document.getElementById("idCoautor");
-    var coautorId = select.options[select.selectedIndex].getAttribute("data-id");
-    document.getElementById("coautorId").value = coautorId;
-}
 
 

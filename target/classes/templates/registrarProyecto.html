@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -31,11 +31,10 @@
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="inicio.html">Volver</a>
+                        <a class="nav-link" th:href="@{/usuarios/home}">Inicio <i class="fa-solid fa-house"></i></a>
                     </li>
                     <li class="nav-item">
-
-                        <a class="nav-link" href="index.html">Salir <i class="fa fa-sign-out"></i></a>
+                        <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
                     </li>
                 </ul>
             </div>

@@ -35,10 +35,9 @@
                 <ul class="navbar-nav ms-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/libros/verLibros}">Volver</a>
+                        <a class="nav-link" th:href="@{/usuarios/home}">Inicio <i class="fa-solid fa-house"></i></a>
                     </li>
                     <li class="nav-item">
-
                         <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
                     </li>
                 </ul>
@@ -62,19 +61,19 @@
                         <br>
                         Una vez guardada esta informaci&oacute;n se desplegar&aacute;n las opciones para registrar coautores, palabras clave, referencias en revistas, referencias en libros, &aacute;reas de conocimiento y reconocimientos.
                         <br>
-                        Pulse el enlace <a href="/cvlac/EnLibro/all.do" > "Regresar" </a> para volver al listado de libros resultado de investigaci&oacute;n
+                        Pulse el enlace <a th:href="@{/libros/verLibros}">"Regresar"</a> para volver al listado de libros resultado de investigaci&oacute;n
                     </div>
                 </div>
             </div>
             <br>
             <div class="container">
                 <div class="row">
-
                     <div class="form-group col-xd-12 col-sm-12">
                         <label for="titulo">Titulo(*)</label>
-                        <input th:field="*{idlibro}" type="hidden" class="form-control" name="libroId" id="libroId" placeholder="" required/>
+                        <input th:field="*{idLibro}" type="hidden" class="form-control" name="libroId" id="libroId" placeholder="" required/>
                         <input th:field="*{titulo}" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required/>
                     </div>
+                    <br>
                     <div class="form-group col-s-6 col-xd-6 col-sm-3">
                         <label for="input">Año(*)</label>
                         <div id="anioLibro" th:attr="data-anioLibro=*{anio}"></div>
@@ -93,13 +92,12 @@
                         <select th:field="*{lugarPublicacion}" class="form-control" name="lugarPublicacion" id="lugarPublicacion" required>
                         </select>
                     </div>
-
+                    <br>
                     <div class="col col-md-6" >
                         <label for="isbn">ISBN(*)</label>
                         <br>
                         <input type="text" th:field="*{isbn}" class="form-control" id="isbn" name="isbn" maxlength="13" size="13" required/> <font size="0.5"> Ej: 978-958-15481-8-8</font>
                         <p id="mensaje"></p>
-
                     </div>
                     <div class="col-xd-12 col-sm-6">
                         <div class="form-group">

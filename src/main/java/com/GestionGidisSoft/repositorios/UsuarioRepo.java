@@ -27,6 +27,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
             + " WHERE coli.idlibro = :idLibro AND coli.idautor = :idAutor", nativeQuery = true)
     List<Usuario> listarCoautores(Long idLibro, Long idAutor);
 
+
     @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
             + " SELECT u2.idusuario FROM usuario u2 "
             + "  INNER JOIN coautoreslibro coli ON (coli.idcoautor = u2.idusuario) " +
@@ -34,7 +35,21 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
             " SELECT u2.idusuario FROM usuario u2 " +
             " INNER JOIN usuariolibro usua ON (usua.idusuario = u2.idusuario) " +
             "  WHERE usua.idusuario = :idAutor AND usua.idlibro = :idLibro)", nativeQuery = true)
-    List<Usuario> listarCoautoresLibros(Long idLibro, Long idAutor);
+    List<Usuario> listarNoCoautoresLibros(Long idLibro, Long idAutor);
+
+    @Query(value = "SELECT usuc.* FROM usuario usuc "
+            + " INNER JOIN coautorescapitulolibro cocap ON (cocap.idcoautor = usuc.idusuario) "
+            + " WHERE cocap.idcapitulolibro = :idCapituloLibro AND cocap.idautor = :idAutor", nativeQuery = true)
+    List<Usuario> listarCoautoresCapituloLibro(Long idCapituloLibro, Long idAutor);
+
+    @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
+            + " SELECT u2.idusuario FROM usuario u2 "
+            + " INNER JOIN coautorescapitulolibro cocap ON (cocap.idcoautor = u2.idusuario) " +
+            " WHERE cocap.idautor = :idAutor AND cocap.idcapitulolibro = :idCapituloLibro) AND u.idusuario NOT IN ( " +
+            " SELECT u2.idusuario FROM usuario u2 " +
+            " INNER JOIN usuariocapitulolibro usua ON (usua.idautor = u2.idusuario) " +
+            "  WHERE usua.idautor = :idAutor AND usua.idcapitulo = :idCapituloLibro)", nativeQuery = true)
+    List<Usuario> listarNoCoautoresCapituloLibros(Long idCapituloLibro, Long idAutor);
 
     @Query(value = "SELECT COUNT(usua.idusuario) FROM usuario usua", nativeQuery = true)
     int existenUsuarios();

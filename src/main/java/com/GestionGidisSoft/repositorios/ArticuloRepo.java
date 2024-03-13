@@ -1,5 +1,6 @@
 package com.GestionGidisSoft.repositorios;
 
+import com.GestionGidisSoft.entidades.Articulo;
 import com.GestionGidisSoft.entidades.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,51 +13,54 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ArticuloRepo extends JpaRepository<Libro, Long> {
+public interface ArticuloRepo extends JpaRepository<Articulo, Long> {
 
-    @Query(value = " SELECT lib.* FROM libro lib "
-            + " INNER JOIN usuariolibro usualib on (usualib.idlibro = lib.idlibro) "
-            + " WHERE usualib.idusuario = :idUsuario", nativeQuery = true)
-    List<Libro> librosPorUsuario(Long idUsuario);
+    @Query(value = " SELECT art.* FROM articulo art "
+            + " INNER JOIN usuarioarticulo usuart on (usuart.idarticulo = art.idarticulo) "
+            + " WHERE usuart.idautor = :idUsuario", nativeQuery = true)
+    List<Articulo> listarArticulosPorAutor(Long idUsuario);
+
+    @Query(value = " SELECT * FROM articulo "
+            + " WHERE idarticulo = :idArticulo", nativeQuery = true)
+    Articulo buscarPorId(Long idArticulo);
+
+    @Query(value = " SELECT * FROM articulo "
+            + " WHERE identificadordigitaldoi = :doi", nativeQuery = true)
+    Optional<Articulo> buscarPorIdentificadorDoi(String  doi);
+
+    @Transactional
+    @Modifying
+    @Query(value = " INSERT INTO usuarioarticulo (idautor, idarticulo) VALUES (:idAutor, :idArticulo )", nativeQuery = true)
+    void agregarAutorArticulo(Long idArticulo, Long idAutor);
 
 
     @Transactional
     @Modifying
-    @Query(value = " INSERT INTO coautoreslibro (idautor, idcoautor, idlibro) " +
-            "VALUES (:idAutor, :idCoautor, :idLibro )", nativeQuery = true)
-    int insertarCoautor(Long idLibro, Long idAutor, Long idCoautor);
-
-    @Query(value = " SELECT * FROM libro "
-            + " WHERE idlibro = :idLibro", nativeQuery = true)
-    Libro buscarPorId(Long idLibro);
+    @Query(value = "DELETE FROM usuarioarticulo WHERE idarticulo = :idArticulo AND idautor = :idAutor", nativeQuery = true)
+    void eliminarAutorArticulo(Long idArticulo, Long idAutor);
 
     @Transactional
     @Modifying
-    @Query(value = " INSERT INTO usuariolibro (idusuario, idlibro) VALUES (:usuarioId, :libroId )", nativeQuery = true)
-    void actualizarTablaIntermedia(Long libroId, Long usuarioId);
-
-
-    @Transactional
-    @Modifying
-    @Query(value = "DELETE FROM usuariolibro WHERE idlibro = :idLibro AND idusuario = :idAutor", nativeQuery = true)
-    void eliminarRegistrosAutorLibro(Long idLibro, Long idAutor);
+    @Query(value = " INSERT INTO coautoresarticulo (idautor, idcoautor, idarticulo) " +
+            "VALUES (:idAutor, :idCoautor, :idArticulo )", nativeQuery = true)
+    int insertarCoautor(Long idArticulo, Long idAutor, Long idCoautor);
 
     @Transactional
     @Modifying
-    @Query(value = "DELETE FROM coautoreslibro "
-            + " WHERE idlibro = :idLibro AND idcoautor = :idCoautor", nativeQuery = true)
-    void eliminarCoautor(Long idLibro, Long idCoautor);
-
+    @Query(value = "DELETE FROM coautoresarticulo "
+            + " WHERE idarticulo = :idArticulo AND idcoautor = :idCoautor", nativeQuery = true)
+    int eliminarCoautor(Long idArticulo, Long idCoautor);
+/*
     @Transactional
     @Modifying
-    @Query(value = " UPDATE libro lib " +
-            " SET lib.titulo = :titulo, lib.anio = :anio, lib.mes = :mes, lib.disciplina = :disciplina, " +
+    @Query(value = " UPDATE articulo art " +
+            " SET art.titulo = :titulo, art.anio = :anio, art.mes = :mes, lib.disciplina = :disciplina, " +
             " lib.editorial = :editorial, lib.isbn = :isbn, lib.lugarpublicacion = :lugarPublicacion, " +
             " lib.mediodivulgacion = :medioDivulgacion, lib.tipoeditorial = :tipoEditorial, " +
             " lib.documentoevidencia = :documentoEvidencia, lib.certificadocreditos = :certificadoCreditos, " +
             " lib.certificadoinstitucionavala = :certificadoInstitucionAvala " +
             " WHERE lib.idlibro = :idLibro", nativeQuery = true)
-    int actualizarLibro(@Param("idLibro") Long idLibro, @Param("titulo") String titulo,
+    int actualizararticulo(@Param("idLibro") Long idLibro, @Param("titulo") String titulo,
                          @Param("anio") String anio, @Param("mes") String mes,
                          @Param("disciplina") String disciplina, @Param("editorial") String editorial,
                          @Param("isbn") String isbn, @Param("lugarPublicacion") String lugarPublicacion,
@@ -64,7 +68,6 @@ public interface ArticuloRepo extends JpaRepository<Libro, Long> {
                          @Param("documentoEvidencia") String documentoEvidencia, @Param("certificadoCreditos") String certificadoCreditos,
                          @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala);
 
-
-    Optional<Libro> findByIsbn(String isbn);
+*/
 }
 

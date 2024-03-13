@@ -53,13 +53,11 @@ public class LibroControlador {
     public ModelAndView goLibros(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
-
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             List<Libro> libros = libroServico.findByUsuarioId(usuario.getIdusuario());
-            System.out.println("usuario en sesión: " + usuario.getPrimerNombre());
             if (libros.isEmpty()){
-                mav.addObject("mensaje", "Aun no hay registros");
+                mav.addObject("mensaje", "Aún no hay registros");
             }
             mav.addObject("listaLibros", libros);
             mav.addObject("usuario", usuario);
@@ -175,8 +173,8 @@ public class LibroControlador {
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
-            List<Usuario> coautores = usuarioServicio.listarCoautores(libroId, usuario.getIdusuario());
-            List<Usuario> autores = usuarioServicio.listarAutores(libroId, usuario.getIdusuario());
+            List<Usuario> coautores = usuarioServicio.listarCoautoresLibros(libroId, usuario.getIdusuario());
+            List<Usuario> autores = usuarioServicio.listarAutoresLibros(libroId, usuario.getIdusuario());
             Libro libro = libroServico.buscarPorId(libroId);
             for (Usuario usuario1: autores) {
                 if (usuario1.getIdusuario() != usuario.getIdusuario()) {
@@ -205,30 +203,45 @@ public class LibroControlador {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        System.out.println(":: Eliminando libro de :: " + libroId + " - " + usuario.getIdusuario());
-        try {
-            libroServico.eliminarRegistrosAutorLibro(libroId, usuario.getIdusuario());
-            libroServico.eliminarRelacionLibroUsuario(libroId, usuario.getIdusuario());
-            libroServico.eliminar(libroId);
-            mav.setViewName("redirect:/libros/verLibros");
-            return mav;
+        if (session.getAttribute("usuario") != null) {
+            try {
+                libroServico.eliminarRegistrosAutorLibro(libroId, usuario.getIdusuario());
+                libroServico.eliminarRelacionLibroUsuario(libroId, usuario.getIdusuario());
+                libroServico.eliminar(libroId);
+                mav.setViewName("redirect:/libros/verLibros");
+                return mav;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            mav.setViewName("redirect:/libros/verLibros" );
-            //return "redirect:/libros/inicio";
+            } catch (Exception e) {
+                e.printStackTrace();
+                mav.setViewName("redirect:/libros/verLibros" );
+                //return "redirect:/libros/inicio";
+                return mav;
+            }
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
             return mav;
         }
     }
     @PostMapping("/agregarCoautor")
-    public ModelAndView insertarCoautor(HttpServletRequest request, @RequestParam("coautorId") Long coautorId,
+    public ModelAndView insertarCoautor(HttpServletRequest request, @RequestParam("idCoautor") Long idCoautor,
                                         @RequestParam("idLibro") Long idLibro){
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        libroServico.insertarCoautor(idLibro, usuario.getIdusuario(), coautorId);
-        mav.setViewName("redirect:/libros/detalle/"+idLibro);
-        return mav;
+        if (session.getAttribute("usuario") != null) {
+            libroServico.insertarCoautor(idLibro, usuario.getIdusuario(), idCoautor);
+            mav.setViewName("redirect:/libros/detalle/"+idLibro);
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
     }
 
     @GetMapping("/eliminarCoautor/{idLibro}/{idCoautor}")
@@ -236,10 +249,17 @@ public class LibroControlador {
                                         @PathVariable("idLibro") Long idLibro){
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        libroServico.eliminarRelacionCoautores(idLibro, idCoautor);
-        mav.setViewName("redirect:/libros/detalle/"+idLibro);
-        return mav;
+        if (session.getAttribute("usuario") != null) {
+            libroServico.eliminarRelacionCoautores(idLibro, idCoautor);
+            mav.setViewName("redirect:/libros/detalle/"+idLibro);
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
     }
 
     @PostMapping("/adjuntarArchivo")
@@ -252,42 +272,49 @@ public class LibroControlador {
 
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
         mav.setViewName("redirect:/libros/detalle/"+idLibro);
-        try {
-            if (documentoEvidencia != null && !documentoEvidencia.isEmpty()) {
-                String nombreArchivoActualEvidencia = libro.getDocumentoEvidencia();
-                if (nombreArchivoActualEvidencia != null && !nombreArchivoActualEvidencia.isEmpty()) {
-                    eliminarArchivo(nombreArchivoActualEvidencia);
-                } else {
-                    System.out.println("No hay archivos para eliminar");
+        if (session.getAttribute("usuario") != null) {
+            try {
+                if (documentoEvidencia != null && !documentoEvidencia.isEmpty()) {
+                    String nombreArchivoActualEvidencia = libro.getDocumentoEvidencia();
+                    if (nombreArchivoActualEvidencia != null && !nombreArchivoActualEvidencia.isEmpty()) {
+                        eliminarArchivo(nombreArchivoActualEvidencia);
+                    } else {
+                        System.out.println("No hay archivos para eliminar");
+                    }
+                    libro.setDocumentoEvidencia(archivosServicio.guardarSoloUno(documentoEvidencia));
                 }
-                libro.setDocumentoEvidencia(archivosServicio.guardarSoloUno(documentoEvidencia));
-            }
-            if (certificadoCreditos != null && !certificadoCreditos.isEmpty()) {
-                String nombreArchivoActualCreditos = libro.getCertificadoCreditos();
-                if (nombreArchivoActualCreditos != null && !nombreArchivoActualCreditos.isEmpty()) {
-                    eliminarArchivo(nombreArchivoActualCreditos);
-                } else {
-                    System.out.println("No hay archivos para eliminar");
+                if (certificadoCreditos != null && !certificadoCreditos.isEmpty()) {
+                    String nombreArchivoActualCreditos = libro.getCertificadoCreditos();
+                    if (nombreArchivoActualCreditos != null && !nombreArchivoActualCreditos.isEmpty()) {
+                        eliminarArchivo(nombreArchivoActualCreditos);
+                    } else {
+                        System.out.println("No hay archivos para eliminar");
+                    }
+                    libro.setCertificadoCreditos(archivosServicio.guardarSoloUno(certificadoCreditos));
                 }
-                libro.setCertificadoCreditos(archivosServicio.guardarSoloUno(certificadoCreditos));
-            }
-            if (certificadoInstitucionAvala != null && !certificadoInstitucionAvala.isEmpty()) {
-                String nombreArchivoActualAvala = libro.getCertificadoInstitucionAvala();
-                if (nombreArchivoActualAvala != null && !nombreArchivoActualAvala.isEmpty()) {
-                    eliminarArchivo(nombreArchivoActualAvala);
-                } else {
-                    System.out.println("No hay archivos para eliminar");
+                if (certificadoInstitucionAvala != null && !certificadoInstitucionAvala.isEmpty()) {
+                    String nombreArchivoActualAvala = libro.getCertificadoInstitucionAvala();
+                    if (nombreArchivoActualAvala != null && !nombreArchivoActualAvala.isEmpty()) {
+                        eliminarArchivo(nombreArchivoActualAvala);
+                    } else {
+                        System.out.println("No hay archivos para eliminar");
+                    }
+                    libro.setCertificadoInstitucionAvala(archivosServicio.guardarSoloUno(certificadoInstitucionAvala));
                 }
-                libro.setCertificadoInstitucionAvala(archivosServicio.guardarSoloUno(certificadoInstitucionAvala));
-            }
-            libroServico.actualizarLibro(libro);
+                libroServico.actualizarLibro(libro);
 
-            return mav;
-        }catch (Exception e){
-            e.printStackTrace();
-            System.out.println(":: Error al subir el archivo :: ");
+                return mav;
+            }catch (Exception e){
+                e.printStackTrace();
+                System.out.println(":: Error al subir el archivo :: ");
+                return mav;
+            }
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
             return mav;
         }
     }

@@ -7,9 +7,13 @@ document.addEventListener("DOMContentLoaded", function() {
     var lugarLibro = document.getElementById("lugarLibro").getAttribute("data-lugarLibro");
     var anoLibro = document.getElementById("anioLibro").getAttribute("data-anioLibro");
     var mesLibro = document.getElementById("mesLibro").getAttribute("data-mesLibro");
-
+    var tituloLibro = document.getElementById("tituloLibro").getAttribute("data-tituloLibro");
     // Si hay un año de libro, establece ese año como seleccionado
 
+    if (tituloLibro) {
+        var select = document.getElementById("idLibro");
+        select.value = tituloLibro;
+    }
     if (lugarLibro) {
         var select = document.getElementById("lugarPublicacion");
         select.value = lugarLibro;
