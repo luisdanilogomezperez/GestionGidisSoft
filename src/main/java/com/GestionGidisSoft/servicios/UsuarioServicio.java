@@ -33,5 +33,10 @@ public interface UsuarioServicio {
 
     public List<Usuario> listarCoautoresCapitulosLibros(Long idCapituloLibro, Long idAutor);
 
+    public List<Usuario> listarAutoresArticulos(Long idArticulo, Long idAutor);
+
+    public List<Usuario> listarCoautoresArticulos(Long idArticulo, Long idAutor);
+
+
     public boolean existenUsuarios();
 }

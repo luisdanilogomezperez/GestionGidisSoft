@@ -55,7 +55,6 @@ public class CapituloLibroControlador {
 
             if (!listacapituloLibros.isEmpty()){
                 for (CapituloLibro capituloLibro : listacapituloLibros) {
-                    System.out.println("capitulo :::: " + capituloLibro.getTitulo());
                     Libro libro = libroServico.buscarPorId(capituloLibro.getIdLibro());
                     capituloLibro.setTituloLibro(libro.getTitulo());
                     listacapituloLibrosVista.add(capituloLibro);
@@ -103,26 +102,10 @@ public class CapituloLibroControlador {
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
             //verifica que no haya un libro con el mismo isbn
-            capituloLibro.setDocumentoEvidencia(null);
-            capituloLibro.setCertificadoCreditos(null);
-            capituloLibro.setCertificadoInstitucionAvala(null);
-            Libro librox = libroServico.buscarPorId(capituloLibro.getIdLibro());
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             capituloLibroServicio.guardarCapituloLibro(capituloLibro);
             capituloLibroServicio.agregarRegistroAutorCapitulo(capituloLibro.getIdCapitulo(), usuario.getIdusuario());
-            List<CapituloLibro> listacapituloLibros = capituloLibroServicio.findByUsuarioId(usuario.getIdusuario());
-            List<CapituloLibro> listacapituloLibrosVista = new ArrayList<>();
-            Libro libro = null;
-            if (!listacapituloLibros.isEmpty()){
-                for (CapituloLibro capLibro : listacapituloLibros) {
-                    libro = libroServico.buscarPorId(capLibro.getIdLibro());
-                    capituloLibro.setTituloLibro(libro.getTitulo());
-                    listacapituloLibrosVista.add(capituloLibro);
-                }
-            }
-            mav.addObject("listaCapitulosLibros", listacapituloLibrosVista);
-            mav.addObject("usuario", usuario);
-            mav.setViewName("listarCapitulosLibros");
+            mav.setViewName("redirect:/capitulosLibro/verCapitulosLibros");
             return mav;
 
         } else {
@@ -162,10 +145,7 @@ public class CapituloLibroControlador {
         if (session.getAttribute("usuario") != null) {
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
                 capituloLibroServicio.actualizarCapituloLibro(capituloLibro);
-                List<CapituloLibro> listaCapituloLibros = capituloLibroServicio.findByUsuarioId(usuario.getIdusuario());
-                mav.addObject("listaCapitulosLibros", listaCapituloLibros);
-                mav.addObject("usuario", usuario);
-                mav.setViewName("listarCapitulosLibros");
+                mav.setViewName("redirect:/capitulosLibro/verCapitulosLibros");
                 return mav;
         } else {
             System.out.println("error de logueo");
@@ -212,7 +192,7 @@ public class CapituloLibroControlador {
     }
 
     @RequestMapping("/eliminar/{idCapituloLibro}")
-    public ModelAndView eliminar(HttpServletRequest request, @PathVariable(value = "idCapitulo") Long idCapitulo) {
+    public ModelAndView eliminar(HttpServletRequest request, @PathVariable(value = "idCapituloLibro") Long idCapitulo) {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -221,10 +201,10 @@ public class CapituloLibroControlador {
                 capituloLibroServicio.eliminarRegistrosAutorCapitulo(idCapitulo, usuario.getIdusuario());
                 capituloLibroServicio.eliminarRegistrosCoautoresCapituloLibro(idCapitulo, usuario.getIdusuario());
                 capituloLibroServicio.eliminar(idCapitulo);
-                mav.setViewName("redirect:/capitulosLibro/verLibros");
+                mav.setViewName("redirect:/capitulosLibro/verCapitulosLibros");
                 return mav;
             } catch (Exception e) {
-                mav.setViewName("redirect:/capitulosLibro/verLibros" );
+                mav.setViewName("redirect:/capitulosLibro/verCapitulosLibros" );
                 return mav;
             }
         } else {
@@ -323,7 +303,7 @@ public class CapituloLibroControlador {
                     }
                     capituloLibro.setCertificadoInstitucionAvala(archivosServicio.guardarSoloUno(certificadoInstitucionAvala));
                 }
-                capituloLibroServicio.actualizarCapituloLibro(capituloLibro);
+                capituloLibroServicio.cargarDocumentos(capituloLibro);
 
                 return mav;
             }catch (Exception e){

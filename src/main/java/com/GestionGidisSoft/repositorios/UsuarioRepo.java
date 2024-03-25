@@ -59,4 +59,18 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     @Query(value = " INSERT INTO usuariorol (idusuario, idrol) VALUES (:idUsuario, :idRol)", nativeQuery = true)
     void actualizarTablaIntermedia(Long idUsuario, Long idRol);
 
+    @Query(value = "SELECT usuc.* FROM usuario usuc "
+            + " INNER JOIN coautoresarticulo coart ON (coart.idcoautor = usuc.idusuario) "
+            + " WHERE coart.idarticulo = :idArticulo AND coart.idautor = :idAutor", nativeQuery = true)
+    List<Usuario> listarCoautoresArticulos(Long idArticulo, Long idAutor);
+
+    @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
+            + " SELECT u2.idusuario FROM usuario u2 "
+            + " INNER JOIN coautoresarticulo coart ON (coart.idcoautor = u2.idusuario) " +
+            " WHERE coart.idautor = :idAutor AND coart.idarticulo = :idArticulo) AND u.idusuario NOT IN ( " +
+            " SELECT u2.idusuario FROM usuario u2 " +
+            " INNER JOIN usuarioarticulo usua ON (usua.idautor = u2.idusuario) " +
+            "  WHERE usua.idautor = :idAutor AND usua.idarticulo = :idArticulo)", nativeQuery = true)
+    List<Usuario> listarNoCoautoresArticulos(Long idArticulo, Long idAutor);
+
 }

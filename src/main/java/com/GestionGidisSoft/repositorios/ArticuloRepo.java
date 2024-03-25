@@ -50,24 +50,35 @@ public interface ArticuloRepo extends JpaRepository<Articulo, Long> {
     @Query(value = "DELETE FROM coautoresarticulo "
             + " WHERE idarticulo = :idArticulo AND idcoautor = :idCoautor", nativeQuery = true)
     int eliminarCoautor(Long idArticulo, Long idCoautor);
-/*
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM coautoresarticulo "
+            + " WHERE idarticulo = :idArticulo AND idautor = :idAutor", nativeQuery = true)
+    int eliminarCoautoresArticulo(Long idArticulo, Long idAutor);
+
     @Transactional
     @Modifying
     @Query(value = " UPDATE articulo art " +
-            " SET art.titulo = :titulo, art.anio = :anio, art.mes = :mes, lib.disciplina = :disciplina, " +
-            " lib.editorial = :editorial, lib.isbn = :isbn, lib.lugarpublicacion = :lugarPublicacion, " +
-            " lib.mediodivulgacion = :medioDivulgacion, lib.tipoeditorial = :tipoEditorial, " +
-            " lib.documentoevidencia = :documentoEvidencia, lib.certificadocreditos = :certificadoCreditos, " +
-            " lib.certificadoinstitucionavala = :certificadoInstitucionAvala " +
-            " WHERE lib.idlibro = :idLibro", nativeQuery = true)
-    int actualizararticulo(@Param("idLibro") Long idLibro, @Param("titulo") String titulo,
-                         @Param("anio") String anio, @Param("mes") String mes,
-                         @Param("disciplina") String disciplina, @Param("editorial") String editorial,
-                         @Param("isbn") String isbn, @Param("lugarPublicacion") String lugarPublicacion,
-                         @Param("medioDivulgacion") String medioDivulgacion, @Param("tipoEditorial") String tipoEditorial,
-                         @Param("documentoEvidencia") String documentoEvidencia, @Param("certificadoCreditos") String certificadoCreditos,
-                         @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala);
+            " SET art.titulo = :titulo, art.anio = :anio, art.mes = :mes, art.mediodivulgacion = :medioDivulgacion, " +
+            " art.paginainicial = :paginaInicial, art.paginafinal = :paginaFinal, art.nombrerevista = :nombreRevista, " +
+            " art.tipoarticulo = :tipoArticulo, art.volumen = :volumen, art.fasciculorevista = :fasciculoRevista, " +
+            " art.serierevista = :serieRevista, art.lugarpublicacion = :lugarPublicacion, art.idioma = :idioma," +
+            " art.identificadordigitaldoi = :identificadorDigitalDOI, art.urlsitioweb = :ulrSitioWeb" +
+            " WHERE art.idarticulo = :idArticulo", nativeQuery = true)
+    int actualizarArticulo(@Param("idArticulo") Long idArticulo, @Param("titulo") String titulo,
+                           @Param("anio") String anio, @Param("mes") String mes, @Param("medioDivulgacion") String medioDivulgacion,
+                           @Param("paginaInicial") String paginaInicial,
+                           @Param("paginaFinal") String paginaFinal, @Param("nombreRevista") String nombreRevista,
+                           @Param("tipoArticulo") String tipoArticulo, @Param("volumen") String volumen,
+                           @Param("fasciculoRevista") String fasciculoRevista, @Param("serieRevista") String serieRevista,
+                           @Param("lugarPublicacion") String lugarPublicacion, @Param("identificadorDigitalDOI") String identificadorDigitalDOI,
+                           @Param("idioma") String idioma, @Param("ulrSitioWeb") String ulrSitioWeb);
 
-*/
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE articulo art SET art.documentoevidencia = :documentoEvidencia" +
+            " WHERE art.idarticulo = :idArticulo", nativeQuery = true)
+    int cargarDocumento(@Param("idArticulo") Long idArticulo, @Param("documentoEvidencia") String documentoEvidencia);
 }
 

@@ -22,7 +22,9 @@ public interface CapituloLibroServicio {
 
     String actualizarCapituloLibro(CapituloLibro capituloLibro) throws Exception;
 
+    String cargarDocumentos(CapituloLibro capituloLibro) throws Exception;
     List<CapituloLibro> buscarCapitulosLibros();
+
 
     CapituloLibro buscarPorId(long idCapituloLibro);
 

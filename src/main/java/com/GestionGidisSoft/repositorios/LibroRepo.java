@@ -58,18 +58,22 @@ public interface LibroRepo extends JpaRepository<Libro, Long> {
     @Query(value = " UPDATE libro lib " +
             " SET lib.titulo = :titulo, lib.anio = :anio, lib.mes = :mes, lib.disciplina = :disciplina, " +
             " lib.editorial = :editorial, lib.isbn = :isbn, lib.lugarpublicacion = :lugarPublicacion, " +
-            " lib.mediodivulgacion = :medioDivulgacion, lib.tipoeditorial = :tipoEditorial, " +
-            " lib.documentoevidencia = :documentoEvidencia, lib.certificadocreditos = :certificadoCreditos, " +
-            " lib.certificadoinstitucionavala = :certificadoInstitucionAvala " +
+            " lib.mediodivulgacion = :medioDivulgacion, lib.tipoeditorial = :tipoEditorial " +
             " WHERE lib.idlibro = :idLibro", nativeQuery = true)
     int actualizarLibro(@Param("idLibro") Long idLibro, @Param("titulo") String titulo,
                          @Param("anio") String anio, @Param("mes") String mes,
                          @Param("disciplina") String disciplina, @Param("editorial") String editorial,
                          @Param("isbn") String isbn, @Param("lugarPublicacion") String lugarPublicacion,
-                         @Param("medioDivulgacion") String medioDivulgacion, @Param("tipoEditorial") String tipoEditorial,
-                         @Param("documentoEvidencia") String documentoEvidencia, @Param("certificadoCreditos") String certificadoCreditos,
-                         @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala);
+                         @Param("medioDivulgacion") String medioDivulgacion, @Param("tipoEditorial") String tipoEditorial);
 
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE libro lib SET lib.documentoevidencia = :documentoEvidencia" +
+            " lib.certificadoinstitucionavala = :certificadoInstitucionAvala, lib.certificadocreditos = :certificadoCreditos, " +
+            " WHERE lib.idlibro = :idLibro", nativeQuery = true)
+    int cargarDocumentos(@Param("idLibro") Long idLibro, @Param("documentoEvidencia") String documentoEvidencia,
+                         @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala,
+                         @Param("certificadoCreditos") String certificadoCreditos);
 
     Optional<Libro> findByIsbn(String isbn);
 }

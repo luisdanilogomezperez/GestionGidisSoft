@@ -56,18 +56,35 @@ public class LibroServicioImpl implements LibroServico {
 
     @Override
     public String actualizarLibro(Libro libro) throws Exception {
-        if(libroRepo.actualizarLibro(libro.getIdLibro(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
-                libro.getDisciplina(), libro.getEditorial(), libro.getIsbn(), libro.getLugarPublicacion(),
-                libro.getMedioDivulgacion(), libro.getTipoEditorial(), libro.getDocumentoEvidencia(),
-                libro.getCertificadoCreditos(), libro.getCertificadoInstitucionAvala()) == 1) {
-            return "Libro actualizado exitosamente";
-        } else {
-            return "Hubo un error al actualizar el libro";
+        try {
+            if(libroRepo.actualizarLibro(libro.getIdLibro(), libro.getTitulo(), libro.getAnio(), libro.getMes(),
+                    libro.getDisciplina(), libro.getEditorial(), libro.getIsbn(), libro.getLugarPublicacion(),
+                    libro.getMedioDivulgacion(), libro.getTipoEditorial()) == 1) {
+                return "Libro actualizado exitosamente";
+            } else {
+                return "Hubo un error al actualizar el libro";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(":: Error :: " + e.getMessage());
+            return "Hubo un error inesperado";
         }
-//        libroRepo.actualizarLibro(libro);
+    }
 
-
-
+    @Override
+    public String cargarDocumentos(Libro libro) throws Exception {
+        try {
+            if(libroRepo.cargarDocumentos(libro.getIdLibro(), libro.getDocumentoEvidencia(),
+                    libro.getCertificadoInstitucionAvala(), libro.getCertificadoCreditos()) == 1) {
+                return "Dcoumentos del Libro cargados exitosamente";
+            } else {
+                return "Hubo un error al cargar los documentos del libro";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(":: Error :: " + e.getMessage());
+            return "Hubo un error inesperado";
+        }
     }
 
     @Override

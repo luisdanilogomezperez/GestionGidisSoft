@@ -58,15 +58,20 @@ public interface CapituloLibroRepo extends JpaRepository<CapituloLibro, Long> {
             " SET cali.titulo = :titulo, cali.anio = :anio, cali.mes = :mes, cali.disciplina = :disciplina, cali.edicion = :edicion, " +
             " cali.areaconocimiento = :areaConocimiento, cali.lugarpublicacion = :lugarPublicacion, cali.paginafinal = :paginaFinal, " +
             " cali.mediodivulgacion = :medioDivulgacion, cali.numeropaginas = :numeroPaginas, cali.paginainicial = :paginaInicial, " +
-            " cali.documentoevidencia = :documentoEvidencia, cali.certificadocreditos = :certificadoCreditos, " +
-            "  cali.certificadoinstitucionavala = :certificadoInstitucionAvala, cali.idlibro = :idLibro, cali.serielibro = :serieLibro" +
-            " WHERE cali.idcapitulo = :idCapituloLibro", nativeQuery = true)
+            " cali.idlibro = :idLibro, cali.serielibro = :serieLibro WHERE cali.idcapitulo = :idCapituloLibro", nativeQuery = true)
     int actualizarCapituloLibro(@Param("idCapituloLibro") Long idCapituloLibro, @Param("titulo") String titulo, @Param("serieLibro") String serieLibro,
                         @Param("anio") String anio, @Param("mes") String mes, @Param("paginaInicial") String paginaInicial,
                         @Param("paginaFinal") String paginaFinal, @Param("disciplina") String disciplina, @Param("edicion") String edicion,
                         @Param("areaConocimiento") String areaConocimiento, @Param("lugarPublicacion") String lugarPublicacion,
                         @Param("medioDivulgacion") String medioDivulgacion, @Param("numeroPaginas") String numeroPaginas,
-                        @Param("documentoEvidencia") String documentoEvidencia, @Param("certificadoCreditos") String certificadoCreditos,
-                        @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala, @Param("idLibro") Long idLibro);
+                        @Param("idLibro") Long idLibro);
 
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE capitulolibro cali SET cali.documentoevidencia = :documentoEvidencia" +
+            " cali.certificadoinstitucionavala = :certificadoInstitucionAvala, cali.certificadocreditos = :certificadoCreditos, " +
+            " WHERE cali.idcapitulo = :idCapituloLibro", nativeQuery = true)
+    int cargarDocumentos(@Param("idCapituloLibro") Long idCapituloLibro, @Param("documentoEvidencia") String documentoEvidencia,
+                         @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala,
+                         @Param("certificadoCreditos") String certificadoCreditos);
 }

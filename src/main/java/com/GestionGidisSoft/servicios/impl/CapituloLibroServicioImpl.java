@@ -39,7 +39,7 @@ public class CapituloLibroServicioImpl implements CapituloLibroServicio {
 
     @Override
     public void eliminarRegistrosAutorCapitulo(Long idCapitulo, Long idAutor) {
-        capituloLibroRepo.eliminarRegistrosAutorCapitulo(idAutor, idCapitulo);
+        capituloLibroRepo.eliminarRegistrosAutorCapitulo(idCapitulo, idAutor);
     }
 
     @Override
@@ -55,15 +55,37 @@ public class CapituloLibroServicioImpl implements CapituloLibroServicio {
 
     @Override
     public String actualizarCapituloLibro(CapituloLibro capituloLibro) throws Exception {
-        if(capituloLibroRepo.actualizarCapituloLibro(capituloLibro.getIdCapitulo(), capituloLibro.getTitulo(),
-                capituloLibro.getSerieLibro(), capituloLibro.getAnio(), capituloLibro.getMes(), capituloLibro.getPaginaInicial(),
-                capituloLibro.getPaginaFinal(), capituloLibro.getDisciplina(), capituloLibro.getEdicion(), capituloLibro.getAreaConocimiento(),
-                capituloLibro.getLugarPublicacion(), capituloLibro.getMedioDivulgacion(), capituloLibro.getNumeroPaginas(),
-                capituloLibro.getDocumentoEvidencia(), capituloLibro.getCertificadoCreditos(), capituloLibro.getCertificadoInstitucionAvala(),
-                capituloLibro.getIdLibro()) == 1) {
-            return "Capitulo de libro actualizado exitosamente";
-        } else {
-            return "Hubo un error al actualizar el capitulo del libro";
+        try {
+            if(capituloLibroRepo.actualizarCapituloLibro(capituloLibro.getIdCapitulo(), capituloLibro.getTitulo(),
+                    capituloLibro.getSerieLibro(), capituloLibro.getAnio(), capituloLibro.getMes(), capituloLibro.getPaginaInicial(),
+                    capituloLibro.getPaginaFinal(), capituloLibro.getDisciplina(), capituloLibro.getEdicion(), capituloLibro.getAreaConocimiento(),
+                    capituloLibro.getLugarPublicacion(), capituloLibro.getMedioDivulgacion(), capituloLibro.getNumeroPaginas(),
+                    capituloLibro.getIdLibro()) == 1) {
+                return "Capitulo de libro actualizado exitosamente";
+            } else {
+                return "Hubo un error al actualizar el capitulo del libro";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(":: Error :: " + e.getMessage());
+            return "Hubo un error al actualizar el Artículo";
+        }
+
+    }
+
+    @Override
+    public String cargarDocumentos(CapituloLibro capituloLibro) throws Exception {
+        try {
+            if(capituloLibroRepo.cargarDocumentos(capituloLibro.getIdLibro(), capituloLibro.getDocumentoEvidencia(),
+                    capituloLibro.getCertificadoInstitucionAvala(), capituloLibro.getCertificadoCreditos()) == 1) {
+                return "Documentos del Capitulo de libro cargados exitosamente";
+            } else {
+                return "Hubo un error al cargar los documentos del Capitulo del libro";
+            }
+        }  catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(":: Error :: " + e.getMessage());
+            return "Hubo un error inesperado";
         }
     }
 

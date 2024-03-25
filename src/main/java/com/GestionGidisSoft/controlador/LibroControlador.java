@@ -143,7 +143,7 @@ public class LibroControlador {
         }
     }
     @PostMapping("/editar")
-    public ModelAndView editarLibro(HttpServletRequest request, @ModelAttribute("libro") Libro libro) throws Exception {
+    public ModelAndView actualizarLibro(HttpServletRequest request, @ModelAttribute("libro") Libro libro) throws Exception {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {

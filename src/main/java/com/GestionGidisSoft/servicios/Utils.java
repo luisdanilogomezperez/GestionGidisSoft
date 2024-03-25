@@ -68,7 +68,6 @@ public class Utils {
                     if (codigoIdioma.equalsIgnoreCase(languageNode.get("iso639_1").asText())) {
                         idiomaObtenido = languageNode.get("nativeName").asText();
                         codigoIdiomaAux = languageNode.get("iso639_1").asText();
-                        System.out.println(idiomaObtenido);
                         break;
                     }
                 }

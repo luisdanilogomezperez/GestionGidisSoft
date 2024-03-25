@@ -40,7 +40,7 @@
         </nav>
 
     <!--Formulario-->
-        <div class="container" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+        <div class="container" id="libro">
         <form  th:action="@{/articulos/guardar}" th:object="${articulo}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
             <div class="container">
                 <div class="row">
@@ -427,7 +427,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-ld-12 col-xd-12 col-sm-12">
+                    <div class="col-ld-5 col-xd-5 col-sm-5">
                         <div class="form-group">
                             <label for="input">Nombre de Revista(*)</label>
                             <input type="text" th:field="*{nombreRevista}" class="form-control" name="nombreRevista" id="nombreRevista"
@@ -448,7 +448,7 @@
                     <div class="col-ld-4 col-xs-4 col-sm-3">
                         <div class="form-group">
                             <label for="input">Volumen</label>
-                            <input type="text" style="width:200px;" name="volumen" class="form-control" id="volumen" placeholder="" required>
+                            <input type="text" th:field="*{volumen}" style="width:200px;" name="volumen" class="form-control" id="volumen" placeholder="" required>
                         </div>
                     </div>
                     <div class="col-ld-4 col-xs-4 col-sm-3">
@@ -468,6 +468,9 @@
                         <label for="input">Lugar de publicación</label>
                     </div>
                     <div class="col-xd-12 col-sm-6">
+                        <p>
+                            <label for="input">Pais</label>
+                        </p>
                         <div class="form-group">
                             <select id="pais" name="pais" class="form-control" style="width:300px;">
                             </select>
@@ -475,6 +478,9 @@
                         </div>
                     </div>
                     <div class="col-xd-12 col-sm-6">
+                        <p>
+                            <label for="input">Ciudad </label>
+                        </p>
                         <div class="form-group">
                             <select id="ciudad" name="ciudad" class="form-control" style="width:300px;">
                             </select>

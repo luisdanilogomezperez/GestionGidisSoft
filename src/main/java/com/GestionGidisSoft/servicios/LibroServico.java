@@ -21,6 +21,8 @@ public interface LibroServico {
 
     String actualizarLibro(Libro libro) throws Exception;
 
+    String cargarDocumentos(Libro libro) throws Exception;
+
     List<Libro> buscarLibros();
 
     Libro buscarPorId(long idLibro);

@@ -41,8 +41,8 @@ public class Articulo {
     String ciudadPublicacion;
     @Column(name = "serierevista")
     private String serieRevista;
-    @Column(name = "ciudad")
-    private String ciudad;
+    @Column(name = "lugarpublicacion")
+    private String lugarPublicacion;
     @Column(name = "identificadordigitaldoi")
     private String identificadorDigitalDoi;
     @Column(name = "idioma")
@@ -64,6 +64,14 @@ public class Articulo {
 
     public void setCiudadPublicacion(String ciudadPublicacion) {
         this.ciudadPublicacion = ciudadPublicacion;
+    }
+
+    public String getLugarPublicacion() {
+        return lugarPublicacion;
+    }
+
+    public void setLugarPublicacion(String lugarPublicacion) {
+        this.lugarPublicacion = lugarPublicacion;
     }
 
     public String getPaginaFinal() {
@@ -184,14 +192,6 @@ public class Articulo {
 
     public void setSerieRevista(String serieRevista) {
         this.serieRevista = serieRevista;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
     }
 
     public String getIdentificadorDigitalDoi() {
