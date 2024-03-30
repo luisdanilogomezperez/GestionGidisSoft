@@ -3,7 +3,6 @@ package com.GestionGidisSoft.servicios.impl;
 import com.GestionGidisSoft.DTO.LoginRequestDto;
 import com.GestionGidisSoft.entidades.Rol;
 import com.GestionGidisSoft.entidades.Usuario;
-import com.GestionGidisSoft.entidades.UsuarioRol;
 import com.GestionGidisSoft.repositorios.RolRepo;
 import com.GestionGidisSoft.repositorios.UsuarioRepo;
 import com.GestionGidisSoft.servicios.UsuarioServicio;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio {
@@ -43,8 +40,19 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
-    public Usuario actualizarUsuario(Usuario usuario) throws Exception {
-        return null;
+    public String actualizarUsuario(Long idUsuario, boolean enable) throws Exception {
+        String mensaje = "";
+        try {
+            if (usuarioRepo.actualizarEstado(idUsuario, enable) == 1) {
+                mensaje = "Estado del usuario actualizado correctamente";
+            } else {
+                mensaje = "Hubo un error actualizando";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("::: Error inesperado ::: " + e.getMessage());
+        }
+        return mensaje;
     }
 
     @Override
@@ -88,6 +96,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public List<Usuario> listarCoautoresLibros(Long idLibro, Long idAutor) {
         List<Usuario> coautores =  usuarioRepo.listarCoautores(idLibro, idAutor);
         return coautores;
+    }
+
+    @Override
+    public List<Usuario> listarUsuarios(Long idUsuarioAdmin) {
+        List<Usuario> listaUsuarios =  usuarioRepo.listarUsuarios(idUsuarioAdmin);
+        return listaUsuarios;
     }
 
     @Override

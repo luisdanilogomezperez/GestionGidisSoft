@@ -29,8 +29,7 @@
             <div class="items-titulo">
                 <div  class="items-titulo-nombre">
                     <h6>
-                        <span th:text="${usuario.primerNombre}"></span> <span th:text="${usuario.segundoNombre}"></span>
-                        <span th:text="${usuario.primerApellido}"></span> <span th:text="${usuario.segundoApellido}"></span>
+                        <span th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}"></span>
                     </h6>
                 </div>
                 <div  class="">
@@ -79,15 +78,15 @@
                     <label for="enlaces">Demás Trabajos</label>
                 </div>
                 <div class="items">
-                    <a th:href="@{/usuarios/admin/gestionarUsuarios}"><img src="/img/gestionusuarios.png" alt="" ></a>
+                    <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/gestionusuarios.png" alt="" ></a>
                     <br>
                     <label for="enlaces">Gestionar Usuarios</label>
                 </div>
-                <div class="items">
-                    <a th:href="@{/usuarios/admin/gestionarProgramas}"><img src="/img/programaAcademico.png" alt="" ></a>
-                    <br>
-                    <label for="enlaces">Gestionar Programas académicos</label>
-                </div>
+<!--                <div class="items">-->
+<!--                    <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/programaAcademico.png" alt="" ></a>-->
+<!--                    <br>-->
+<!--                    <label for="enlaces">Gestionar Programas académicos</label>-->
+<!--                </div>-->
             </div>
         </div>
     </div>

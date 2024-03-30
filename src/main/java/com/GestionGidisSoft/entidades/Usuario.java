@@ -41,7 +41,15 @@ public class Usuario {
     @Column(name = "email")
     private String email;
     @Column(name = "enable")
-    private boolean eable = true;
+    private boolean enable = true;
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
+    }
 
     public String getUsername() {
         return username;
@@ -121,14 +129,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isEable() {
-        return eable;
-    }
-
-    public void setEable(boolean eable) {
-        this.eable = eable;
     }
 
     public Long getIdUsuarioRol() {

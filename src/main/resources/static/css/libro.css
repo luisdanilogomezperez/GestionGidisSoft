@@ -139,3 +139,24 @@ label{
 .text-left {
     text-align: left;
 }
+
+.tabcontent {
+    display: none;
+}
+
+.tabcontent.active {
+    display: block;
+}
+
+.tablinks {
+    padding: 6px 20px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #40A2E3; /* Color de fondo inicial */
+    color: white; /* Color del texto */
+}
+
+.tablinks.active {
+    background-color: #CC3636; /* Color de fondo cuando está activo */
+}

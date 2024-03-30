@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -43,7 +44,7 @@ public class UsuarioControlador {
                 rol.setNombre("ADMIN");
                 System.out.println("NO existen usuarios, tu rol el ADMIN");
             }
-            usuario.setEable(true);
+            usuario.setEnable(true);
             usuarioServicio.guardarUsuario(usuario, rol);
 
             model.setViewName("redirect:/?registroExitoso=true");
@@ -109,8 +110,6 @@ public class UsuarioControlador {
             mav.setViewName("redirect:/");
             return mav;
         }
-
-
     }
 
 }

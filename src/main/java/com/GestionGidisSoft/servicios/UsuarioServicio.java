@@ -11,7 +11,7 @@ import java.util.Set;
 public interface UsuarioServicio {
     public Usuario guardarUsuario(Usuario usuario, Rol rol) throws Exception;
 
-    public Usuario actualizarUsuario(Usuario usuario) throws Exception;
+    public String actualizarUsuario(Long idUsuario, boolean enable) throws Exception;
 
     public Usuario buscarUsuario(String username);
 
@@ -28,6 +28,8 @@ public interface UsuarioServicio {
     public List<Usuario> listarAutoresLibros(Long idLibro, Long idAutor);
 
     public List<Usuario> listarCoautoresLibros(Long idLibro, Long idAutor);
+
+    List<Usuario> listarUsuarios(Long idUsuarioAdmin);
 
     public List<Usuario> listarAutoresCapitulosLibros(Long idCapituloLibro, Long idAutor);
 

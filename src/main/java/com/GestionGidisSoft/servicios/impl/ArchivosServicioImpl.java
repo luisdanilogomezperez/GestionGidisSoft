@@ -13,6 +13,8 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
@@ -29,7 +31,9 @@ public class ArchivosServicioImpl implements ArchivosServicio {
                 Files.createDirectories(UPLOADS_FOLDER);
             }
             String nombreArchivo = file.getOriginalFilename().replace(" ", "_");
-            String uniqueFilename = UUID.randomUUID().toString() + "_" + nombreArchivo;
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+            String uniqueFilename = timestamp + "_" + nombreArchivo;
+//            String uniqueFilename = UUID.randomUUID().toString() + "_" + nombreArchivo;
             Path filePath = this.UPLOADS_FOLDER.resolve(uniqueFilename);
             Files.copy(file.getInputStream(), UPLOADS_FOLDER.resolve(uniqueFilename));
             return uniqueFilename;

@@ -3,6 +3,7 @@ package com.GestionGidisSoft.repositorios;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import com.GestionGidisSoft.entidades.Usuario;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,9 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
             + " WHERE coli.idlibro = :idLibro AND coli.idautor = :idAutor", nativeQuery = true)
     List<Usuario> listarCoautores(Long idLibro, Long idAutor);
 
+    @Query(value = "SELECT usu.* FROM usuario usu "
+            + " WHERE usu.idusuario != :idUsuarioAdmin ", nativeQuery = true)
+    List<Usuario> listarUsuarios(Long idUsuarioAdmin);
 
     @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
             + " SELECT u2.idusuario FROM usuario u2 "
@@ -73,4 +77,9 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
             "  WHERE usua.idautor = :idAutor AND usua.idarticulo = :idArticulo)", nativeQuery = true)
     List<Usuario> listarNoCoautoresArticulos(Long idArticulo, Long idAutor);
 
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE usuario " +
+            " SET enable = :enable WHERE idusuario = :idUsuario", nativeQuery = true)
+    int actualizarEstado(@Param("idUsuario") Long idUsuario, @Param("enable") boolean enable);
 }
