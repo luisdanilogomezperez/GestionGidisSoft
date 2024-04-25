@@ -61,68 +61,66 @@
             <br>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-xs-12">
-                        <p class="conNegrita" >
-                            <label class="">T&iacute;tulo del Artículo</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.nombreProducto}"></span>
-                        </p>
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="card-title mb-0 conNegrita">Detalles del Artículo</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Título del Artículo</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${demasTrabajo.nombreProducto}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Idioma</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${demasTrabajo.idioma}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Medio de divulgación</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${demasTrabajo.medioDivulgacion}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="conNegrita text-dark">Año del Artículo</label>
+                                            <div class="border border-dark p-2">
+                                                <p th:text="${demasTrabajo.anio}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="conNegrita text-dark">Finalidad</label>
+                                            <div class="border border-dark p-2">
+                                                <p th:text="${demasTrabajo.finalidad}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Lugar</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${demasTrabajo.lugarPublicacion}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Mes</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${demasTrabajo.mes}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xd-12 col-sm-12 col-md-12">
-                        <p class="conNegrita">
-                            <label>Idioma</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.idioma}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-12 col-sm-12 col-md-12">
-                        <p class="conNegrita">
-                            <label>Medio de divulgación</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.medioDivulgacion}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-6 col-sm-6 col-md-3">
-                        <p class="conNegrita">
-                            <label>Año del Artículo</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.anio}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-6 col-sm-6 col-md-3">
-                        <p class="conNegrita">
-                            <label>Finalidad</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.finalidad}"></span>
-                        </p>
-                    </div>
-
-                    <div class="col-xd-3 col-sm-3 col-md-3">
-                        <p class="conNegrita">
-                            <label>Lugar</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.lugarPublicacion}"></span>
-                        </p>
-                    </div>
-                    <div class="col-md-3 col-xd-6 col-sm-6">
-                        <p class="conNegrita">
-                            <label>Mes</label>
-                        </p>
-                        <p>
-                            <span th:text="${demasTrabajo.mes}"></span>
-                        </p>
-                    </div>
-
                 </div>
-
-
             </div>
+
         </div>
     </div>
 </div>

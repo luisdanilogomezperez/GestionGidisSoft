@@ -12,7 +12,7 @@
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/libro.css}">
-    <title>Detalles del libro</title>
+    <title>Detalles del Evento</title>
     <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
 
 </head>
@@ -61,67 +61,68 @@
             <br>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 col-xs-12">
-                        <p class="conNegrita" >
-                            <label class="">T&iacute;tulo del Cap&iacute;tulo</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.nombreEvento}"></span>
-                        </p>
+                    <div class="col-md-12">
+                        <div class="card mb-3">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="card-title mb-0 conNegrita">Detalles del Evento</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Título del Evento</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${evento.nombreEvento}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Descripción</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${evento.descripcion}"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="conNegrita text-dark">Fecha Inicio</label>
+                                            <div class="border border-dark p-2">
+                                                <p th:text="${evento.fechaInicio}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="conNegrita text-dark">Fecha Fin</label>
+                                            <div class="border border-dark p-2">
+                                                <p th:text="${evento.fechaFin}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="conNegrita text-dark">Rol</label>
+                                            <div class="border border-dark p-2">
+                                                <p th:text="${evento.participacion}"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Lugar</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${evento.lugar}"></p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="conNegrita text-dark">Institución</label>
+                                    <div class="border border-dark p-2">
+                                        <p th:text="${evento.institucion}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xd-12 col-sm-12 col-md-12">
-                        <p class="conNegrita">
-                            <label>Descripción</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.descripcion}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-6 col-sm-6 col-md-3">
-                        <p class="conNegrita">
-                            <label>Fecha Inicio</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.fechaInicio}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-6 col-sm-6 col-md-3">
-                        <p class="conNegrita">
-                            <label>Fecha Fin</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.fechaFin}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-6 col-sm-6 col-md-3">
-                        <p class="conNegrita">
-                            <label>Rol</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.participacion}"></span>
-                        </p>
-                    </div>
-                    <div class="col-xd-3 col-sm-3 col-md-3">
-                        <p class="conNegrita">
-                            <label>Lugar</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.lugar}"></span>
-                        </p>
-                    </div>
-                    <div class="col-md-3 col-xd-6 col-sm-6">
-                        <p class="conNegrita">
-                            <label>Institución</label>
-                        </p>
-                        <p>
-                            <span th:text="${evento.institucion}"></span>
-                        </p>
-                    </div>
-
                 </div>
-
-
             </div>
+
         </div>
     </div>
 </div>
