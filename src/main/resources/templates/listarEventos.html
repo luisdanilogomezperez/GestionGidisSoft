@@ -46,12 +46,12 @@
         <div class="container">
             <div class="row" >
                 <div class="col-md-12 TitleCell">
-                    Artículos publicados en revistas especializadas
+                    Eventos
                 </div>
                 <div class="row" style="font-size: 16px">
                     <div class="col col-12" >
-                        A continuación puede visualizar la información de los Art&iacute;culos que usted ha registrado.<br/>
-                        Para registrar un nuevo Art&iacute;culo, pulse el enlace<a th:href="@{/articulos/nuevoArticulo}" > "Crear" </a>
+                        A continuación puede visualizar la información de los Eventos que usted ha registrado.<br/>
+                        Para registrar un nuevo Evento, pulse el enlace<a th:href="@{/evento/nuevo}" > "Crear" </a>
                     </div>
                 </div>
                 <br>
@@ -63,28 +63,27 @@
                 <thead>
                 <tr>
                     <th style="width: 5%;" class="text-center">#</th>
-                    <th style="width: 30%;" class="text-center">T&iacute;tulo del Art&iacute;culo</th>
-                    <th style="width: 5%;" class="text-center">Año</th>
-                    <th style="width: 10%;" class="text-center">Ciudad</th>
-                    <th style="width: 10%;" class="text-center">Idioma</th>
-                    <th style="width: 15%;" class="text-center">Opciones</th>
+                    <th style="width: 30%;" class="text-center">Nombre del Evento</th>
+                    <th style="width: 5%;" class="text-center">Fecha de Inicio</th>
+                    <th style="width: 10%;" class="text-center">Detalles</th>
+                    <th style="width: 10%;" class="text-center">Opciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="art, iterStat : ${listaArticulos}" th:id="'fila-' + ${art.idArticulo}">
-                    <td th:text="${iterStat.index + 1}"></td>
-                    <td th:text="${art.titulo}"></td>
-                    <td th:text="${art.anio}"></td>
-                    <td th:text="${#strings.concat(art.ciudadPublicacion, ' / ', art.paisPublicacion)}"></td>
-                    <td th:text="${art.idioma}"></td>
-                    <td>
-                        <a th:href="@{/articulos/detalle/{idArticulo}(idArticulo=${art.idArticulo})}" class="links">
+                <tr th:each="l, iterStat : ${listaEventos}" th:id="'fila-' + ${l.idEvento}">
+                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                    <td th:text="${l.nombreEvento}"></td>
+                    <td th:text="${l.fechaInicio}" class="text-center"></td>
+                    <td th:text="${l.descripcion}"></td>
+                    <td class="text-center">
+                        <a th:href="@{/evento/detalle/{idEvento}(idEvento=${l.idEvento})}" class="links">
                             <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
                         </a>
-                        <a th:href="@{/articulos/editar/{idArticulo}(idArticulo=${art.idArticulo})}" class="links">
+
+                        <a th:href="@{/evento/editar/{idEvento}(idEvento=${l.idEvento})}" class="links">
                             <img title="Editar" src="/img/editar.png" alt="Editar">
                         </a>
-                        <a th:href="@{/articulos/eliminar/{idArticulo}(idArticulo=${art.idArticulo})}" class="links">
+                        <a th:href="@{/evento/eliminar/{idEvento}(idEvento=${l.idEvento})}" class="links">
                             <img title="Eliminar" src="/img/eliminar.png" alt="Eliminar">
                         </a>
                     </td>
@@ -92,7 +91,7 @@
                 </tbody>
             </table>
         </div>
-        <div th:if="${#lists.isEmpty(listaArticulos)}">
+        <div th:if="${#lists.isEmpty(listaEventos)}">
             <div class="alert alert-secondary" style="text-align:center;" role="alert">
                 <span th:text="${mensaje}"></span></td>
             </div>
@@ -102,7 +101,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-<script th:src="@{/js/verLibro.js}"></script>
+<script th:src="@{/js/eventos.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>

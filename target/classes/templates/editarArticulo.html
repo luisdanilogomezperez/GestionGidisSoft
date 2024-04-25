@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -8,53 +8,538 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/registrarArticulo.css">
-    <title>Registro articulos</title>
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+    <title>Editar artículos</title>
 </head>
 
 <body>
     <!--Navbar-->
-    <div class="container" id="cuerpo">
-    <nav class="navbar navbar-expand-lg   static-top">
-        <div class="container">
-            <a class="navbar-brand" href="">
-                <img src="/img/logo_ufps.jpg" alt="..." height="100">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/articulos/RelArt">Volver</a>
-                    </li>
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="#">Salir <i class="fa fa-sign-out"></i></a>
-                    </li>
-                </ul>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg static-top">
+            <div class="container" id="cuerpo">
+                <a class="navbar-brand" href="">
+                    <img src="/img/logo_ufps.jpg" alt="..." height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuarios/home}">Inicio </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
     <!--Formulario-->
-    <div class="container" id="editArticulo">
-        <form action="/articulos/editarArticulo" method="POST" id="formulario">
-                <div class="form-group">
-                <label for="input">Coautores</label>
-                <input type="text" value="{{#each data2}}{{titulo}}{{/each}}" class="form-control" name="titulo" id="titulo" placeholder="Titulo" required>
+        <div class="container" id="libro">
+            <form  th:action="@{/articulos/editar}" th:object="${articulo}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-12 TitleCell">
+                            Artículo publicado en revista especializada
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 16px; text-align:justify;">
+                        <div class="col col-12" >
+                            A continuación, ingrese los datos a modificar del artículo publicado en revista especializada. <br>Recuerde que los campos marcados con asterisco (*) son obligatorios.<br>
+                            <strong>Recomendaci&oacute;n:</strong> Verifique la informaci&oacute;n diligenciada antes de pulsar la opción &quot;Guardar&quot;.<br>
+                            <br>
+                            Pulse el enlace <a th:href="@{/articulos/verArticulos}">"Regresar"</a> para volver al listado de Art&iacute;culos publicados en revista especializada.
+                        </div>
+                    </div>
                 </div>
+                <br>
+                <div class="container">
+                    <div th:if="${not #strings.isEmpty(mensaje)}">
+                        <div class="alert alert-danger" style="text-align:center;" role="alert" id="mensajeAlerta">
+                            <span th:text="${mensaje}"></span></td>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xd-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="tipoArticulo">Tipo de art&iacute;culo(*)</label>
+                                <select th:field="*{tipoArticulo}" class="form-control" name="tipoArticulo" id="tipoArticulo" required>
+                                    <option value=""></option>
+                                    <option value="Completo">Completo</option>
+                                    <option value="Corto">Corto</option>
+                                    <option value="Revisión">Revisión</option>
+                                </select><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xd-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="titulo">Titulo(*)</label>
+                                <input style="width:500px;" th:field="*{idArticulo}" type="hidden" class="form-control" name="idArticulo" id="idArticulo" placeholder="" required/>
+                                <input style="width:500px;" th:field="*{titulo}" type="text" class="form-control" name="titulo" id="titulo" placeholder="" required/>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">P&aacute;gina inicial(*)</label>
+                                <input style="max-width:100px;" type="text" th:field="*{paginaInicial}" class="form-control" id="paginaInicial" required />
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">P&aacute;gina final(*)</label>
+                                <input style="max-width:100px;" type="text" th:field="*{paginaFinal}" class="form-control" id="paginaFinal" required />
+                                <br>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-xs-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="input">Idioma</label>
+                                <select name="idioma" style="width:300px;" th:field="*{idioma}" class="form-control">
+                                    <option value="ES">Español</option>
 
-            <!--Boton-->
-            <br>
-            <button type="submit" class="btn btn-primary" value="editar" id="guardar">Guardar</button>
-        </form>
-    </div>
+                                    <option value="AB">Abjasio</option>
+
+                                    <option value="AA">Afar</option>
+
+                                    <option value="AF">Africano</option>
+
+                                    <option value="AY">Aimara</option>
+
+                                    <option value="SQ">Albanés</option>
+
+                                    <option value="DE">Alemán</option>
+
+                                    <option value="AM">Amhárico</option>
+
+                                    <option value="AR">Árabe</option>
+
+                                    <option value="HY">Armenio</option>
+
+                                    <option value="AS">Assamés</option>
+
+                                    <option value="AZ">Azerbaijani</option>
+
+                                    <option value="BC">Baluchi</option>
+
+                                    <option value="BA">Bashkir</option>
+
+                                    <option value="BN">Bengalí</option>
+
+                                    <option value="BB">Berbere</option>
+
+                                    <option value="BE">Bielorruso</option>
+
+                                    <option value="BH">Bihari</option>
+
+                                    <option value="BM">Birmanes</option>
+
+                                    <option value="MY">Birmano</option>
+
+                                    <option value="BI">Bislama</option>
+
+                                    <option value="BR">Bretón</option>
+
+                                    <option value="BG">Búlgaro</option>
+
+                                    <option value="DZ">Butaní</option>
+
+                                    <option value="CB">Cabie</option>
+
+                                    <option value="KM">Camboyano</option>
+
+                                    <option value="CA">Catalán</option>
+
+                                    <option value="CS">Checo</option>
+
+                                    <option value="ZH">Chino</option>
+
+                                    <option value="SI">Cingalés</option>
+
+                                    <option value="KO">Coreano</option>
+
+                                    <option value="CO">Corso</option>
+
+                                    <option value="CR">Crioulo</option>
+
+                                    <option value="HR">Croata</option>
+
+                                    <option value="KU">Curdo / Kurdo</option>
+
+                                    <option value="DA">Danés</option>
+
+                                    <option value="DI">Divehi</option>
+
+                                    <option value="SK">Eslovaco</option>
+
+                                    <option value="SL">Esloveno</option>
+
+                                    <option value="ES">Español</option>
+
+                                    <option value="EO">Esperanto</option>
+
+                                    <option value="ET">Estonio</option>
+
+                                    <option value="EE">Eue</option>
+
+                                    <option value="FO">Faroese</option>
+
+                                    <option value="FJ">Fidjiano</option>
+
+                                    <option value="FL">Filipino</option>
+
+                                    <option value="FI">Finlandés</option>
+
+                                    <option value="FR">Francés</option>
+
+                                    <option value="FY">Frisón</option>
+
+                                    <option value="GD">Gaélico</option>
+
+                                    <option value="CY">Galés</option>
+
+                                    <option value="GL">Gallego</option>
+
+                                    <option value="KA">Georgiano</option>
+
+                                    <option value="EL">Griego</option>
+
+                                    <option value="KL">Groenlandés</option>
+
+                                    <option value="GN">Guaraní</option>
+
+                                    <option value="GU">Gujarati</option>
+
+                                    <option value="HA">Hausa</option>
+
+                                    <option value="IW">Hebreo</option>
+
+                                    <option value="HI">Hindi</option>
+
+                                    <option value="NL">Holandés</option>
+
+                                    <option value="HU">Húngaro</option>
+
+                                    <option value="IN">Indonesio</option>
+
+                                    <option value="EN">Inglés</option>
+
+                                    <option value="IA">Interlingua</option>
+
+                                    <option value="IE">Interlingua</option>
+
+                                    <option value="IK">Inupiak</option>
+
+                                    <option value="ID">Ioma</option>
+
+                                    <option value="GA">Irlandés</option>
+
+                                    <option value="IS">Islandés</option>
+
+                                    <option value="IT">Italiano</option>
+
+                                    <option value="JA">Japonés</option>
+
+                                    <option value="JV">Javanés</option>
+
+                                    <option value="KN">kannada</option>
+
+                                    <option value="KS">Kashmiri</option>
+
+                                    <option value="KK">Kazajio</option>
+
+                                    <option value="RW">kinya-Ruanda</option>
+
+                                    <option value="KY">Kirguiz</option>
+
+                                    <option value="RN">Kirundi</option>
+
+                                    <option value="LO">Laosiano</option>
+
+                                    <option value="LP">Lapão</option>
+
+                                    <option value="LA">Latín</option>
+
+                                    <option value="SC">Lengua de señas colombiana</option>
+
+                                    <option value="LV">Letón</option>
+
+                                    <option value="LN">Lingala</option>
+
+                                    <option value="LT">Lituano</option>
+
+                                    <option value="LX">Luxemburgues</option>
+
+                                    <option value="MK">Macedonio</option>
+
+                                    <option value="ML">Malayalam</option>
+
+                                    <option value="MS">Malayo</option>
+
+                                    <option value="MG">Malgache</option>
+
+                                    <option value="MT">Maltés</option>
+
+                                    <option value="MA">Mandingo</option>
+
+                                    <option value="MI">Maorí</option>
+
+                                    <option value="MR">Marathi</option>
+
+                                    <option value="MO">Moldavio</option>
+
+                                    <option value="MN">Mongol</option>
+
+                                    <option value="ME">Montenegrino</option>
+
+                                    <option value="NA">Nauruano</option>
+
+                                    <option value="NE">Nepalés</option>
+
+                                    <option value="NO">Noruego</option>
+
+                                    <option value="OR">Oriya</option>
+
+                                    <option value="OM">Oromo</option>
+
+                                    <option value="OU">Outros</option>
+
+                                    <option value="FA">Persa</option>
+
+                                    <option value="PL">Polaco</option>
+
+                                    <option value="PT">Portugués</option>
+
+                                    <option value="PA">Punjabi</option>
+
+                                    <option value="PS">Pushtu</option>
+
+                                    <option value="QU">Quechua</option>
+
+                                    <option value="QI">Quisuahili</option>
+
+                                    <option value="RM">Reto-romano</option>
+
+                                    <option value="RO">Rumano</option>
+
+                                    <option value="RU">Ruso</option>
+
+                                    <option value="SM">Samoano</option>
+
+                                    <option value="SG">Sango</option>
+
+                                    <option value="SA">Sánscrito</option>
+
+                                    <option value="SR">Serbio</option>
+
+                                    <option value="SH">Serbocroata</option>
+
+                                    <option value="ST">Sesotho</option>
+
+                                    <option value="TN">Setswana</option>
+
+                                    <option value="SN">Shona</option>
+
+                                    <option value="SD">Sindhi</option>
+
+                                    <option value="SS">Siswati</option>
+
+                                    <option value="SO">Somalí</option>
+
+                                    <option value="SW">Suajili</option>
+
+                                    <option value="SU">Sudanés</option>
+
+                                    <option value="SV">Sueco</option>
+
+                                    <option value="TL">Tagalo</option>
+
+                                    <option value="TH">Tailandés</option>
+
+                                    <option value="TG">Tajiko</option>
+
+                                    <option value="TA">Tamil</option>
+
+                                    <option value="TT">Tártaro</option>
+
+                                    <option value="TE">Telugu</option>
+
+                                    <option value="BO">Tibetano</option>
+
+                                    <option value="TI">Tigrinya</option>
+
+                                    <option value="TO">Tongano</option>
+
+                                    <option value="TS">Tsonga</option>
+
+                                    <option value="TR">Turco</option>
+
+                                    <option value="TK">Turkmeno</option>
+
+                                    <option value="TU">Tuvaloano</option>
+
+                                    <option value="TW">Twi</option>
+
+                                    <option value="UK">Ucraniano</option>
+
+                                    <option value="WO">Uolof</option>
+
+                                    <option value="UR">Urdu</option>
+
+                                    <option value="UZ">Uzbeko</option>
+
+                                    <option value="EU">Vasco</option>
+
+                                    <option value="VI">Vietnamita</option>
+
+                                    <option value="VO">Volapuk</option>
+
+                                    <option value="XH">Xhosa</option>
+
+                                    <option value="JI">Yiddish</option>
+
+                                    <option value="YO">Yoruba</option>
+
+                                    <option value="ZU">Zulu</option>
+                                </select>
+                            </div><br>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-ld-6 col-xd-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">Año(*)</label>
+                                <div id="anioArticulo" th:attr="data-anioArticulo=*{anio}"></div>
+                                <select style="width:150px;" th:field="*{anio}" class="form-control" name="anio" id="anio" required>
+                                    <option value=""></option>
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="col-ld-6 col-xd-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">Mes(*)</label>
+                                <div id="mesArticulo" th:attr="data-mesArticulo=*{mes}"></div>
+                                <select style="width:150px;" th:field="*{mes}" class="form-control" id="meses" required>
+                                    <option value=""></option>
+                                </select>
+                            </div><br>
+                        </div>
+                        <div class="col-ld-12 col-xd-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="input">Nombre de Revista(*)</label>
+                                <input type="text" th:field="*{nombreRevista}" class="form-control" name="nombreRevista" id="nombreRevista"
+                                       placeholder="" required>
+
+                            </div><br>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-md-12" style="color: red;">
+                            Importante:
+                        </div>
+                        <div class="col col-12" style="font-size: 16px; text-align:justify;">
+                            Si el artículo está publicado en una revista que no tiene fascículo, ingrese N/A (No Aplica) en el campo "Fascículo Revista"
+                        </div>
+                        <div class="col-ld-4 col-xs-4 col-sm-4">
+                            <br><div class="form-group">
+                                <label for="input">Volumen</label>
+                                <input type="text" th:field="*{volumen}" style="width:200px;" name="volumen" class="form-control" id="volumen" placeholder="" required>
+                            </div><br>
+                        </div>
+                        <div class="col-ld-4 col-xs-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="input">Fasciculo de Revista</label>
+                                <input type="text" th:field="*{fasciculoRevista}" style="width:200px;" class="form-control" name="fasciculoRevista" id="fasciculoRevista" placeholder="" required>
+                            </div><br>
+                        </div>
+                        <div class="col-ld-4 col-xs-4 col-sm-4">
+                            <div class="form-group">
+                                <label for="input">Serie Revista</label>
+                                <input type="text" th:field="*{serieRevista}" style="width:200px;" class="form-control" name="serieRevista" id="serieRevista"
+                                       placeholder="" required>
+                            </div><br>
+                        </div>
+                        <div class="col-xd-12 col-sm-12" style="padding-top:20px">
+
+                            <label for="input">Lugar de publicación(*)</label>
+                            <br><br>
+                        </div>
+                        <div class="col-ld-4 col-xs-12 col-sm-6">
+                            <p>
+                                <label for="input">Pais</label>
+                            </p>
+                            <div class="form-group">
+                                <div id="paisArticulo" th:attr="data-paisArticulo=*{paisPublicacion}"></div>
+                                <select id="pais" name="pais" class="form-control" style="width:300px;">
+                                </select>
+                            </div><br>
+                        </div>
+                        <div class="col-ld-4 col-xs-12 col-sm-6">
+                            <div class="form-group">
+                                <p>
+                                    <label for="input">Ciudad </label>
+                                </p>
+                                <div id="ciudadArticulo" th:attr="data-ciudadArticulo=*{ciudadPublicacion}"></div>
+                                <select id="ciudad" name="ciudad" class="form-control" style="width:300px;">
+                                </select>
+
+                            </div><br>
+                        </div>
+                        <div class="col-xd-12 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">Medio de divulgación</label>
+                                <select th:field="*{medioDivulgacion}" class="form-control" id="medioDivulgacion" required>
+                                    <option value=""></option>
+                                    <option value="Papel">Papel</option>
+                                    <option value="Electronico">Electronico</option>
+                                </select><br>
+                            </div>
+                        </div>
+                        <div class="col-ld-6 col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">Sitio web (URL)</label>
+                                <input type="text" th:field="*{urlSitioWeb}" name="urlSitioWeb" class="form-control" id="urlSitioWeb" placeholder="" required>
+                            </div><br>
+                        </div>
+                        <div class="col-ld-6 col-xs-6 col-sm-6">
+                            <div class="form-group">
+                                <label for="input">Identif. Digital (DOI)</label>
+                                <input type="text" th:field="*{identificadorDigitalDoi}" name="digitalObjectIdentifierDOI" class="form-control" id="digitalObjectIdentifierDOI" placeholder="" required><i>Ejemplo. 10.1145/1067268</i>
+                                <p id="mensaje"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Boton-->
+                    <br>
+                    <button type="submit" class="btn btn-primary" value="registrar" id="guardar">Guardar</button>
+                </div>
+            </form>
+        </div>
 </div>
 </body>
-<script src="../static/js/editarArticulo.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/173fcb4c98.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/editarArticulo.js}" type="text/javascript"></script>
+
 </html>
