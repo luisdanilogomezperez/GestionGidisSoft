@@ -1,14 +1,25 @@
 package com.GestionGidisSoft.entidades;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
+@Getter
+@Setter
 @Table(name = "demastrabajos")
 public class DemasTrabajo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idDemasTrabajos;
+    @Column(name = "iddemastrabajo")
+    private Long idDemasTrabajo;
+
+    @Column(name = "nombre_producto")
+    private String nombreProducto;
 
     private String anio;
 
@@ -22,61 +33,5 @@ public class DemasTrabajo {
 
     private String finalidad;
 
-    public DemasTrabajo(){}
 
-    public Long getIdDemasTrabajos() {
-        return idDemasTrabajos;
-    }
-
-    public void setIdDemasTrabajos(Long idDemasTrabajos) {
-        this.idDemasTrabajos = idDemasTrabajos;
-    }
-
-    public String getAnio() {
-        return anio;
-    }
-
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
-
-    public String getMes() {
-        return mes;
-    }
-
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
-
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
-    }
-
-    public String getMedioDivulgacion() {
-        return medioDivulgacion;
-    }
-
-    public void setMedioDivulgacion(String medioDivulgacion) {
-        this.medioDivulgacion = medioDivulgacion;
-    }
-
-    public String getLugarPublicacion() {
-        return lugarPublicacion;
-    }
-
-    public void setLugarPublicacion(String lugarPublicacion) {
-        this.lugarPublicacion = lugarPublicacion;
-    }
-
-    public String getFinalidad() {
-        return finalidad;
-    }
-
-    public void setFinalidad(String finalidad) {
-        this.finalidad = finalidad;
-    }
 }
