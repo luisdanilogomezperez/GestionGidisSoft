@@ -43,77 +43,78 @@
             </div>
         </nav>
     <!--Formulario-->
-        <div class="container" id="libro"  style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-md-12 TitleCell">
-                        Ponencia publicado en revista especializada
+
+            <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-12 TitleCell">
+                            Ponencia publicada en revista especializada
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 16px">
+                        <div class="col col-12">
+                            A continuación puede visualizar la información registrada de la ponencia publicada en revista.
+                            <br>
+                            Para volver al listado de las ponencias, pulse el enlace "<a th:href="@{/ponencia/verPonencias}">Regresar</a>"
+                        </div>
                     </div>
                 </div>
-                <div class="row" style="font-size: 16px">
-                    <div class="col col-12" >
-                        A continuación puede visualizar la información registrada del ponencia publicado en revista.
-                        <br>
-                        Para volver al listado de los ponencias, pulse el enlace "<a th:href="@{/ponencia/verPonencias}">Regresar</a>"
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-3">
-                            <div class="card-header bg-secondary text-white">
-                                <h5 class="card-title mb-0 conNegrita">Detalles de la Ponencia</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label class="conNegrita text-dark">Título de la Ponencia</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${ponencia.titulo}"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="conNegrita text-dark">Ámbito</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${ponencia.ambito}"></p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="conNegrita text-dark">Fecha Ponencia</label>
-                                            <div class="border border-dark p-2">
-                                                <p th:text="${ponencia.mes} + ' ' + ${ponencia.anio}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="conNegrita text-dark">Autor</label>
-                                            <div class="border border-dark p-2">
-                                                <p th:text="${ponencia.autor}"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="conNegrita text-dark">Lugar</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${ponencia.lugar}"></p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="conNegrita text-dark">Institución</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${ponencia.institucion}"></p>
-                                    </div>
-                                </div>
-                            </div>
+                <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <p class="conNegrita">
+                                <label>Título de la Ponencia</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.titulo}"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="conNegrita">
+                                <label>Ámbito</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.ambito}"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="conNegrita">
+                                <label>Fecha de la Ponencia</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.mes} + ' ' + ${ponencia.anio}"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="conNegrita">
+                                <label>Autor</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.autor}"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="conNegrita">
+                                <label>Lugar</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.lugar}"></span>
+                            </p>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="conNegrita">
+                                <label>Institución</label>
+                            </p>
+                            <p>
+                                <span th:text="${ponencia.institucion}"></span>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
+
+
 
         </div>
     </div>

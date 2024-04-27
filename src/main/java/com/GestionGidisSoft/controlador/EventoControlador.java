@@ -79,15 +79,15 @@ public class EventoControlador {
         if (session.getAttribute("usuario") != null) {
 
                 Usuario usuario = (Usuario) session.getAttribute("usuario");
-                Evento evento = Evento.builder()
-                        .nombreEvento(eventoDTO.getNombreEvento())
-                        .fechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()))
-                        .fechaFin(LocalDate.parse(eventoDTO.getFechaFin()))
-                        .lugar(eventoDTO.getLugar())
-                        .participacion(eventoDTO.getParticipacion())
-                        .descripcion(eventoDTO.getDescripcion())
-                        .institucion(eventoDTO.getInstitucion())
-                        .build();
+                Evento evento = new Evento();
+                    evento.setNombreEvento(eventoDTO.getNombreEvento());
+                    evento.setFechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()));
+                    evento.setFechaFin(LocalDate.parse(eventoDTO.getFechaFin()));
+                    evento.setLugar(eventoDTO.getLugar());
+                    evento.setParticipacion(eventoDTO.getParticipacion());
+                    evento.setDescripcion(eventoDTO.getDescripcion());
+                    evento.setInstitucion(eventoDTO.getInstitucion());
+
                 eventoServicio.guardarEvento(evento);
                 eventoServicio.actualizarTablaIntermedia( evento.getIdEvento(), usuario.getIdusuario());
                 mav.setViewName("redirect:/evento/verEventos");
@@ -147,15 +147,14 @@ public class EventoControlador {
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-            Evento evento = Evento.builder()
-                    .nombreEvento(eventoDTO.getNombreEvento())
-                    .fechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()))
-                    .fechaFin(LocalDate.parse(eventoDTO.getFechaFin()))
-                    .lugar(eventoDTO.getLugar())
-                    .participacion(eventoDTO.getParticipacion())
-                    .descripcion(eventoDTO.getDescripcion())
-                    .institucion(eventoDTO.getInstitucion())
-                    .build();
+            Evento evento = new Evento();
+                    evento.setNombreEvento(eventoDTO.getNombreEvento());
+                    evento.setFechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()));
+                    evento.setFechaFin(LocalDate.parse(eventoDTO.getFechaFin()));
+                    evento.setLugar(eventoDTO.getLugar());
+                    evento.setParticipacion(eventoDTO.getParticipacion());
+                    evento.setDescripcion(eventoDTO.getDescripcion());
+                    evento.setInstitucion(eventoDTO.getInstitucion());
 
             eventoServicio.editarEvento(eventoDTO.getIdEventoDTO(), evento);
             mav.setViewName("redirect:/evento/verEventos");
@@ -177,16 +176,16 @@ public class EventoControlador {
         if (session.getAttribute("usuario") != null) {
             Evento evento = eventoServicio.buscarEventoPorId(idEvento);
 
-            EventoDTO eventoDTO = EventoDTO.builder()
-                    .idEventoDTO(idEvento)
-                    .nombreEvento(evento.getNombreEvento())
-                    .fechaInicio(evento.getFechaInicio().toString())
-                    .fechaFin(evento.getFechaFin().toString())
-                    .lugar(evento.getLugar())
-                    .participacion(evento.getParticipacion())
-                    .descripcion(evento.getDescripcion())
-                    .institucion(evento.getInstitucion())
-                    .build();
+            EventoDTO eventoDTO = new EventoDTO();
+                        eventoDTO.setNombreEvento(evento.getNombreEvento());
+                        eventoDTO.setFechaInicio(evento.getFechaInicio().toString());
+                        eventoDTO.setFechaFin(evento.getFechaFin().toString());
+                        eventoDTO.setLugar(evento.getLugar());
+                        eventoDTO.setParticipacion(evento.getParticipacion());
+                        eventoDTO.setDescripcion(evento.getDescripcion());
+                        eventoDTO.setInstitucion(evento.getInstitucion());
+                        eventoDTO.setIdEventoDTO(idEvento);
+
             mav.addObject("evento", eventoDTO);
             mav.setViewName("editarEvento");
             return mav;

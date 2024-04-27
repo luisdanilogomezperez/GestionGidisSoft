@@ -43,7 +43,7 @@
             </div>
         </nav>
     <!--Formulario-->
-        <div class="container" id="libro"  style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+        <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
             <div class="container">
                 <div class="row">
                     <div class="col col-md-12 TitleCell">
@@ -51,77 +51,76 @@
                     </div>
                 </div>
                 <div class="row" style="font-size: 16px">
-                    <div class="col col-12" >
+                    <div class="col col-12">
                         A continuación puede visualizar la información registrada del trabajo publicado en revista.
                         <br>
-                        Para volver al listado de los demasTrabajos, pulse el enlace "<a th:href="@{/demasTrabajo/verDemasTrabajos}">Regresar</a>"
+                        Para volver al listado de los demás trabajos, pulse el enlace "<a th:href="@{/demasTrabajo/verDemasTrabajos}">Regresar</a>"
                     </div>
                 </div>
             </div>
             <br>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card mb-3">
-                            <div class="card-header bg-secondary text-white">
-                                <h5 class="card-title mb-0 conNegrita">Detalles del Artículo</h5>
+                <nav class="navbar navbar-expand-lg static-top">
+                    <!-- Contenido de la barra de navegación -->
+                </nav>
+                <!-- Formulario -->
+                <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col col-md-12 TitleCell">
+                                Detalles del Artículo
                             </div>
-                            <div class="card-body">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="conNegrita text-dark">Título del Artículo</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${demasTrabajo.nombreProducto}"></p>
-                                    </div>
+                                    <p th:text="${demasTrabajo.nombreProducto}"></p>
                                 </div>
                                 <div class="form-group">
                                     <label class="conNegrita text-dark">Idioma</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${demasTrabajo.idioma}"></p>
-                                    </div>
+                                    <p th:text="${demasTrabajo.idioma}"></p>
                                 </div>
                                 <div class="form-group">
                                     <label class="conNegrita text-dark">Medio de divulgación</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${demasTrabajo.medioDivulgacion}"></p>
-                                    </div>
+                                    <p th:text="${demasTrabajo.medioDivulgacion}"></p>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="conNegrita text-dark">Año del Artículo</label>
-                                            <div class="border border-dark p-2">
-                                                <p th:text="${demasTrabajo.anio}"></p>
-                                            </div>
+                                            <p th:text="${demasTrabajo.anio}"></p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="conNegrita text-dark">Finalidad</label>
-                                            <div class="border border-dark p-2">
-                                                <p th:text="${demasTrabajo.finalidad}"></p>
-                                            </div>
+                                            <p th:text="${demasTrabajo.finalidad}"></p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="conNegrita text-dark">Lugar</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${demasTrabajo.lugarPublicacion}"></p>
-                                    </div>
+                                    <p th:text="${demasTrabajo.lugarPublicacion}"></p>
                                 </div>
                                 <div class="form-group">
                                     <label class="conNegrita text-dark">Mes</label>
-                                    <div class="border border-dark p-2">
-                                        <p th:text="${demasTrabajo.mes}"></p>
-                                    </div>
+                                    <p th:text="${demasTrabajo.mes}"></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
+
+
+
+    </div>
     </div>
 </div>
 
