@@ -129,6 +129,18 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     }
 
     @Override
+    public List<Usuario> listarAutoresProyectosInvestigacion(Long idProyectoInvestigacion, Long idAutor) {
+        List<Usuario> autoresProyecInv = usuarioRepo.listarNoCoautoresProyectoInvestigacion(idProyectoInvestigacion, idAutor);
+        return autoresProyecInv;
+    }
+
+    @Override
+    public List<Usuario> listarCoautoresProyectosInvestigacion(Long idProyectoInvestigacion, Long idAutor) {
+        List<Usuario> coautoresProyecInv = usuarioRepo.listarCoautoresProyectoInvestigacion(idProyectoInvestigacion, idAutor);
+        return coautoresProyecInv;
+    }
+
+    @Override
     public boolean existenUsuarios() {
         boolean existen = false;
 
