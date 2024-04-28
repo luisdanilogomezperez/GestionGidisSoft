@@ -12,7 +12,7 @@ public class DemasTrabajo {
     @Column(name = "iddemastrabajo")
     private Long idDemasTrabajo;
 
-    @Column(name = "nombre_producto")
+    @Column(name = "nombreproducto")
     private String nombreProducto;
 
     private String anio;
@@ -21,8 +21,10 @@ public class DemasTrabajo {
 
     private String idioma;
 
+    @Column(name = "mediodivulgacion")
     private String medioDivulgacion;
 
+    @Column(name = "lugarpublicacion")
     private String lugarPublicacion;
 
     private String finalidad;

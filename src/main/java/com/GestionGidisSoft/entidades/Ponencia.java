@@ -9,7 +9,7 @@ public class Ponencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_ponencia")
+    @Column(name = "idponencia")
     private Long idPonencia;
 
     private String titulo;
