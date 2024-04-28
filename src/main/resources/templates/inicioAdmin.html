@@ -15,82 +15,82 @@
     <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
 </head>
 <body>
-    <div class="cuerpo" style="font-size: 16px">
-        <div class="menu">
-            <div class="titulo">
-                <div class="items1">
-                    <img  th:src="@{/img/LogoUFPS.jpg}" alt="" >
-                </div>
-                <div></div>
-                <div class="items2">
-                    <img src="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" alt="">
-                </div>
+<div class="cuerpo" style="font-size: 16px">
+    <div class="menu">
+        <div class="titulo">
+            <div class="items1">
+                <img  th:src="@{/img/LogoUFPS.jpg}" alt="" >
             </div>
-            <div class="items-titulo">
-                <div  class="items-titulo-nombre">
-                    <h6>
-                        <span th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}"></span>
-                    </h6>
-                </div>
-                <div  class="">
-                    <a th:href="@{/logout}"><img src="/img/salir.png" alt="" ></a>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="items">
-                    <a th:href="@{/libros/verLibros}"><img src="/img/libro.png" alt="" id="lib"></a>
-                    <br>
-                    <label for="enlaces" >Libro</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/capitulosLibro/verCapitulosLibros}"><img src="/img/capituloLibro.png" alt="" id="sal"></a>
-                    <br>
-                    <label for="enlaces" >Capitulo de Libro</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/articulos/verArticulos}"><img src="/img/articulos.png" alt="" id="art"></a>
-                    <br>
-                    <label for="enlaces">Articulo</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/libros/verProyectos}"><img src="/img/proyectos.png" alt="" id="pro"></a>
-                    <br>
-                    <label for="enlaces">Proyecto de Investigación</label><br>
-                </div>
-                <div class="items">
-                    <a th:href="@{/libros/verProyectosDirigidos}"><img src="/img/proyectoDirigido.png" alt=""></a>
-                    <br>
-                    <label for="enlaces" >Proyecto Dirigido</label><br>
-                </div>
-                <div class="items">
-                    <a th:href="@{/libros/verEventos}"><img src="/img/evento.png" alt="" ></a>
-                    <br>
-                    <label for="enlaces" >Evento</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/libros/verPonencias}"><img src="/img/ponencia.png" alt="" ></a>
-                    <br>
-                    <label for="enlaces">Ponencia</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/libros/verDemasTrabajos}"><img src="/img/demasTrabajos.png" alt="" ></a>
-                    <br>
-                    <label for="enlaces">Demás Trabajos</label>
-                </div>
-                <div class="items">
-                    <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/gestionusuarios.png" alt="" ></a>
-                    <br>
-                    <label for="enlaces">Gestionar Usuarios</label>
-                </div>
-<!--                <div class="items">-->
-<!--                    <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/programaAcademico.png" alt="" ></a>-->
-<!--                    <br>-->
-<!--                    <label for="enlaces">Gestionar Programas académicos</label>-->
-<!--                </div>-->
+            <div></div>
+            <div class="items2">
+                <img src="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" alt="">
             </div>
         </div>
+        <div class="items-titulo">
+            <div  class="items-titulo-nombre">
+                <h6>
+                    <span th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}"></span>
+                </h6>
+            </div>
+            <div  class="">
+                <a th:href="@{/logout}"><img src="/img/salir.png" alt="" ></a>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="items">
+                <a th:href="@{/libros/verLibros}"><img src="/img/libro.png" alt="" id="lib"></a>
+                <br>
+                <label for="enlaces" >Libro</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/capitulosLibro/verCapitulosLibros}"><img src="/img/capituloLibro.png" alt="" id="sal"></a>
+                <br>
+                <label for="enlaces" >Capitulo de Libro</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/articulos/verArticulos}"><img src="/img/articulos.png" alt="" id="art"></a>
+                <br>
+                <label for="enlaces">Articulo</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/proyectosInvestigacion/verProyectosInvestigacion}"><img src="/img/proyectos.png" alt="" id="pro"></a>
+                <br>
+                <label for="enlaces">Proyecto de Investigación</label><br>
+            </div>
+            <div class="items">
+                <a th:href="@{/proyectosInvestigacion/verProyectosDirigidos}"><img src="/img/proyectoDirigido.png" alt=""></a>
+                <br>
+                <label for="enlaces" >Proyecto Dirigido</label><br>
+            </div>
+            <div class="items">
+                <a th:href="@{/libros/verEventos}"><img src="/img/evento.png" alt="" ></a>
+                <br>
+                <label for="enlaces" >Evento</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/libros/verPonencias}"><img src="/img/ponencia.png" alt="" ></a>
+                <br>
+                <label for="enlaces">Ponencia</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/libros/verDemasTrabajos}"><img src="/img/demasTrabajos.png" alt="" ></a>
+                <br>
+                <label for="enlaces">Demás Trabajos</label>
+            </div>
+            <div class="items">
+                <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/gestionusuarios.png" alt="" ></a>
+                <br>
+                <label for="enlaces">Gestionar Usuarios</label>
+            </div>
+            <!--                <div class="items">-->
+            <!--                    <a th:href="@{/usuarios/admin/listarUsuarios}"><img src="/img/programaAcademico.png" alt="" ></a>-->
+            <!--                    <br>-->
+            <!--                    <label for="enlaces">Gestionar Programas académicos</label>-->
+            <!--                </div>-->
+        </div>
     </div>
-    <script th:src="@{/js/inicio.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</div>
+<script th:src="@{/js/inicio.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

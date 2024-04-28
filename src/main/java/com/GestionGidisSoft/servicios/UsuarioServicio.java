@@ -4,10 +4,11 @@ import com.GestionGidisSoft.DTO.LoginRequestDto;
 import com.GestionGidisSoft.entidades.Rol;
 import com.GestionGidisSoft.entidades.Usuario;
 import com.GestionGidisSoft.entidades.UsuarioRol;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
-
+@Service
 public interface UsuarioServicio {
     public Usuario guardarUsuario(Usuario usuario, Rol rol) throws Exception;
 
@@ -38,6 +39,11 @@ public interface UsuarioServicio {
     public List<Usuario> listarAutoresArticulos(Long idArticulo, Long idAutor);
 
     public List<Usuario> listarCoautoresArticulos(Long idArticulo, Long idAutor);
+
+
+    public List<Usuario> listarAutoresProyectosInvestigacion(Long idProyectoInvestigacion, Long idAutor);
+
+    public List<Usuario> listarCoautoresProyectosInvestigacion(Long idProyectoInvestigacion, Long idAutor);
 
 
     public boolean existenUsuarios();

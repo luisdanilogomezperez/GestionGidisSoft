@@ -82,4 +82,19 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     @Query(value = " UPDATE usuario " +
             " SET enable = :enable WHERE idusuario = :idUsuario", nativeQuery = true)
     int actualizarEstado(@Param("idUsuario") Long idUsuario, @Param("enable") boolean enable);
+
+    @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
+            + " SELECT u2.idusuario FROM usuario u2 "
+            + " INNER JOIN coautoresproyectoinvestigacion coaproin ON (coaproin.idcoautor = u2.idusuario) " +
+            " WHERE coaproin.idautor = :idAutor AND coart.idarticulo = :idArticulo) AND u.idusuario NOT IN ( " +
+            " SELECT u2.idusuario FROM usuario u2 " +
+            " INNER JOIN usuarioproyectoinvestigacion usua ON (usua.idusuario = u2.idusuario) " +
+            "  WHERE usua.idusuario = :idAutor AND usua.idproyectoinvestigacion = :idProyectoInvestigacion)", nativeQuery = true)
+    List<Usuario> listarNoCoautoresProyectoInvestigacion(Long idProyectoInvestigacion, Long idAutor);
+
+    @Query(value = "SELECT usuc.* FROM usuario usuc "
+            + " INNER JOIN coautoresproyectoinvestigacion coaproin ON (coaproin.idcoautor = usuc.idusuario) "
+            + " WHERE coaproin.idproyectoinvestigacion = :idProyectoInvestigacion AND coaproin.idautor = :idAutor", nativeQuery = true)
+    List<Usuario> listarCoautoresProyectoInvestigacion(Long idProyectoInvestigacion, Long idAutor);
+
 }

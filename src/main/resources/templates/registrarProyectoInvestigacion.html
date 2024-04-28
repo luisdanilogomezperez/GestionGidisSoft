@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de proyecto de investigación</title>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+</head>
+<body>
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg static-top">
+            <div class="container" id="cuerpo">
+                <a class="navbar-brand" href="">
+                    <img th:src="@{/img/logo_ufps.jpg}" id="img" alt="" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuarios/home}">Inicio </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container" id="libro" style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+            <form th:action="@{/proyectosInvestigacion/guardar}" th:object="${proyectoInvestigacion}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="row">
+                        <div class="col col-md-12 TitleCell">
+                            Proyecto de investigación
+                        </div>
+                    </div>
+                    <div class="row" style="font-size: 16px; text-align:justify;">
+                        <div class="col col-12" >
+                            A continuación, ingrese los datos del proyecto de investigación. <br>Recuerde que los campos marcados con asterisco (*) son obligatorios.<br>
+                            <strong>Recomendaci&oacute;n:</strong> Verifique la informaci&oacute;n diligenciada antes de pulsar la opción &quot;Guardar&quot;.<br>
+                            <br>
+                            Pulse el enlace <a th:href="@{/libros/verLibros}">"Regresar"</a> para volver al listado de proyectos de investigaci&oacute;n
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="container">
+                    <div th:if="${not #strings.isEmpty(mensaje)}">
+                        <div class="alert alert-danger" style="text-align:center;" role="alert" id="mensajeAlerta">
+                            <span th:text="${mensaje}"></span></td>
+                        </div>
+                    </div>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th>Tipo de proyecto(*)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" checked id="tipo_proyecto_1" name="tipo_proyecto" value="Investigación"> Investigación
+                                <input type="radio" class="ml" id="tipo_proyecto_2" name="tipo_proyecto" value="Investigación y desarrollo"> Investigación y desarrollo
+                                <br>
+                                <input type="radio" id="tipo_proyecto_3" name="tipo_proyecto" value="Investigación + Creación"> Investigación + Creación
+                                <input type="radio" class="ml" id="tipo_proyecto_4" name="tipo_proyecto" value="Extensión y responsabilidad social en CTeI"> Extensión y responsabilidad social en CTeI
+                                <br><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="columna-ancho-2" style="height:30px:">Título del proyecto(*)</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input style="width:500px;" th:field="*{titulo}" type="text" class="form-control" display="Título" name="titulo" id="titulo" placeholder="" required/>
+                            </td>
+                        </tr>
+                        <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                    <table class="mt">
+                        <thead>
+                        <tr>
+                            <th colspan="2" class="columna-ancho">Fecha de inicio(*)</th>
+                            <th class="columna-separacion"></th> <!-- Columna de separación -->
+                            <th colspan="2" class="columna-ancho">Fecha de fin</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="columna-ancho">
+                                <div id="anioIni" th:attr="data-anioInicio=*{anioInicio}"></div>
+                                <select style="width:100px;" th:field="*{anioInicio}" class="form-control" name="anioInicio" id="anioInicio" required>
+                                </select>
+                            </td>
+                            <td class="columna-ancho">
+                                <div id="mesIni" th:attr="data-mesInicio=*{mesInicio}"></div>
+                                <select style="width:100px;" th:field="*{mesInicio}" class="form-control ml" id="mesInicio" required>
+                                </select>
+                            </td>
+                            <td class="columna-separacion">
+                            </td>
+                            <td class="columna-ancho">
+                                <div id="anioF" th:attr="data-anioFin=*{anioFin}"></div>
+                                <select style="width:100px;" th:field="*{anioFin}" class="form-control" name="anioFin" id="anioFin">
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                            <td class="columna-ancho">
+                                <div id="mesF" th:attr="data-mesLibro=*{mesFin}"></div>
+                                <select style="width:100px;" th:field="*{mesFin}" class="form-control ml" name="mesFin" id="mesFin">
+                                    <option value=""></option>
+                                </select>
+                            </td>
+                        </tr>
+                        <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                    <table class="mt">
+                        <thead>
+                        <tr>
+                            <th class="columna-ancho-2">Indique su participación en el proyecto</th>
+                            <th class="columna-separacion"></th> <!-- Columna de separación -->
+                            <th class="columna-ancho-2">Código del proyecto SIGP / Código entidad financiadora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="columna-ancho-2">
+                                <select th:field="*{tipoParticipacion}" class="form-control" id="tipoParticipacion" required>
+                                    <option value="">Seleccione una opción</option>
+                                    <option value="Investigador principal">Investigador principal</option>
+                                    <option value="Coinvestigador">Coinvestigador</option>
+                                    <option value="Asesor">Asesor</option>
+                                    <option value="Estudiante de pregrado">Estudiante de pregrado</option>
+                                    <option value="Estudiante de maestria">Estudiante de maestria</option>
+                                    <option value="Estudiante de doctorado">Estudiante de doctorado</option>
+                                    <option value="Profesional">Profesional</option>
+                                </select>
+                            </td>
+                            <td class="columna-separacion">
+                            </td>
+                            <td class="columna-ancho-2">
+                                <input type="text" th:field="*{codigoProyectoInstitucion}" class="form-control" name="codigoProyectoInstitucion" id="codigoProyectoInstitucion" required />
+                            </td>
+                        </tr>
+                        <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                    <table class="mt">
+                        <thead>
+                        <tr>
+                            <th class="columna-ancho-2">Ambito</th>
+                            <th class="columna-separacion"></th> <!-- Columna de separación -->
+                            <th class="columna-ancho-2">Número de páginas</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="columna-ancho-2">
+                                <input type="text" th:field="*{ambito}" class="form-control" id="ambito" name="ambito"/>
+                            </td>
+                            <td class="columna-separacion">
+                            </td>
+                            <td class="columna-ancho-2">
+                                <input type="text" th:field="*{numeroPaginas}" class="form-control" name="numeroPaginas" id="numeroPaginas" required />
+                            </td>
+                        </tr>
+                        <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                    <div class="row mt">
+                        <div class="col-xd-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="">El proyecto es (*)</label><br>
+                                <input type="radio" checked id="solidario" onclick="mostrarTipoFinanciacion()" name="tipo_financiacion_proyecto" value="Solidario"> Solidario
+                                <input type="radio"  class="ml" onclick="mostrarTipoFinanciacion()" id="financiado" name="tipo_financiacion_proyecto" value="Financiado"> Financiado
+
+                                <div id="tipoFinanciacion">
+                                    <input type="hidden" id="idInterna" name="fuente_financiacion" value="">
+                                    <input type="hidden" id="idInternacional" name="financiacion" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mt">
+                        <div class="row">
+                            <div class="col col-md-12 TitleCell">
+                                Institución principal del proyecto
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 16px; text-align:justify;">
+                            <div class="col col-12" >
+                                A continuación registre la información de la institución principal del proyecto, después de guardar
+                                puede registrar la información de otras instituciones participantes.
+                            </div>
+                        </div>
+                    </div>
+                    <table class="mt">
+                        <tbody>
+                        <tr>
+                            <th class="columna-ancho-2">Tipo de participación (*)</th>
+                            <th class="columna-separacion"></th> <!-- Columna de separación -->
+                            <th class="columna-ancho-2">Nombre de la Institución (*)</th>
+                        </tr>
+                        <tr>
+                            <td class="columna-ancho-2">
+                                <select th:field="*{rolIntitucion}" class="form-control" onchange="cambiarInputValorProyecto()" id="rolIntitucion" required>
+                                    <option value="Financiadora">Financiadora</option>
+                                    <option value="Ejecutora">Ejecutora</option>
+                                    <option value="Coejecutora">Coejecutora</option>
+                                </select>
+                                <br><br>
+                            </td>
+                            <td class="columna-separacion">
+                            </td>
+                            <td class="columna-ancho-2">
+                                <input type="text" th:field="*{nombreInstitucion}" class="form-control" name="nombreInstitucion" id="nombreInstitucion" required />
+                                <br><br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="columna-ancho-2">Número o código de acto administrativo (*)</th>
+                            <th class="columna-separacion"></th> <!-- Columna de separación -->
+                            <th class="columna-ancho-2">Fecha del acto administrativo (*)</th>
+                        </tr>
+                        <tr>
+                            <td class="columna-ancho-2">
+                                <input type="text" th:field="*{numeroCodigoActoAdministrativo}" class="form-control" name="txt_acto_adm" required>
+                            </td>
+                            <td class="columna-separacion">
+                            </td>
+                            <td class="columna-ancho-2" style="display: flex; align-items: center;">
+                                <input type="date" style="width:200px;" class="form-control" name="dta_acto_admString" maxlength="10" size="10" readonly="readonly" id="dta_acto_admString" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="columna-ancho-2" id="tituloValorProyecto"><br><br>Valor del proyecto sin contrapartida (*) (Pesos)</th>
+                        </tr>
+                        <tr>
+                            <td class="columna-ancho-2" id="contenidoInput">
+                                <input type="text" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="txt_acto_adm" maxlength="50" size="60" required>
+                            </td>
+                        </tr>
+                        <!-- Puedes agregar más filas según sea necesario -->
+                        </tbody>
+                    </table>
+                    <div class="container mt">
+                        <div class="row">
+                            <div class="col col-md-12 TitleCell">
+                                Resumen
+                            </div>
+                        </div>
+                        <div class="row" style="font-size: 16px; text-align:justify;">
+                            <div class="col col-12" >
+                                El resumen no puede tener más de 4000 caracteres.
+                            </div>
+                            <div class="col col-12" >
+                                <textarea th:field="*{resumen}" name="txt_resumen_proyecto" cols="120" rows="5" style="height: 137px;"></textarea>
+                                <p>Caracteres restantes: <span id="contador">4000</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+                <div class="txt-center form-group btn1">
+                    <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://kit.fontawesome.com/173fcb4c98.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script th:src="@{/js/proyectosInvestigacion.js}" type="text/javascript"></script>
+<!--<script th:src="@{/js/editarLibro.js}"  type="text/javascript"></script>-->
+
+
+</html>

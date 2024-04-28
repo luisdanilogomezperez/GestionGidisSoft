@@ -10,8 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -66,13 +69,12 @@ public class Utils {
             for (JsonNode countryNode : jsonNode) {
                 for (JsonNode languageNode : countryNode.get("languages")) {
                     if (codigoIdioma.equalsIgnoreCase(languageNode.get("iso639_1").asText())) {
-                        idiomaObtenido = languageNode.get("nativeName").asText();
+                        idiomaObtenido = languageNode.get("name").asText();
                         codigoIdiomaAux = languageNode.get("iso639_1").asText();
                         break;
                     }
                 }
                 if (codigoIdiomaAux != null) {
-                    System.out.println(codigoIdiomaAux);
                     break;
                 }
             }
@@ -82,4 +84,8 @@ public class Utils {
         return idiomaObtenido;
     }
 
+    public static Date formatDate(String fechaString, String formato) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+        return sdf.parse(fechaString);
+    }
 }
