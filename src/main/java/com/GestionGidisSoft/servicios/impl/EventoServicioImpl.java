@@ -4,6 +4,7 @@ import com.GestionGidisSoft.entidades.Evento;
 import com.GestionGidisSoft.repositorios.EventoRepo;
 import com.GestionGidisSoft.servicios.EventoServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EventoServicioImpl implements EventoServicio {
 
-
-    private final EventoRepo eventoRepo;
+    @Autowired
+    EventoRepo eventoRepo;
 
     @Override
     public void crearEvento(Evento evento) {

@@ -80,21 +80,21 @@
                                 </select><br>
                             </div>
                         </div>
-                        <div class="col-ld-6 col-xd-6 col-sm-3">
-                            <div class="form-group">
+                        <div class="col-ld-6 col-xd-6 col-sm-3 ">
+                            <div class="form-group ml">
                                 <label for="input">Mes(*)</label>
                                 <div id="mesLibro" th:attr="data-mesLibro=*{mes}"></div>
-                                <select style="width:300px;" th:field="*{mes}" class="form-control" id="meses" required>
+                                <select style="width:300px;" th:field="*{mes}" class="form-control " id="meses" required>
                                     <option value=""></option>
                                     <!-- Las opciones se cargarán desde JavaScript -->
                                 </select><br>
                             </div>
                         </div>
                         <div class="col-xd-12 col-sm-6 col-ld-12" >
-                            <div class="form-group">
+                            <div class="form-group ml" style="padding-left: 15px; margin-left: 15px;">
                                 <label for="input">Lugar de Publicación(*)</label>
                                 <div id="lugarLibro" th:attr="data-lugarLibro=*{lugarPublicacion}"></div>
-                                <select th:field="*{lugarPublicacion}" class="form-control" id="lugarPublicacion" required>
+                                <select th:field="*{lugarPublicacion}" style="width:300px;" class="form-control " id="lugarPublicacion" required>
                                     <option value=""></option>
                                 </select><br>
                             </div>

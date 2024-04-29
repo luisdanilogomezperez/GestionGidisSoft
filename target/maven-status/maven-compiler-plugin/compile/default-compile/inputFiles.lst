@@ -1,63 +1,64 @@
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoDirigidoRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\EventoDTO.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArticuloServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Pais.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoInvestigacion.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginResponseDto.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginRequestDto.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTabla.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\DemasTrabajos.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\CapituloLibroServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Evento.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ArticuloRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\LibroRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\LibroServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\PonenciaControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArchivosServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\LibroControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Ponencia.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\EventoServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\xml\xmlUtil.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\EventoControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\CapituloLibroControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoDirigControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\UsuarioRol.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\Constantes\Format.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\RolRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArchivosControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\CapituloLibroRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\UsuarioRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Articulo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\DemasTrabajoControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Rol.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\LibroServico.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControladorAdmin.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoInvestControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\DemasTrabajoRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\CapituloLibro.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\UsuarioServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Usuario.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\Ecepciones\CargaArchivoEcepcion.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\InicioControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\GestionGidisSoftApplication.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArticuloServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\Utils.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoDirigido.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\UsuarioServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\RegistroResponseDto.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\PonenciaServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\EventoRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\CapituloLibroServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Libro.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArticuloControlador.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\DemasTrabajo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\PonenciaRepo.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\PonenciaServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\EventoServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\DemasTrabajoServicioImpl.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTexto.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\DemasTrabajoServicio.java
-C:\Users\aurbi\OneDrive\Escritorio\GidisDefinitivo\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\ArchivosResponseDto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Ponencia.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTabla.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\Utils.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\GestionGidisSoftApplication.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Libro.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\LibroServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\PonenciaServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Rol.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\PonenciaRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Evento.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Pais.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\DemasTrabajoRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoInvestControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArticuloControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\InicioControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ProyectoInvestigacionServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\ArchivosResponseDto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\Constantes\Format.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\UsuarioServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\CapituloLibroRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\EventoControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\UsuarioRol.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoDirigido.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTexto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\LibroServico.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\EventoServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\Ecepciones\CargaArchivoEcepcion.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\CapituloLibroControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoDirigControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ArticuloRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\PonenciaControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Usuario.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\DemasTrabajoControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\RolRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginRequestDto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArchivosControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\CapituloLibro.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ProyectoInvestigacionServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Articulo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\EventoDTO.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\LibroControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\DemasTrabajo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\xml\xmlUtil.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\EventoServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArticuloServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginResponseDto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\RegistroResponseDto.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\EventoRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\UsuarioRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\DemasTrabajoServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoInvestigacion.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArchivosServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoDirigidoRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\DemasTrabajoServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\CapituloLibroServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\PonenciaServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\LibroRepo.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControladorAdmin.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArticuloServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\CapituloLibroServicio.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\UsuarioServicioImpl.java

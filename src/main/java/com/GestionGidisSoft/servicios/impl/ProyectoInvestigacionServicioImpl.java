@@ -27,12 +27,25 @@ public class ProyectoInvestigacionServicioImpl implements ProyectoInvestigacionS
 
     @Override
     public String actualizarProyectoInvestigacion(ProyectoInvestigacion proyectoInvestigacion) throws Exception {
+        String mensaje = "";
         try {
-
+            if (investigacionRepo.actualizarProyectoInvestigacion(proyectoInvestigacion.getIdProyectoInvestigacion(),
+                    proyectoInvestigacion.getAnioFin(), proyectoInvestigacion.getAnioInicio(), proyectoInvestigacion.getFuenteFinanciacion(),
+                    proyectoInvestigacion.getValorProyectoSinContrapartida(), proyectoInvestigacion.getMesFin(), proyectoInvestigacion.getMesInicio(),
+                    proyectoInvestigacion.getNombreInstitucion(), proyectoInvestigacion.getResumen(), proyectoInvestigacion.getTipoProyecto(),
+                    proyectoInvestigacion.getTitulo(), proyectoInvestigacion.getNumeroCodigoActoAdministrativo(), proyectoInvestigacion.getValorContrapartida(),
+                    proyectoInvestigacion.getFechaActoAdministrativo(), proyectoInvestigacion.getSolidario(), proyectoInvestigacion.getFinanciado(),
+                    proyectoInvestigacion.getNumeroPaginas(), proyectoInvestigacion.getAmbito(), proyectoInvestigacion.getCodigoProyectoInstitucion(),
+                    proyectoInvestigacion.getRolIntitucion(), proyectoInvestigacion.getTipoFinanciacion(), proyectoInvestigacion.getTipoParticipacion()) == 1) {
+                mensaje = "Proyecto actualizado correctamente.";
+            } else {
+                mensaje = "Ocurrió un error al intentar actualizar el proyecto.";
+            }
         } catch (Exception e) {
-
+            e.printStackTrace();
+            mensaje = "Error inesperado::: " + e.getMessage();
         }
-        return null;
+        return mensaje;
     }
 
     @Override
@@ -127,5 +140,26 @@ public class ProyectoInvestigacionServicioImpl implements ProyectoInvestigacionS
             e.printStackTrace();
             System.out.println("Error::: " + e.getMessage());
         }
+    }
+
+    @Override
+    public String agregarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion) {
+        String mensaje = "";
+        try {
+//            if (investigacionRepo.agregarProduccionAProyectoInvestigacion(idProyecto, idAutor, idProduccion) == 1) {
+//                mensaje = "La producción se agregó exitosamente";
+//            } else {
+//                mensaje = "Ocurrió un error agregando la producción";
+//            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            mensaje = "Error inesperado:: " + e.getMessage();
+        }
+        return mensaje;
+    }
+
+    @Override
+    public String eliminarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion) {
+        return null;
     }
 }

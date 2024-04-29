@@ -160,3 +160,21 @@ label{
 .tablinks.active {
     background-color: #CC3636; /* Color de fondo cuando está activo */
 }
+
+.columna-ancho {
+    width: 100px; /* Define el ancho deseado */
+}
+.columna-ancho-2 {
+    width: 600px; /* Define el ancho deseado */
+}
+.columna-separacion {
+    width: 200px; /* Define el ancho de la columna de separación */
+}
+
+.ml {
+    margin-left: 25px;
+}
+
+.mt {
+    margin-top: 40px;
+}

@@ -4,6 +4,7 @@ import com.GestionGidisSoft.entidades.DemasTrabajo;
 import com.GestionGidisSoft.repositorios.DemasTrabajoRepo;
 import com.GestionGidisSoft.servicios.DemasTrabajoServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +15,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DemasTrabajoServicioImpl implements DemasTrabajoServicio {
 
-
-    private final DemasTrabajoRepo demasTrabajoRepo;
+    @Autowired
+    DemasTrabajoRepo demasTrabajoRepo;
 
     @Override
     public void crearDemasTrabajo(DemasTrabajo demasTrabajo) {

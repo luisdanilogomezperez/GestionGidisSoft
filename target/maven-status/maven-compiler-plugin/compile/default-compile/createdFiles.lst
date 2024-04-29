@@ -11,7 +11,6 @@ com\GestionGidisSoft\controlador\PonenciaControlador.class
 com\GestionGidisSoft\repositorios\UsuarioRepo.class
 com\GestionGidisSoft\entidades\UsuarioRol.class
 com\GestionGidisSoft\servicios\impl\LibroServicioImpl.class
-com\GestionGidisSoft\controlador\DemasTrabajos.class
 Ecepciones\CargaArchivoEcepcion.class
 com\GestionGidisSoft\entidades\CapituloLibro.class
 com\GestionGidisSoft\controlador\UsuarioControlador.class

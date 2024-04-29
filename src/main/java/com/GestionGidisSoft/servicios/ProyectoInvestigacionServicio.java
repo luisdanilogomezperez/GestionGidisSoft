@@ -31,4 +31,8 @@ public interface ProyectoInvestigacionServicio {
 
     void eliminarRegistroCoautorProyectoInvestigacion(Long idProyectoInvestigacion, Long idCoautor) throws Exception;
 
+    String agregarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion);
+
+    String eliminarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion);
+
 }

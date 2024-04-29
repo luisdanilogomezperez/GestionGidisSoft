@@ -8,13 +8,11 @@ function onLoad(){
     var anioFin = document.getElementById("anioF").getAttribute("data-anioFin");
     var mesInicio = document.getElementById("mesIni").getAttribute("data-mesInicio");
     var mesFin = document.getElementById("mesF").getAttribute("data-mesFin");
-    var esSolidario = document.getElementById("idEsSolidario").getAttribute("data-solidario");
-    var esFinanciado = document.getElementById("idEsFinanciado").getAttribute("data-financiado");
-    var fuenteFinanciacion = document.getElementById("fuenteFinanciacion").value;
-    var tipoFinanciacion = document.getElementById("idTipoFinanciacion").value;
-    alert(esSolidario + " -- " + esFinanciado + " -- " + fuenteFinanciacion + " -- " + tipoFinanciacion)
-//    var fechaActoAdministrativo = document.getElementById("idFechaActoAdministrativo").getAttribute("data-fechaActoAdministrativo");
-    // Si hay un año de libro, establece ese año como seleccionado
+
+    var esSolidarioBase = document.getElementById("idEsSolidarioBase").value;
+    var esFinanciadoBase = document.getElementById("idEsFinanciadoBase").value;
+    var fuenteFinanciacionBase = document.getElementById("idFuenteFinanciacionBase").value;
+    var tipoFinanciacionBase = document.getElementById("idTipoFinanciacionBase").value;
 
     switch (tipoProyecto) {
         case "Investigación":
@@ -33,7 +31,7 @@ function onLoad(){
             // Manejar el caso cuando no coincide con ningún tipo de proyecto conocido
             console.error("Tipo de proyecto desconocido:", tipoProyecto);
     }
-    switch (esSolidario) {
+    switch (esSolidarioBase) {
         case "SI":
             document.getElementById("solidario").checked = true;
             document.getElementById("financiado").checked = false;
@@ -41,16 +39,16 @@ function onLoad(){
         default:
             console.error("Valor desconocido:", tipoProyecto);
     }
-    switch (esFinanciado) {
+    switch (esFinanciadoBase) {
         case "SI":
             document.getElementById("financiado").checked = true;
-            mostrarTipoFinanciacion()
             break;
         default:
             console.error("Tipo de proyecto desconocido:", tipoProyecto);
     }
-    var tipoFinanciacionDiv = document.getElementById('tipoFinanciacion');
-    switch (fuenteFinanciacion) {
+
+    var tipoFinanciacionDiv = document.getElementById('idTipoFinanciacionDiv');
+    switch (fuenteFinanciacionBase) {
         case "Interna":
             tipoFinanciacionDiv.innerHTML = `
                 <div class="col-xd-12 col-sm-12">
@@ -64,7 +62,7 @@ function onLoad(){
                                 <input type="radio" class="ml" onclick="mostrarFuenteFinanciacion()" id="idExterna" name="fuente_financiacion" value="Externa" required> Externa
                             </div>
                         </div>
-                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacion">
+                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacionDiv">
                             <input type="hidden" id="idFinanciacion" name="financiacion" value="">
                         </div>
                     </div>
@@ -84,7 +82,7 @@ function onLoad(){
                                 <input type="radio" checked class="ml" onclick="mostrarFuenteFinanciacion()" id="idExterna" name="fuente_financiacion" value="Externa" required> Externa
                             </div>
                         </div>
-                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacion">
+                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacionDiv">
                             <input type="hidden" id="idFinanciacion" name="financiacion" value="">
                         </div>
                     </div>
@@ -94,21 +92,27 @@ function onLoad(){
         default:
             console.error("Tipo de proyecto desconocido:", tipoProyecto);
     }
-    var fuenteFinanciacionDiv = document.getElementById('fuenteFinanciacion');
-    switch (fuenteFinanciacion) {
-        case "Externa":
-            fuenteFinanciacionDiv.innerHTML = `
+    var fuenteNacionalInternaconalDiv = document.getElementById('fuenteFinanciacionDiv');
+    switch (tipoFinanciacionBase) {
+        case "Nacional":
+            fuenteNacionalInternaconalDiv.innerHTML = `
                 <div class="form-group">
                     <br><br><br>
                     <div id="idTipoFinanciacion" th:attr="data-tipoFinanciacion=*{tipoFinanciacion}"></div>
-                    <input type="radio" id="idNacional" name="financiacion" value="Nacional" required> Nacional
+                    <input type="radio" checked id="idNacional" name="financiacion" value="Nacional" required> Nacional
                     <input type="radio" class="ml" id="idInternacional" name="financiacion" value="Internacional" required> Internacional
                 </div>
             `;
             break;
-        case "Interna":
-            document.getElementById("financiado").checked = true;
-            mostrarTipoFinanciacion()
+        case "Internacional":
+            fuenteNacionalInternaconalDiv.innerHTML = `
+                <div class="form-group">
+                    <br><br><br>
+                    <div id="idTipoFinanciacion" th:attr="data-tipoFinanciacion=*{tipoFinanciacion}"></div>
+                    <input type="radio" id="idNacional" name="financiacion" value="Nacional" required> Nacional
+                    <input type="radio" checked class="ml" id="idInternacional" name="financiacion" value="Internacional" required> Internacional
+                </div>
+            `;
             break;
         default:
             console.error("Tipo de proyecto desconocido:", tipoProyecto);
@@ -216,46 +220,44 @@ function validarDocumento(id) {
 
 function mostrarTipoFinanciacion() {
     var tipoFinanciacion = document.querySelector('input[name="tipo_financiacion_proyecto"]:checked').value;
-    var tipoFinanciacionDiv = document.getElementById('tipoFinanciacion');
+    var tipoFinanciacionDiv = document.getElementById('idTipoFinanciacionDiv');
 
-        if (tipoFinanciacion === "Financiado") {
-            tipoFinanciacionDiv.innerHTML = `
+    if (tipoFinanciacion === "Financiado") {
+        tipoFinanciacionDiv.innerHTML = `
                 <div class="col-xd-12 col-sm-12">
                     <div class="row">
                         <div class="col-xd-4 col-sm-4">
                             <div class="form-group">
                                 <br><br>
                                 <label for="input">Fuente de financiación(*)</label><br>
-                                <div id="idFuenteFinanciacion" th:attr="data-fuenteFinanciacion=*{fuenteFinanciacion}"></div>
                                 <input type="radio" checked onclick="mostrarFuenteFinanciacion()" id="idInterna" name="fuente_financiacion" value="Interna" required> Interna
                                 <input type="radio"  class="ml" onclick="mostrarFuenteFinanciacion()" id="idExterna" name="fuente_financiacion" value="Externa" required> Externa
                             </div>
                         </div>
 
-                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacion">
+                        <div class="col-xd-6 col-sm-6" id="fuenteFinanciacionDiv">
                             <input type="hidden" id="idFinanciacion" name="financiacion" value="">
                         </div>
                     </div>
                 </div>
             `;
-        } else {
-            // Limpiamos el contenido del div si no es "Financiado"
-            tipoFinanciacionDiv.innerHTML = `
+    } else {
+        // Limpiamos el contenido del div si no es "Financiado"
+        tipoFinanciacionDiv.innerHTML = `
                         <input type="hidden" id="idInterna" name="fuente_financiacion" value="">
                         <input type="hidden" id="idInternacional" name="financiacion" value="">
             `;
-        }
+    }
 }
 
 function mostrarFuenteFinanciacion() {
     var fuenteFinanciacion = document.querySelector('input[name="fuente_financiacion"]:checked').value;
-    var fuenteFinanciacionDiv = document.getElementById('fuenteFinanciacion');
+    var fuenteFinanciacionDiv = document.getElementById('fuenteFinanciacionDiv');
 
     if (fuenteFinanciacion === "Externa") {
         fuenteFinanciacionDiv.innerHTML = `
                 <div class="form-group">
                     <br><br><br>
-                    <div id="idTipoFinanciacion" th:attr="data-tipoFinanciacion=*{tipoFinanciacion}"></div>
                     <input type="radio" checked id="idNacional" name="financiacion" value="Nacional" required> Nacional
                     <input type="radio" class="ml" id="idInternacional" name="financiacion" value="Internacional" required> Internacional
                 </div>
