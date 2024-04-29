@@ -27,7 +27,7 @@ public interface PonenciaRepo extends JpaRepository<Ponencia, Long> {
     void editarPonencia(@Param("id") Long id,@Param("ponencia") Ponencia ponencia);
 
     @Query(value = " SELECT pon.* FROM ponencias pon "
-            + " INNER JOIN usuarioponencia usupon on (usupon.idponencia = pon.id_ponencia) "
+            + " INNER JOIN usuarioponencia usupon on (usupon.idponencia = pon.idponencia) "
             + " WHERE usupon.idusuario = :idUsuario", nativeQuery = true)
     List<Ponencia> listarPonenciasPorAutor(Long idUsuario);
 
