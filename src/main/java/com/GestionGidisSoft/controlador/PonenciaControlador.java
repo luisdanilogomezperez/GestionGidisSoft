@@ -6,6 +6,7 @@ import com.GestionGidisSoft.entidades.Usuario;
 import com.GestionGidisSoft.servicios.impl.PonenciaServicioImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,9 @@ import java.util.List;
 @RequestMapping("/ponencia")
 @RequiredArgsConstructor
 public class PonenciaControlador {
-    private final PonenciaServicioImpl ponenciaServicio;
+
+    @Autowired
+    PonenciaServicioImpl ponenciaServicio;
 
 
     @GetMapping("/verPonencias")

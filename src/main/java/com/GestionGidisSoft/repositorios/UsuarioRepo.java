@@ -86,7 +86,7 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
     @Query(value = " SELECT u.* FROM usuario u WHERE u.idusuario NOT IN ( "
             + " SELECT u2.idusuario FROM usuario u2 "
             + " INNER JOIN coautoresproyectoinvestigacion coaproin ON (coaproin.idcoautor = u2.idusuario) " +
-            " WHERE coaproin.idautor = :idAutor AND coart.idarticulo = :idArticulo) AND u.idusuario NOT IN ( " +
+            " WHERE coaproin.idautor = :idAutor AND coaproin.idproyectoinvestigacion = :idProyectoInvestigacion) AND u.idusuario NOT IN ( " +
             " SELECT u2.idusuario FROM usuario u2 " +
             " INNER JOIN usuarioproyectoinvestigacion usua ON (usua.idusuario = u2.idusuario) " +
             "  WHERE usua.idusuario = :idAutor AND usua.idproyectoinvestigacion = :idProyectoInvestigacion)", nativeQuery = true)

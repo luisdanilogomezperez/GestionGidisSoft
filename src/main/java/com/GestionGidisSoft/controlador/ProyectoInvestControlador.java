@@ -144,12 +144,18 @@ public class ProyectoInvestControlador {
     }
     @PostMapping("/editar")
     public ModelAndView actualizarProyectoInvestigacion(HttpServletRequest request,
-                                                        @ModelAttribute("proyectoInvestigacion") ProyectoInvestigacion proyectoInvestigacion,
-                                                        @RequestParam(value = "tipo_proyecto") String tipoProyecto,
-                                                        @RequestParam(value = "dta_acto_admString") String fechaActoAdministrativoString,
-                                                        @RequestParam(value = "tipo_financiacion_proyecto") String tipoFinanciacionProyecto,
-                                                        @RequestParam(value = "fuente_financiacion") String fuenteFinanciacion,
-                                                        @RequestParam(value = "financiacion") String financiacion) throws Exception {
+            @ModelAttribute("proyectoInvestigacion") ProyectoInvestigacion proyectoInvestigacion,
+            @RequestParam(value = "tipo_proyecto") String tipoProyecto,
+            @RequestParam(value = "dta_acto_admString") String fechaActoAdministrativoString,
+            @RequestParam(value = "tipo_financiacion_proyecto") String tipoFinanciacionProyecto,
+            @RequestParam(value = "fuente_financiacion") String fuenteFinanciacion,
+            @RequestParam(value = "financiacion") String financiacion) throws Exception {
+        System.out.println(tipoProyecto);
+        System.out.println(fechaActoAdministrativoString);
+        System.out.println(tipoFinanciacionProyecto);
+        System.out.println(fuenteFinanciacion);
+        System.out.println(financiacion);
+        System.out.println();
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
@@ -166,6 +172,7 @@ public class ProyectoInvestControlador {
                 proyectoInvestigacion.setFuenteFinanciacion(fuenteFinanciacion);
                 proyectoInvestigacion.setTipoFinanciacion(financiacion);
             }
+            String mensaje = proyectoServicio.actualizarProyectoInvestigacion(proyectoInvestigacion);
             List<ProyectoInvestigacion> listaProyectos = proyectoServicio.findByUsuarioId(usuario.getIdusuario());
             mav.addObject("listaProyectos", listaProyectos);
             mav.addObject("usuario", usuario);

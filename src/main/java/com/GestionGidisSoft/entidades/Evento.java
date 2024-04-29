@@ -15,14 +15,14 @@ public class Evento {
     @Column(name = "idevento")
     private Long idEvento;
 
-    @Column(name = "nombre_evento")
+    @Column(name = "nombreevento")
     private String nombreEvento;
 
 
-    @Column(name = "fecha_inicio")
+    @Column(name = "fechainicio")
     private LocalDate fechaInicio;
 
-    @Column(name = "fecha_fin")
+    @Column(name = "fechafin")
     private LocalDate fechaFin;
 
     private String participacion;

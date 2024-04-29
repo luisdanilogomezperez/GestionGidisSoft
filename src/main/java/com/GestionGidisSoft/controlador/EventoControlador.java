@@ -6,6 +6,7 @@ import com.GestionGidisSoft.entidades.Usuario;
 import com.GestionGidisSoft.servicios.impl.EventoServicioImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,9 @@ import java.util.List;
 @RequestMapping("/evento")
 @RequiredArgsConstructor
 public class EventoControlador {
-    private final EventoServicioImpl eventoServicio;
+
+    @Autowired
+    EventoServicioImpl eventoServicio;
 
 
     @GetMapping("/verEventos")
@@ -75,19 +78,19 @@ public class EventoControlador {
     public ModelAndView guardarEvento(HttpServletRequest request, @ModelAttribute("evento") EventoDTO eventoDTO) throws Exception {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
-        log.info("Evento es {}", eventoDTO.toString() );
         if (session.getAttribute("usuario") != null) {
 
-                Usuario usuario = (Usuario) session.getAttribute("usuario");
-                Evento evento = new Evento();
-                    evento.setNombreEvento(eventoDTO.getNombreEvento());
-                    evento.setFechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()));
-                    evento.setFechaFin(LocalDate.parse(eventoDTO.getFechaFin()));
-                    evento.setLugar(eventoDTO.getLugar());
-                    evento.setParticipacion(eventoDTO.getParticipacion());
-                    evento.setDescripcion(eventoDTO.getDescripcion());
-                    evento.setInstitucion(eventoDTO.getInstitucion());
-
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            Evento evento = new Evento();
+                evento.setNombreEvento(eventoDTO.getNombreEvento());
+                evento.setFechaInicio(LocalDate.parse(eventoDTO.getFechaInicio()));
+                evento.setFechaFin(LocalDate.parse(eventoDTO.getFechaFin()));
+                evento.setLugar(eventoDTO.getLugar());
+                evento.setParticipacion(eventoDTO.getParticipacion());
+                evento.setDescripcion(eventoDTO.getDescripcion());
+                evento.setInstitucion(eventoDTO.getInstitucion());
+            System.out.println("Id del evento a crear::: " + evento.getIdEvento());
+            System.out.println(evento.toString());
                 eventoServicio.guardarEvento(evento);
                 eventoServicio.actualizarTablaIntermedia( evento.getIdEvento(), usuario.getIdusuario());
                 mav.setViewName("redirect:/evento/verEventos");

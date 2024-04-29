@@ -43,7 +43,7 @@
         <form th:action="@{/proyectosInvestigacion/editar}" th:object="${proyectoInvestigacion}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
             <div class="container">
 
-                <input th:field="*{idProyectoInvestigacion}" type="hidden" class="form-control" name="idProyectoInvestigacion" id="idProyectoInvestigacion" placeholder="" required/>
+                <input th:field="*{idProyectoInvestigacion}" type="text" class="form-control" name="idProyectoInvestigacion" id="idProyectoInvestigacion" placeholder="" required/>
                 <div class="row">
                     <div class="col col-md-12 TitleCell">
                         Editar proyecto de investigación
@@ -186,18 +186,18 @@
                 <div class="row mt">
                     <div class="col-xd-12 col-sm-12">
                         <div class="form-group">
-                            <label for="">El proyecto es (*)</label><br>
-                            <input type="text" th:field="*{solidario}" class="form-control" name="numeroPaginas" id="esSolidario" required />
-                            <input type="text" th:field="*{financiado}" class="form-control" name="numeroPaginas" id="esFinanciado" required />
-                            <input type="text" th:field="*{fuenteFinanciacion}" class="form-control" name="numeroPaginas" id="fuenteFinanciacion" required />
-                            <input type="text" th:field="*{tipoFinanciacion}" class="form-control" name="numeroPaginas" id="idTipoFinanciacion" required />
+                            <label>El proyecto es (*)</label><br>
+                            <input type="hidden" th:field="*{solidario}" class="form-control" name="numeroPaginas" id="idEsSolidarioBase" required />
+                            <input type="hidden" th:field="*{financiado}" class="form-control" name="numeroPaginas" id="idEsFinanciadoBase" required />
+                            <input type="hidden" th:field="*{fuenteFinanciacion}" class="form-control" name="fuenteFinanciacion" id="idFuenteFinanciacionBase" required />
+                            <input type="hidden" th:field="*{tipoFinanciacion}" class="form-control" name="fuenteFinanciacion" id="idTipoFinanciacionBase" required />
 
                             <div id="idEsSolidario" th:attr="data-solidario=*{solidario}"></div>
                             <div id="idEsFinanciado" th:attr="data-financiado=*{financiado}"></div>
                             <input type="radio" checked id="solidario" onclick="mostrarTipoFinanciacion()" name="tipo_financiacion_proyecto" value="Solidario"> Solidario
                             <input type="radio"  class="ml" onclick="mostrarTipoFinanciacion()" id="financiado" name="tipo_financiacion_proyecto" value="Financiado"> Financiado
 
-                            <div id="tipoFinanciacion">
+                            <div id="idTipoFinanciacionDiv">
                                 <input type="hidden" id="idInterna" name="fuente_financiacion" value="">
                                 <input type="hidden" id="idInternacional" name="financiacion" value="">
                             </div>
