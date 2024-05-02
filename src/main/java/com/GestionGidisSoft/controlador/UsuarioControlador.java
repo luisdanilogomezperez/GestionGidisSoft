@@ -38,11 +38,9 @@ public class UsuarioControlador {
             if (usuarioServicio.existenUsuarios()) {
                 rol.setRolId(2L);
                 rol.setNombre("DOCENTE");
-                System.out.println("YA existen usuarios, tu rol el DOCENTE");
             } else {
                 rol.setRolId(1L);
                 rol.setNombre("ADMIN");
-                System.out.println("NO existen usuarios, tu rol el ADMIN");
             }
             usuario.setEnable(true);
             usuarioServicio.guardarUsuario(usuario, rol);
@@ -77,14 +75,18 @@ public class UsuarioControlador {
             Usuario usuario = usuarioServicio.buscarUsuarioByEmail(loginRequestDto.getEmail());
             Rol usuarioRol = usuarioServicio.consultarRolUsuario(usuario.getIdusuario());
             usuario.setUsuarioRol(usuarioRol.getNombre());
-            System.out.println("rol del usuario " + usuario.getSegundoNombre() + ": " + usuarioRol.getNombre());
-            session.setAttribute("usuario", usuario);
-            model.setViewName("redirect:/usuarios/home");
+            if (usuario.isEnable()) {
+                session.setAttribute("usuario", usuario);
+                model.setViewName("redirect:/usuarios/home");
+            } else {
+                session.setAttribute("usuario", null);
+                model.addObject("usuario", new Usuario());
+                model.addObject("estadoUsuario", "DESHABILITADO");
+                model.setViewName("index");
+            }
             return model;
         } else {
             System.out.println("error de logueo");
-            session.setAttribute("usuario", null);
-            model.addObject("usuario", session.getAttribute("usuario"));
             model.setViewName("redirect:/?error=true");
             return model;
         }
