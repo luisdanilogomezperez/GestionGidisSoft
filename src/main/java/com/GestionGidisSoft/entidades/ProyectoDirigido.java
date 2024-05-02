@@ -8,28 +8,40 @@ public class ProyectoDirigido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idproyectodirigido")
     private Long idProyectoDirigido;
 
     private String nombre;
 
-    private String tipoProdecto;
+    @Column(name = "tipoproducto")
+    private String tipoProducto;
 
+    @Column(name = "anioinicio")
     private String anioInicio;
 
+    @Column(name = "aniofin")
     private String anioFin;
 
+    @Column(name = "mesinicio")
     private String mesInicio;
 
+    @Column(name = "mesfin")
     private String mesFin;
 
+    @Column(name = "tipoorientacion")
     private String tipoOrientacion;
 
+    @Column(name = "numeropaginas")
     private String numeroPaginas;
 
+    @Column(name = "nombreinstitucion")
     private String nombreInstitucion;
 
+    @Column(name = "programaacademico")
     private String programaAcademico;
 
+
+    @Column(name = "valoraciontesis")
     private String valoracionTesis;
 
     public ProyectoDirigido() {
@@ -51,12 +63,12 @@ public class ProyectoDirigido {
         this.nombre = nombre;
     }
 
-    public String getTipoProdecto() {
-        return tipoProdecto;
+    public String getTipoProducto() {
+        return tipoProducto;
     }
 
-    public void setTipoProdecto(String tipoProdecto) {
-        this.tipoProdecto = tipoProdecto;
+    public void setTipoProducto(String tipoProdecto) {
+        this.tipoProducto = tipoProdecto;
     }
 
     public String getAnioInicio() {
