@@ -43,7 +43,7 @@
         <form th:action="@{/proyectosInvestigacion/editar}" th:object="${proyectoInvestigacion}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
             <div class="container">
 
-                <input th:field="*{idProyectoInvestigacion}" type="text" class="form-control" name="idProyectoInvestigacion" id="idProyectoInvestigacion" placeholder="" required/>
+                <input th:field="*{idProyectoInvestigacion}" type="hidden" class="form-control" name="idProyectoInvestigacion" id="idProyectoInvestigacion" placeholder="" required/>
                 <div class="row">
                     <div class="col col-md-12 TitleCell">
                         Editar proyecto de investigación
@@ -86,7 +86,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input style="width:500px;" th:field="*{titulo}" type="text" class="form-control" display="Título" name="titulo" id="titulo" placeholder="" required/>
+                            <input style="width:80%;" th:field="*{titulo}" type="text" class="form-control" display="Título" name="titulo" id="titulo" placeholder="" required/>
                         </td>
                     </tr>
                     <!-- Puedes agregar más filas según sea necesario -->
@@ -226,6 +226,7 @@
                     </tr>
                     <tr>
                         <td class="columna-ancho-2">
+                            <div id="idRolInstitucion" th:attr="data-rol-intitucion=*{rolIntitucion}"></div>
                             <select th:field="*{rolIntitucion}" class="form-control" onchange="cambiarInputValorProyecto()" id="rolIntitucion" required>
                                 <option value="Financiadora">Financiadora</option>
                                 <option value="Ejecutora">Ejecutora</option>
@@ -236,7 +237,7 @@
                         <td class="columna-separacion">
                         </td>
                         <td class="columna-ancho-2">
-                            <input type="text" th:field="*{nombreInstitucion}" class="form-control" name="nombreInstitucion" id="nombreInstitucion" required />
+                            <input type="text" th:field="*{nombreInstitucion}" class="form-control" style="width: 50%;" name="nombreInstitucion" id="nombreInstitucion" required />
                             <br><br>
                         </td>
                     </tr>
@@ -257,7 +258,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="columna-ancho-2" id="tituloValorProyecto"><br><br>Valor del proyecto sin contrapartida (*) (Pesos)</th>
+                        <th class="columna-ancho-2" id="tituloValorProyecto">
+                            <br><br>Valor del proyecto sin contrapartida (*) (Pesos)
+                        </th>
                     </tr>
                     <tr>
                         <td class="columna-ancho-2" id="contenidoInput">
@@ -279,7 +282,7 @@
                             El resumen no puede tener más de 4000 caracteres.
                         </div>
                         <div class="col col-12" >
-                            <textarea th:field="*{resumen}" id="resumen" name="txt_resumen_proyecto" cols="120" rows="5" th:maxlength="4000" style="height: 137px;"></textarea>
+                            <textarea th:field="*{resumen}" id="resumen" name="txt_resumen_proyecto" rows="5" th:maxlength="4000" style="width: 100%; height: 137px;"></textarea>
                             <p>Caracteres restantes: <span id="contador" th:text="${cantidadPalabras}">4000</span></p>
                         </div>
                     </div>
@@ -290,6 +293,8 @@
             <div class="txt-center form-group btn1">
                 <button type="submit" class="btn btn-primary" id="guardar">Guardar</button>
             </div>
+            <input type="hidden" th:value="*{valorProyectoSinContrapartida}" id="idValorProyectoSinContrapartida">
+            <input type="hidden" th:value="*{valorContrapartida}" id="idValorContrapartida">
             <br>
         </form>
     </div>

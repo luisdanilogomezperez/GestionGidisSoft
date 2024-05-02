@@ -37,14 +37,14 @@ function onLoad(){
             document.getElementById("financiado").checked = false;
             break;
         default:
-            console.error("Valor desconocido:", tipoProyecto);
+            break;
     }
     switch (esFinanciadoBase) {
         case "SI":
             document.getElementById("financiado").checked = true;
             break;
         default:
-            console.error("Tipo de proyecto desconocido:", tipoProyecto);
+            break;
     }
 
     var tipoFinanciacionDiv = document.getElementById('idTipoFinanciacionDiv');
@@ -90,7 +90,7 @@ function onLoad(){
             `;
             break;
         default:
-            console.error("Tipo de proyecto desconocido:", tipoProyecto);
+            break;
     }
     var fuenteNacionalInternaconalDiv = document.getElementById('fuenteFinanciacionDiv');
     switch (tipoFinanciacionBase) {
@@ -115,8 +115,30 @@ function onLoad(){
             `;
             break;
         default:
-            console.error("Tipo de proyecto desconocido:", tipoProyecto);
+            break;
     }
+
+    var valorSeleccionado = document.getElementById("idRolInstitucion").getAttribute("data-rol-intitucion");
+    var valorProyectoSinContrapartida = document.getElementById("idValorProyectoSinContrapartida").value;
+    var valorContrapartida = document.getElementById("idValorContrapartida").value;
+    var tituloValorProyecto = document.getElementById("tituloValorProyecto");
+    var contenidoInput = document.getElementById("contenidoInput");
+    switch (valorSeleccionado) {
+        case "Financiadora":
+            tituloValorProyecto.innerHTML = "<br><br>Valor del proyecto sin contrapartida (*) (Pesos)";
+            contenidoInput.innerHTML = '<input type="text" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="valorProyectoSinContrapartida" required>';
+            document.getElementsByName("valorProyectoSinContrapartida")[0].value = valorProyectoSinContrapartida;
+            break;
+        case "Ejecutora":
+        case "Coejecutora":
+            tituloValorProyecto.innerHTML = "<br><br>Valor de la contrapartida";
+            contenidoInput.innerHTML = '<input type="text" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
+            document.getElementsByName("valorContrapartida")[0].value = valorContrapartida;
+            break;
+        default:
+            break;
+    }
+
     // Obtener la fecha del atributo data-fechaActoAdministrativo
     var fechaActoAdministrativo = document.getElementById("idFechaActoAdministrativo").getAttribute("data-fechaActoAdministrativo");
 

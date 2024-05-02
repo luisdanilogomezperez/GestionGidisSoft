@@ -1,29 +1,31 @@
-async function login() {
-    console.log("Entré")
-    let data = {};
 
-    data.email = document.getElementById('email').value;
-    data.clave = document.getElementById('clave').value;
+var estadoUsuario = document.getElementById("estadoUsuario").value;
 
-    const request = await fetch('api/v1/usuarios/login', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(res => res.json())
-        .then(data => {
-            if(data.accedio)
-                window.location.href = 'html/inicio.html';
-            else{
-                window.alert("Verifique sus credenciales!")
-                window.location.href = 'index.html';
-            }
+function onLoad(){
+    if (estadoUsuario != null) {
+        mostrarEstadoUsuario();
+    }
+}
+window.onload = onLoad;
 
+function mostrarEstadoUsuario() {
+    if (estadoUsuario.includes("DESHABILITADO")) {
+        Swal.fire({
+            icon: "info",
+            title: '<strong>Usuario Deshabilitado Temporalmente</strong>',
+            html:
+            'Lamentablemente, su cuenta ha sido deshabilitada por un breve periodo.' +
+            '<br><br>' +
+            'Por favor, póngase en contacto con el <a href="#">equipo de soporte</a> para más información.' +
+            '<br><br>' +
+            'Si cree que esto es un error, puede <a href="#">solicitar una revisión</a>.' +
+            '<br><br>' +
+            'Gracias por su comprensión y paciencia.',
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: 'red',
+            footer: '<a href="#">¿Necesitas más ayuda?</a>'
         });
-
-
-
-
+    }
 }

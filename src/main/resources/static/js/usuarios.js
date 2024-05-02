@@ -4,7 +4,6 @@ $(document).ready(function () {
     $('#tab_logic3').DataTable();
 });
 
-
 var estadoUsuario = document.getElementById("estadoUsuario").value;
 
 function onLoad(){
@@ -34,7 +33,6 @@ function confirmarCambioEstado() {
             //backdrop: 'rgba(255, 0, 0, 0.1)'
         });
     }
-
 }
 
 function toggleAccordion(id) {

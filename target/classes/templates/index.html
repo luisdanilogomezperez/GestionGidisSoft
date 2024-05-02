@@ -46,17 +46,19 @@
                     <div class="alert alert-danger">Usuario o contraseña
                         inválidos</div>
                 </div>
+                <div th:if="${not #strings.isEmpty(estadoUsuario)}">
+                    <input th:value="${estadoUsuario}" type="hidden" class="input100" name="estadoUsuario" id="estadoUsuario">
+                </div>
                 <div th:if=${param.registroExitoso}>
                     <div class="alert alert-success">Usuario registrado</div>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input th:field="*{email}" type="email" class="input100" name="email" id="email"
                            placeholder="" required>
-
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
@@ -64,8 +66,8 @@
                            required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
                 </div>
 
                 <div class="container-login100-form-btn">
