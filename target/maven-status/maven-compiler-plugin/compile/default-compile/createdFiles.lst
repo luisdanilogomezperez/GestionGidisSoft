@@ -15,6 +15,7 @@ Ecepciones\CargaArchivoEcepcion.class
 com\GestionGidisSoft\entidades\CapituloLibro.class
 com\GestionGidisSoft\controlador\UsuarioControlador.class
 com\GestionGidisSoft\servicios\impl\CapituloLibroServicioImpl.class
+com\GestionGidisSoft\controlador\ProyectoDirigidoControlador.class
 com\GestionGidisSoft\controlador\EventoControlador.class
 com\GestionGidisSoft\DTO\RegistroResponseDto.class
 com\GestionGidisSoft\controlador\ArticuloControlador$2.class
@@ -43,6 +44,7 @@ com\GestionGidisSoft\controlador\CapituloLibroControlador.class
 com\GestionGidisSoft\entidades\ProyectoInvestigacion.class
 com\GestionGidisSoft\servicios\ArchivosServicio.class
 com\GestionGidisSoft\controlador\LibroControlador.class
+com\GestionGidisSoft\servicios\impl\ProyectoDirigidoServicioImpl.class
 com\GestionGidisSoft\DTO\EventoDTO.class
 com\GestionGidisSoft\controlador\ArticuloControlador$1.class
 com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.class
@@ -61,9 +63,9 @@ com\GestionGidisSoft\repositorios\LibroRepo.class
 com\GestionGidisSoft\repositorios\PonenciaRepo.class
 com\GestionGidisSoft\repositorios\RolRepo.class
 com\GestionGidisSoft\controlador\DemasTrabajoControlador.class
+com\GestionGidisSoft\servicios\ProyectoDirigidoServicio.class
 com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.class
 com\GestionGidisSoft\controlador\UsuarioControladorAdmin.class
-com\GestionGidisSoft\controlador\ProyectoDirigControlador.class
 com\GestionGidisSoft\servicios\UsuarioServicio.class
 com\GestionGidisSoft\servicios\impl\PonenciaServicioImpl.class
 com\GestionGidisSoft\servicios\ProyectoInvestigacionServicio.class

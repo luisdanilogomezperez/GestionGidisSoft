@@ -16,6 +16,7 @@ D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSo
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ProyectoInvestigacionServicio.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\ArchivosResponseDto.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControlador.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ProyectoDirigidoServicio.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\Constantes\Format.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\UsuarioServicio.java
@@ -28,10 +29,10 @@ D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSo
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\EventoServicioImpl.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\Ecepciones\CargaArchivoEcepcion.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\CapituloLibroControlador.java
-D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoDirigControlador.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ArticuloRepo.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\PonenciaControlador.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Usuario.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ProyectoDirigidoServicioImpl.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\DemasTrabajoControlador.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\RolRepo.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.java
@@ -46,6 +47,7 @@ D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSo
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\xml\xmlUtil.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\EventoServicio.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArticuloServicioImpl.java
+D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoDirigidoControlador.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginResponseDto.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\RegistroResponseDto.java
 D:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\EventoRepo.java
