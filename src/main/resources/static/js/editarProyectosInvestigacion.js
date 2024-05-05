@@ -126,13 +126,13 @@ function onLoad(){
     switch (valorSeleccionado) {
         case "Financiadora":
             tituloValorProyecto.innerHTML = "<br><br>Valor del proyecto sin contrapartida (*) (Pesos)";
-            contenidoInput.innerHTML = '<input type="text" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="valorProyectoSinContrapartida" required>';
+            contenidoInput.innerHTML = '<input type="number" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="valorProyectoSinContrapartida" required>';
             document.getElementsByName("valorProyectoSinContrapartida")[0].value = valorProyectoSinContrapartida;
             break;
         case "Ejecutora":
         case "Coejecutora":
             tituloValorProyecto.innerHTML = "<br><br>Valor de la contrapartida";
-            contenidoInput.innerHTML = '<input type="text" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
+            contenidoInput.innerHTML = '<input type="number" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
             document.getElementsByName("valorContrapartida")[0].value = valorContrapartida;
             break;
         default:
@@ -300,15 +300,12 @@ function cambiarInputValorProyecto() {
     switch (valorSeleccionado) {
         case "Financiadora":
                 tituloValorProyecto.innerHTML = "<br><br>Valor del proyecto sin contrapartida (*) (Pesos)";
-                contenidoInput.innerHTML = '<input type="text" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="valorProyectoSinContrapartida" required>';
+                contenidoInput.innerHTML = '<input type="number" th:field="*{valorProyectoSinContrapartida}" class="form-control" name="valorProyectoSinContrapartida" required>';
                 break;
             case "Ejecutora":
-                tituloValorProyecto.innerHTML = "<br><br>Valor de la contrapartida";
-                contenidoInput.innerHTML = '<input type="text" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
-                break;
             case "Coejecutora":
                 tituloValorProyecto.innerHTML = "<br><br>Valor de la contrapartida";
-                contenidoInput.innerHTML = '<input type="text" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
+                contenidoInput.innerHTML = '<input type="number" th:field="*{valorContrapartida}" class="form-control" name="valorContrapartida" required>';
                 break;
             default:
                 break;
