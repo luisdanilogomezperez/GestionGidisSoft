@@ -4,6 +4,7 @@ import com.GestionGidisSoft.entidades.Ponencia;
 import com.GestionGidisSoft.repositorios.PonenciaRepo;
 import com.GestionGidisSoft.servicios.PonenciaServicio;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,8 @@ import java.util.List;
 public class PonenciaServicioImpl implements PonenciaServicio {
 
 
-    private final PonenciaRepo ponenciaRepo;
+    @Autowired
+    PonenciaRepo ponenciaRepo;
 
     @Override
     public void crearPonencia(Ponencia ponencia) {

@@ -97,4 +97,10 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
             + " WHERE coaproin.idproyectoinvestigacion = :idProyectoInvestigacion AND coaproin.idautor = :idAutor", nativeQuery = true)
     List<Usuario> listarCoautoresProyectoInvestigacion(Long idProyectoInvestigacion, Long idAutor);
 
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE usuario " +
+            " SET clave = :clave WHERE idusuario = :idUsuario", nativeQuery = true)
+    int actualizarContrasena(@Param("idUsuario") Long idUsuario, @Param("clave") String clave);
+
 }

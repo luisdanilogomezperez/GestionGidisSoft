@@ -20,6 +20,7 @@ com\GestionGidisSoft\controlador\EventoControlador.class
 com\GestionGidisSoft\DTO\RegistroResponseDto.class
 com\GestionGidisSoft\controlador\ArticuloControlador$2.class
 com\GestionGidisSoft\DTO\LoginRequestDto.class
+com\GestionGidisSoft\repositorios\PasswordResetTokenRepo.class
 com\GestionGidisSoft\controlador\ArticuloControlador.class
 com\GestionGidisSoft\controlador\ProyectoInvestControlador.class
 com\GestionGidisSoft\entidades\Usuario.class
@@ -35,6 +36,7 @@ com\GestionGidisSoft\GestionGidisSoftApplication.class
 com\GestionGidisSoft\controlador\ArchivosControlador.class
 com\GestionGidisSoft\entidades\Evento.class
 com\GestionGidisSoft\servicios\CapituloLibroServicio.class
+com\GestionGidisSoft\servicios\impl\PasswordResetServiceImpl.class
 com\GestionGidisSoft\fop\AgregarTexto.class
 com\GestionGidisSoft\repositorios\ProyectoDirigidoRepo.class
 com\GestionGidisSoft\DTO\ArchivosResponseDto.class
@@ -43,6 +45,7 @@ com\GestionGidisSoft\entidades\Articulo.class
 com\GestionGidisSoft\controlador\CapituloLibroControlador.class
 com\GestionGidisSoft\entidades\ProyectoInvestigacion.class
 com\GestionGidisSoft\servicios\ArchivosServicio.class
+com\GestionGidisSoft\servicios\PasswordResetService.class
 com\GestionGidisSoft\controlador\LibroControlador.class
 com\GestionGidisSoft\servicios\impl\ProyectoDirigidoServicioImpl.class
 com\GestionGidisSoft\DTO\EventoDTO.class
@@ -57,6 +60,7 @@ com\GestionGidisSoft\servicios\Utils.class
 com\GestionGidisSoft\fop\AgregarTabla.class
 com\GestionGidisSoft\servicios\ArticuloServicio.class
 com\GestionGidisSoft\servicios\impl\ProyectoInvestigacionServicioImpl.class
+com\GestionGidisSoft\entidades\PasswordResetToken.class
 com\GestionGidisSoft\xml\xmlUtil.class
 com\GestionGidisSoft\Constantes\Format.class
 com\GestionGidisSoft\repositorios\LibroRepo.class
