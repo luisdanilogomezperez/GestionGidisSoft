@@ -45,6 +45,7 @@ public interface UsuarioServicio {
 
     public List<Usuario> listarCoautoresProyectosInvestigacion(Long idProyectoInvestigacion, Long idAutor);
 
-
     public boolean existenUsuarios();
+
+    public String recuperarContrasena(Usuario usuario);
 }

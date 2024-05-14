@@ -7,6 +7,8 @@ import com.GestionGidisSoft.repositorios.RolRepo;
 import com.GestionGidisSoft.repositorios.UsuarioRepo;
 import com.GestionGidisSoft.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Autowired
     private RolRepo rolRepo;
+
+    @Autowired
+    JavaMailSender javaMailSender;
 
     @Override
     public Usuario guardarUsuario(Usuario usuario, Rol rol) throws Exception {
@@ -152,5 +157,25 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         }
         return existen;
     }
+
+    @Override
+    public String recuperarContrasena(Usuario usuario) {
+        String mensaje = "";
+        try {
+            if (usuarioRepo.actualizarContrasena(usuario.getIdusuario(), usuario.getClave()) == 1) {
+                mensaje = "Contraseña actualizada correctamente. \n" +
+                        "\n" +
+                        "Ya puede iniciar sesión nuevamente.";
+            } else {
+                mensaje = "Hubo un error durante el proceso, vuelva a intentarlo nuevamente.";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("::: Error inesperado ::: " + e.getMessage());
+        }
+        return mensaje;
+
+    }
+
 
 }

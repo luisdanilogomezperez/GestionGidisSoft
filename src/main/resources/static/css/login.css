@@ -123,3 +123,19 @@ body {
 .login input[type="submit"]:focus {
   border-color: #D31024;
 }
+
+.progress {
+    height: 20px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.progress-bar {
+    height: 100%;
+    color: #fff;
+    text-align: center;
+    background-color: #007bff;
+    transition: width 0.6s ease;
+}
