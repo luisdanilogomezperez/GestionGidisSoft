@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-DBJ/4uzUGT9eD6enEe6pl1fJ/PkmzUhPjeu49pXBx1tO+rsS+qQ6eAJWLOtT43zFfSFzvqZHOp3cUqI5ZPeplLg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+    <title>Detalles del libro</title>
+    <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
+
+</head>
+<body>
+    <!--Navbar-->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg static-top">
+            <div class="container" id="cuerpo">
+                <a class="navbar-brand" href="">
+                    <img src="/img/logo_ufps_acreditado.png" alt="..." height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuarios/home}">Inicio </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--Formulario-->
+        <div class="container" id="libro"  style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-12 TitleCell">
+                        Proyecto de investigación
+                    </div>
+                </div>
+                <div class="row" style="font-size: 16px">
+                    <div class="col col-12" >
+                        A continuación puede visualizar la información registrada del proyecto de investigación.
+                        <br>
+                        Para volver al listado de proyectos de investigaci&oacute;n, pulse el enlace "<a th:href="@{/proyectosInvestigacion/verProyectosInvestigacion}">Regresar</a>"
+                     </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <p class="conNegrita" >
+                            <label class="">T&iacute;tulo del proyecto</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.titulo}"></span>
+                        </p>
+
+                    </div>
+                    <div class="col-xd-12 col-sm-12 col-md-12">
+                        <p class="conNegrita">
+                            <label>Tipo de participación</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.tipoParticipacion}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-3 col-sm-3 col-md-3">
+                        <p class="conNegrita">
+                            <label>Año de inicio</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.anioInicio}"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-xd-3 col-sm-3">
+                        <p class="conNegrita">
+                            <label>Mes de inicio</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.mesInicio}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Fecha de acto administrativo</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.fechaActoAdministrativo}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Número de páginas</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.numeroPaginas}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Nombre de la institución</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.nombreInstitucion}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-10 col-sm-10 col-md-10">
+                        <p class="conNegrita">
+                            <label>Resumen</label>
+                        </p>
+                        <p>
+                            <span th:text="${proyectoInvestigacion.resumen}"></span>
+                        </p>
+                    </div>
+
+                    <div class="col-xd-12 col-sm-12 col-md-12">
+                        <label>Autor</label>
+                        <p th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}" ></p>
+                        <p class="conNegrita">
+                            <label>Coautores</label>
+                            <button class="btn btnAgregarCoautor" onclick="mostrarPopup()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16" width="20" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                            </button>
+                        </p>
+                    </div>
+<!--                    <div id="listaCoautores" th:include="/coautores"  >-->
+                    </div>
+
+                    <div class="" th:fragment="listaCoautores">
+                        <div class="container">
+                            <ul>
+                                <li th:each="coautor : ${listaCoautores}">
+                                    <span th:text="${#strings.concat(coautor.primerNombre, ' ', coautor.segundoNombre, ' ', coautor.primerApellido, ' ', coautor.segundoApellido, '  ')}"></span>
+                                    (<a th:href="@{/proyectosInvestigacion/eliminarCoautor/{idProyectoInvestigacion}/{idCoautor}(idCoautor=${coautor.idusuario},idProyectoInvestigacion=${proyectoInvestigacion.idProyectoInvestigacion})}" class="links">
+                                        eliminar
+                                    </a>)
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                <hr>
+                    <div>
+                        <table  class="display" id="tab_logic_prducciones">
+                            <thead>
+                            <tr>
+                                <th colspan="5" class="text-left">Producción resultado del proyecto
+                                    [<button id="linkButton" onclick="mostrarPopupProduccion()">
+                                    Vincular producción
+                                    </button>]
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width: 45%;" class="text-center">T&iacute;tulo</th>
+                                <th style="width: 10%;" class="text-center">Año</th>
+                                <th style="width: 25%;" class="text-center">Tipo de proyecto</th>
+                                <th style="width: 15%;" class="text-center"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="produccion : ${session.produccionesConsolidadas}">
+                                <td th:text="${produccion.titulo}"></td>
+                                <td th:text="${produccion.anio}"></td>
+                                <td th:text="${produccion.tipo}"></td>
+                                <td >
+                                    (<a th:href="@{|/proyectosInvestigacion/desvincular/${produccion.ruta}|}" class="links">
+                                    Desvincular
+                                </a>)
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="popup" class="popup">
+                        <div class="popup-content">
+                            <form th:action="@{/proyectosInvestigacion/agregarCoautor}" th:object="${usuarioCoautor}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                                <span class="close" onclick="cerrarPopup()">&times;</span>
+                                <h3>Agregar Coautor</h3>
+                                <h6>Para agregar un coautor, seleccione uno de la lista y luego haga clic en el bot&oacute;n "Agregar"</h6>
+                                <input type="hidden" th:name="idProyectoInvestigacion" th:id="idProyectoInvestigacion" th:value="${proyectoInvestigacion.idProyectoInvestigacion}" />
+                                <br><br>
+                                <div th:if="${#lists.isEmpty(autoresList)}">
+                                    <div class="alert alert-secondary" style="text-align:center;" role="alert">
+                                        <span>No hay coautores disponibles!</span>
+                                    </div>
+                                </div>
+                                <div th:unless="${#lists.isEmpty(autoresList)}">
+                                    <select class="form-control" th:name="idCoautor" id="idCoautor" required display="Debe seleccionar un coautor">
+                                        <option value=""></option>
+                                        <option th:each="autor : ${autoresList}" th:data-id="${autor.idusuario}" th:value="${autor.idusuario}"
+                                                th:text="${#strings.concat(autor.primerNombre, ' ', autor.segundoNombre, ' ', autor.primerApellido, ' ', autor.segundoApellido)}"></option>
+                                    </select><br><br>
+                                    <button type="submit" class="btn btn-danger">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="producciones-popup" class="producciones-popup">
+                        <div class="popup-produccion-content">
+                            <form th:action="@{/proyectosInvestigacion/vincularProduccion}" class="miFormulario" method="POST" id="formulario" enctype="multipart/form-data">
+                                <span class="close" onclick="cerrarPopupProduccion()">&times;</span>
+                                <h3>Relacionar producción</h3>
+                                <h6>Seleccione las producciones que desee relacionar y luego haga clic en el bot&oacute;n "Vincular"</h6>
+                                <input type="hidden" th:name="idProyectoInvestigacion" th:id="idProyectoInvestigacion" th:value="${proyectoInvestigacion.idProyectoInvestigacion}" />
+                                <br><br>
+                                <hr>
+                                <h5 class="text-left">Libros</h5>
+                                <table class="display" id="tab_logic_libro">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;" class="text-center">#</th>
+                                            <th style="width: 70%;" class="text-center">T&iacute;tulo</th>
+                                            <th style="width: 10%;" class="text-center">Año</th>
+                                            <th style="width: 15%;" class="text-center">Tipo Producto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="l, iterStat : ${session.listaLibros}" th:id="'fila-' + ${l.idLibro}">
+                                            <td class="text-center"><input type="checkbox" name="tipo_libro" th:value="${l.idLibro}"></td>
+                                            <td th:text="${l.titulo}"></td>
+                                            <td th:text="${l.anio}" class="text-center"></td>
+                                            <td> Libro </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <hr>
+                                <h5 class="text-left">Capítulos de Libros</h5>
+                                <table class="display" style="padding-top: 20px" id="tab_logic_cap_libro">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;" class="text-center">#</th>
+                                            <th style="width: 70%;" class="text-center">T&iacute;tulo</th>
+                                            <th style="width: 10%;" class="text-center">Año</th>
+                                            <th style="width: 15%;" class="text-center">Tipo Producto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="c, iterStat : ${session.listaCapitulos}" th:id="'fila-' + ${c.idCapitulo}">
+                                            <td class="text-center"><input type="checkbox" name="tipo_cap_libro" th:value="${c.idCapitulo}"></td>
+                                            <td th:text="${c.titulo}"></td>
+                                            <td th:text="${c.anio}" class="text-center"></td>
+                                            <td> Capítulo de libro</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <hr>
+                                <h5 class="text-left">Artículos</h5>
+                                <table class="display" style="padding-top: 20px" id="tab_logic_articulo">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 5%;" class="text-center">#</th>
+                                        <th style="width: 70%;" class="text-center">T&iacute;tulo</th>
+                                        <th style="width: 10%;" class="text-center">Año</th>
+                                        <th style="width: 15%;" class="text-center">Tipo Producto</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="a, iterStat : ${session.listaArticulos}" th:id="'fila-' + ${a.idArticulo}">
+                                        <td class="text-center"><input type="checkbox" name="tipo_articulo" th:value="${a.idArticulo}"></td>
+                                        <td th:text="${a.titulo}"></td>
+                                        <td th:text="${a.anio}" class="text-center"></td>
+                                        <td> Articulo </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+                                <hr>
+                                <h5 class="text-left">Demás trabajos</h5>
+                                <table class="display" style="padding-top: 20px" id="tab_logic_demas_trabajos">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 5%;" class="text-center">#</th>
+                                            <th style="width: 70%;" class="text-center">T&iacute;tulo</th>
+                                            <th style="width: 10%;" class="text-center">Año</th>
+                                            <th style="width: 15%;" class="text-center">Tipo Producto</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="dt, iterStat : ${session.listademasTrabajos}" th:id="'fila-' + ${dt.idDemasTrabajo}">
+                                            <td class="text-center"><input type="checkbox" name="tipo_demas_trabajo" th:value="${dt.idDemasTrabajo}"></td>
+                                            <td th:text="${dt.titulo}"></td>
+                                            <td th:text="${dt.anio}" class="text-center"></td>
+                                            <td> Demas Trabajos </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <hr>
+                                <button style="margin-top:15pt;" type="submit" class="btn btn-danger">Vincular</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/173fcb4c98.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<!--    <script th:src="@{/js/libros.js}"></script>-->
+    <script th:src="@{/js/proyectosInvestigacion.js}"></script>
+</body>
+</html>

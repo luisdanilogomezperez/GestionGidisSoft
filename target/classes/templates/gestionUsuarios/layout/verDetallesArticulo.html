@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-DBJ/4uzUGT9eD6enEe6pl1fJ/PkmzUhPjeu49pXBx1tO+rsS+qQ6eAJWLOtT43zFfSFzvqZHOp3cUqI5ZPeplLg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/libro.css}">
+    <title>Detalles del libro</title>
+    <link rel="icon" href="https://ingsistemas.cloud.ufps.edu.co/rsc/gidis_logo.jpg" type="image/x-icon">
+
+</head>
+<body>
+<!--Navbar-->
+    <div class="container">
+        <nav class="navbar navbar-expand-lg static-top">
+            <div class="container" id="cuerpo">
+                <a class="navbar-brand" href="">
+                    <img src="/img/logo_ufps_acreditado.png" alt="..." height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuarios/admin/home}">Inicio </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/logout}">Salir <i class="fa fa-sign-out"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <!--Formulario-->
+        <div class="container" id="libro"  style="padding-top: 40px; padding-left: 50px; padding-right: 50px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-md-12 TitleCell">
+                        Artículo publicado en revista especializada
+                    </div>
+                </div>
+                <div class="row" style="font-size: 16px">
+                    <div class="col col-12" >
+                        A continuación puede visualizar la información del artículo publicado en revista especializada, que ha registrado <span style="font-weight: bold;" th:text="${#strings.concat(usuarioConsultado.primerNombre, ' ', usuarioConsultado.segundoNombre, ' ', usuarioConsultado.primerApellido, ' ', usuarioConsultado.segundoApellido)}"></span>.
+                        <br>
+                        Para volver al listado de todos los productos, pulse el enlace "<a th:href="@{/usuarios/admin/verProductos/{idUsuario}(idUsuario=${usuarioConsultado.idusuario})}">Regresar</a>"
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <p class="conNegrita" >
+                            <label class="">T&iacute;tulo del Cap&iacute;tulo</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.titulo}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-12 col-sm-12 col-md-12">
+                        <p class="conNegrita">
+                            <label>T&iacute;tulo del libro</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.tipoArticulo}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>P&aacute;gina inicial</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.paginaInicial}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>P&aacute;gina final</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.paginaFinal}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Idioma</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.idioma}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-3 col-sm-3 col-md-3">
+                        <p class="conNegrita">
+                            <label>Año</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.anio}"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-xd-3 col-sm-3">
+                        <p class="conNegrita">
+                            <label>mes</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.mes}"></span>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-xd-6 col-sm-6">
+                        <p class="conNegrita">
+                            <label>Nombre de Revista</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.nombreRevista}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Volumen</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.volumen}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Fasciculo de Revista</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.fasciculoRevista}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Serie Revista</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.serieRevista}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-6 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Lugar de publicación</label>
+                        </p>
+                        <p>
+                            <span th:text="${#strings.concat(articulo.ciudadPublicacion, ' / ', articulo.paisPublicacion)}"></span>
+                        </p>
+                    </div>
+                    <div class="col-xd-12 col-sm-6 col-md-3">
+                        <p class="conNegrita">
+                            <label>Medio de divulgación</label>
+                        </p>
+                        <p>
+                            <span th:text="${articulo.medioDivulgacion}"></span>
+                        </p>
+                    </div>
+                    <div class="col-ld-6 col-xs-6 col-sm-6">
+                        <div class="form-group">
+                            <p class="conNegrita">
+                                <label for="input">Sitio web (URL)</label>
+                            </p>
+                            <p>
+                                <span th:text="${articulo.urlSitioWeb}"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-ld-6 col-xs-6 col-sm-6">
+                        <div class="form-group">
+                            <p class="conNegrita">
+                                <label for="input">Identif. Digital (DOI)</label>
+                            </p>
+                            <p>
+                                <span th:text="${articulo.identificadorDigitalDoi}"></span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xd-12 col-sm-12 col-md-12">
+                        <label>Autores</label>
+                        <p th:text="${#strings.concat(usuario.primerNombre, ' ', usuario.segundoNombre, ' ', usuario.primerApellido, ' ', usuario.segundoApellido)}" ></p>
+                    </div>
+                </div>
+                <div class="" th:fragment="listaCoautores">
+                    <div class="container">
+                        <ul>
+                            <li th:each="coautor : ${listaCoautores}">
+                                <span th:text="${#strings.concat(coautor.primerNombre, ' ', coautor.segundoNombre, ' ', coautor.primerApellido, ' ', coautor.segundoApellido, '  ')}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div th:fragment="adjuntos" >
+                    <div class="col col-md-12">
+                        A continuación encontrará el listado de los documentos a adjuntos.
+                        <br>
+                        <input th:value="${articulo.idArticulo}" type="hidden" class="form-control" name="idArticulo" id="idArticulo" placeholder="" required/>
+                        <ul>
+                            <li>
+                                Documento de Evidencia
+                                <br>
+                                <a th:href="@{/articulos/descargar/archivo/{nombreArchivo}(nombreArchivo=${articulo.documentoEvidencia})}"
+                                   target="_blank" download="documento_evidencia.pdf">
+                                    <span th:text="${articulo.documentoEvidencia}"></span> -
+                                    <img tittle="Descargar pdf" src="/img/pdf.png" alt="Descargar">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://kit.fontawesome.com/173fcb4c98.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/libros.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

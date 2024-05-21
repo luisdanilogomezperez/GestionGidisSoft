@@ -1,70 +1,70 @@
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\DemasTrabajoServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoInvestigacion.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\CapituloLibroServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\PonenciaServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\LibroServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\UsuarioRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Evento.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\CapituloLibroServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTabla.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\PasswordResetTokenRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\PonenciaControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\DemasTrabajoRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\UsuarioRol.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArchivosControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\UsuarioControladorAdmin.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\LibroServico.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\xml\xmlUtil.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\InicioControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\ProyectoDirigido.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\UsuarioServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\UsuarioServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoInvestControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\RegistroResponseDto.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ProyectoInvestigacionServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ProyectoDirigidoControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\EventoDTO.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\Constantes\Format.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginRequestDto.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\fop\AgregarTexto.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\RolRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\PonenciaServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ArticuloRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\CapituloLibro.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\PasswordResetServiceImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ProyectoInvestigacionServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\Utils.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\DemasTrabajo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\LoginResponseDto.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\EventoServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\CapituloLibroRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\PonenciaRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Usuario.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoInvestigacionRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\EventoRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\EventoControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArticuloServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\GestionGidisSoftApplication.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\CapituloLibroControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArchivosServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\Ecepciones\CargaArchivoEcepcion.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Rol.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Ponencia.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\EventoServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\ProyectoDirigidoRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ProyectoDirigidoServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\DTO\ArchivosResponseDto.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\PasswordResetToken.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\LibroControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\DemasTrabajoControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Libro.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\ProyectoDirigidoServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\controlador\ArticuloControlador.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\ArticuloServicio.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\impl\DemasTrabajoServicioImpl.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Articulo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\repositorios\LibroRepo.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\servicios\PasswordResetService.java
-E:\1er semestre 2024\Ingenieria de software\2024\GestionGidisSoft\GestionGidisSoft\src\main\java\com\GestionGidisSoft\entidades\Pais.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/CapituloLibroServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/Constantes/Format.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/PonenciaControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/DemasTrabajoControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/fop/AgregarTabla.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/CapituloLibro.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Rol.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/ArchivosServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Usuario.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/PonenciaServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Articulo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/ProyectoDirigido.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/GestionGidisSoftApplication.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/DTO/LoginResponseDto.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/ArticuloServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/ProyectoInvestigacionRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/UsuarioControladorAdmin.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Libro.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/DemasTrabajo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/ArchivosServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/xml/xmlUtil.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Pais.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/PonenciaServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Evento.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/fop/AgregarTexto.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/DTO/EventoDTO.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/EventoControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/ProyectoDirigidoControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/Ecepciones/CargaArchivoEcepcion.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/ProyectoInvestControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/DTO/ArchivosResponseDto.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/DemasTrabajoRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/PasswordResetTokenRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/DTO/LoginRequestDto.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/ProyectoInvestigacionServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/EventoServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/ProyectoDirigidoServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/CapituloLibroControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/ProyectoDirigidoServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/ArchivosControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/LibroServico.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/PasswordResetToken.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/UsuarioRol.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/ArticuloControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/LibroRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/Ponencia.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/RolRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/UsuarioServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/Utils.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/DemasTrabajoServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/ProyectoInvestigacionServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/CapituloLibroServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/LibroServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/InicioControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/EventoServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/UsuarioControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/UsuarioServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/CapituloLibroRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/ArticuloServicioImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/DTO/RegistroResponseDto.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/ArticuloRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/UsuarioRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/impl/PasswordResetServiceImpl.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/EventoRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/PasswordResetService.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/servicios/DemasTrabajoServicio.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/controlador/LibroControlador.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/ProyectoDirigidoRepo.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/entidades/ProyectoInvestigacion.java
+/home/lgomez/Documentos/1. Danilo/ufps/GestionGidisSoft/src/main/java/com/GestionGidisSoft/repositorios/PonenciaRepo.java
