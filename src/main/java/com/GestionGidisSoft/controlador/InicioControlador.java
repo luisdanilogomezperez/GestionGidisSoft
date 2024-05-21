@@ -137,7 +137,6 @@ public class InicioControlador {
         String mensaje = "";
         if(user != null) {
             mensaje = usuarioServicio.recuperarContrasena(user);
-            System.out.println(mensaje);
             mav.setViewName("redirect:/claveActualizada?exito=true");
         } else {
             mav.setViewName("redirect:/claveActualizada?error=true");

@@ -1,12 +1,11 @@
 package com.GestionGidisSoft.controlador;
 
 import com.GestionGidisSoft.Constantes.Format;
-import com.GestionGidisSoft.entidades.Libro;
-import com.GestionGidisSoft.entidades.ProyectoInvestigacion;
-import com.GestionGidisSoft.entidades.Usuario;
-import com.GestionGidisSoft.servicios.ProyectoInvestigacionServicio;
-import com.GestionGidisSoft.servicios.UsuarioServicio;
-import com.GestionGidisSoft.servicios.Utils;
+import com.GestionGidisSoft.entidades.*;
+import com.GestionGidisSoft.servicios.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -22,10 +21,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/proyectosInvestigacion")
@@ -35,11 +32,25 @@ public class ProyectoInvestControlador {
     ProyectoInvestigacionServicio proyectoServicio;
     @Autowired
     UsuarioServicio usuarioServicio;
+    @Autowired
+    LibroServico libroServico;
+    @Autowired
+    ArticuloServicio articuloServicio;
+    @Autowired
+    CapituloLibroServicio capituloLibroServicio;
+
+    @Autowired
+    DemasTrabajoServicio demasTrabajoServicio;
+
 
     @GetMapping("/verProyectosInvestigacion")
     public ModelAndView goProyectosInvestigacion(HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
+        session.removeAttribute("listaProduccionesAsociados");
+        session.removeAttribute("listaLibros");
+        session.removeAttribute("listaArticulos");
+        session.removeAttribute("listaCapitulos");
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             List<ProyectoInvestigacion> listaProyectos = proyectoServicio.findByUsuarioId(usuario.getIdusuario());
@@ -150,12 +161,6 @@ public class ProyectoInvestControlador {
             @RequestParam(value = "tipo_financiacion_proyecto") String tipoFinanciacionProyecto,
             @RequestParam(value = "fuente_financiacion") String fuenteFinanciacion,
             @RequestParam(value = "financiacion") String financiacion) throws Exception {
-        System.out.println(tipoProyecto);
-        System.out.println(fechaActoAdministrativoString);
-        System.out.println(tipoFinanciacionProyecto);
-        System.out.println(fuenteFinanciacion);
-        System.out.println(financiacion);
-        System.out.println();
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
@@ -195,13 +200,107 @@ public class ProyectoInvestControlador {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             List<Usuario> coautores = usuarioServicio.listarCoautoresProyectosInvestigacion(idProyectoInvestigacion, usuario.getIdusuario());
             List<Usuario> autores = usuarioServicio.listarAutoresProyectosInvestigacion(idProyectoInvestigacion, usuario.getIdusuario());
+            List<Map<String, String>> produccionesConsolidadas = new ArrayList<>();
             ProyectoInvestigacion proyectoInvestigacion = proyectoServicio.buscarPorId(idProyectoInvestigacion);
-            for (Usuario usuario1: autores) {
-                if (usuario1.getIdusuario() != usuario.getIdusuario()) {
-                    listaAutores.add(usuario1);
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map<String, Object> produccionesMap;
+            try {
+                produccionesMap = objectMapper.readValue(proyectoInvestigacion.getJsonProducciones(), new TypeReference<HashMap<String, Object>>() {});
+            } catch (IOException e) {
+                produccionesMap = new HashMap<>();
+            }
+            String idsLibros = (String) produccionesMap.get("idsLibros");
+            String idsCapitulosLibros = (String) produccionesMap.get("idsCapitulosLibros");
+            String idsArticulos = (String) produccionesMap.get("idsArticulos");
+            String idsDemasTrabajo = (String) produccionesMap.get("idsDemasTrabajo");
+            Set<String> idsLibroSet = Arrays.stream(idsLibros.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsCapitulosLibroSet = Arrays.stream(idsCapitulosLibros.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsArticuloSet = Arrays.stream(idsArticulos.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsDemasTrabajosSet = Arrays.stream(idsDemasTrabajo.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            List<Libro> listaLibros = libroServico.findByUsuarioId(usuario.getIdusuario());
+            List<Articulo> listaArticulos = articuloServicio.findByUsuarioId(usuario.getIdusuario());
+            List<CapituloLibro> listaCapitulos = capituloLibroServicio.findByUsuarioId(usuario.getIdusuario());
+            List<DemasTrabajo> listademasTrabajos = demasTrabajoServicio.findByUsuarioId(usuario.getIdusuario());
+            List<Libro> listaLibrosAux = new ArrayList();
+            List<Articulo> listaArticulosAux =  new ArrayList();
+            List<CapituloLibro> listaCapitulosAux =  new ArrayList();
+            List<DemasTrabajo> listademasTrabajosAux =  new ArrayList();
+            for (Usuario usuarioAux: autores) {
+                if (usuarioAux.getIdusuario() != usuario.getIdusuario()) {
+                    listaAutores.add(usuarioAux);
                     System.out.println();
                 }
             }
+            for (Libro libro : listaLibros) {
+                Map<String, String> item = new HashMap<>();
+                if (idsLibroSet.contains(libro.getIdLibro().toString())) {
+                    item.put("tipo", "Libro");
+                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + usuario.getIdusuario().toString() + "/" + libro.getIdLibro().toString());
+                    item.put("titulo", libro.getTitulo());
+                    item.put("anio", libro.getAnio());
+                    produccionesConsolidadas.add(item);
+                } else {
+                    listaLibrosAux.add(libro);
+                }
+            }
+            // Consolidar capítulos de libros
+            for (CapituloLibro capitulo : listaCapitulos) {
+                if (idsCapitulosLibroSet.contains(capitulo.getIdCapitulo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Capítulo de libro");
+                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + usuario.getIdusuario().toString() + "/" + capitulo.getIdCapitulo().toString());
+                    item.put("titulo", capitulo.getTitulo());
+                    item.put("anio", capitulo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                } else {
+                    listaCapitulosAux.add(capitulo);
+                }
+            }
+
+            // Consolidar artículos
+            for (Articulo articulo : listaArticulos) {
+                if (idsArticuloSet.contains(articulo.getIdArticulo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Artículo");
+                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + usuario.getIdusuario().toString() + "/" + articulo.getIdArticulo().toString());
+                    item.put("titulo", articulo.getTitulo());
+                    item.put("anio", articulo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                } else {
+                    listaArticulosAux.add(articulo);
+                }
+            }
+
+            // Consolidar demás trabajos
+            for (DemasTrabajo demasTrabajo : listademasTrabajos) {
+                if (idsDemasTrabajosSet.contains(demasTrabajo.getIdDemasTrabajo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Demás Trabajos");
+                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + usuario.getIdusuario().toString() + "/" + demasTrabajo.getIdDemasTrabajo().toString());
+                    item.put("titulo", demasTrabajo.getNombreProducto()); // Valor por defecto para título
+                    item.put("anio", demasTrabajo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                } else {
+                    listademasTrabajosAux.add(demasTrabajo);
+                }
+            }
+            session.setAttribute("produccionesConsolidadas", produccionesConsolidadas);
+            session.setAttribute("listaLibros", listaLibrosAux);
+            session.setAttribute("listaCapitulos", listaCapitulosAux);
+            session.setAttribute("listaArticulos", listaArticulosAux);
+            session.setAttribute("listademasTrabajos", listademasTrabajosAux);
             mav.addObject("autoresList", listaAutores);
             mav.addObject("listaCoautores", coautores);
             mav.addObject("proyectoInvestigacion", proyectoInvestigacion);
@@ -285,94 +384,34 @@ public class ProyectoInvestControlador {
             return mav;
         }
     }
+    @PostMapping("/vincularProduccion")
+    public ModelAndView vincularProduccion(HttpServletRequest request, @RequestParam("idProyectoInvestigacion") Long idProyectoInvestigacion,
+                                           @RequestParam(value = "tipo_libro", required = false, defaultValue = "") String idsLibros,
+                                           @RequestParam(value = "tipo_cap_libro", required = false, defaultValue = "") String idsCapitulosLibros,
+                                           @RequestParam(value = "tipo_articulo", required = false, defaultValue = "") String idsArticulos,
+                                           @RequestParam(value = "tipo_demas_trabajo", required = false, defaultValue = "") String idsDemasTrabajo) throws Exception {
 
-//    @PostMapping("/adjuntarArchivo")
-//    public ModelAndView subirArchivo(HttpServletRequest request,
-//                                     @RequestParam("documentoEvidencia") MultipartFile documentoEvidencia,
-//                                     @RequestParam("certificadoCreditos") MultipartFile certificadoCreditos,
-//                                     @RequestParam("certificadoInstitucionAvala") MultipartFile certificadoInstitucionAvala,
-//                                     @RequestParam("idLibro") String idLibro){
-//        Libro libro = libroServico.buscarPorId(Integer.parseInt(idLibro));
-//
-//        ModelAndView mav = new ModelAndView();
-//        HttpSession session = request.getSession();
-//        mav.setViewName("redirect:/libros/detalle/"+idLibro);
-//        if (session.getAttribute("usuario") != null) {
-//            try {
-//                if (documentoEvidencia != null && !documentoEvidencia.isEmpty()) {
-//                    String nombreArchivoActualEvidencia = libro.getDocumentoEvidencia();
-//                    if (nombreArchivoActualEvidencia != null && !nombreArchivoActualEvidencia.isEmpty()) {
-//                        eliminarArchivo(nombreArchivoActualEvidencia);
-//                    } else {
-//                        System.out.println("No hay archivos para eliminar");
-//                    }
-//                    libro.setDocumentoEvidencia(archivosServicio.guardarSoloUno(documentoEvidencia));
-//                }
-//                if (certificadoCreditos != null && !certificadoCreditos.isEmpty()) {
-//                    String nombreArchivoActualCreditos = libro.getCertificadoCreditos();
-//                    if (nombreArchivoActualCreditos != null && !nombreArchivoActualCreditos.isEmpty()) {
-//                        eliminarArchivo(nombreArchivoActualCreditos);
-//                    } else {
-//                        System.out.println("No hay archivos para eliminar");
-//                    }
-//                    libro.setCertificadoCreditos(archivosServicio.guardarSoloUno(certificadoCreditos));
-//                }
-//                if (certificadoInstitucionAvala != null && !certificadoInstitucionAvala.isEmpty()) {
-//                    String nombreArchivoActualAvala = libro.getCertificadoInstitucionAvala();
-//                    if (nombreArchivoActualAvala != null && !nombreArchivoActualAvala.isEmpty()) {
-//                        eliminarArchivo(nombreArchivoActualAvala);
-//                    } else {
-//                        System.out.println("No hay archivos para eliminar");
-//                    }
-//                    libro.setCertificadoInstitucionAvala(archivosServicio.guardarSoloUno(certificadoInstitucionAvala));
-//                }
-//                libroServico.cargarDocumentos(libro);
-//
-//                return mav;
-//            }catch (Exception e){
-//                e.printStackTrace();
-//                System.out.println(":: Error al subir el archivo :: ");
-//                return mav;
-//            }
-//        } else {
-//            System.out.println("error de logueo");
-//            session.setAttribute("usuario", new Usuario());
-//            mav.addObject("usuario", session.getAttribute("usuario"));
-//            mav.setViewName("redirect:/");
-//            return mav;
-//        }
-//    }
-
-    @GetMapping("/descargar/archivo/{nombreArchivo}")
-    public ResponseEntity<Resource> descargarArchivo(@PathVariable String nombreArchivo) {
-        try {
-            // Construye la ruta completa al archivo utilizando el nombre almacenado en la base de datos
-            Path archivoPath = Paths.get(Format.ARCHIVOS_CARGADOS_PATH).resolve(nombreArchivo).normalize();
-            Resource resource = new UrlResource(archivoPath.toUri());
-
-            if (resource.exists() && resource.isReadable()) {
-                // Si el archivo existe y es legible, devuelve una respuesta con el archivo
-                return ResponseEntity.ok()
-                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
-                        .body(resource);
-            } else {
-                // Si el archivo no existe o no es legible, devuelve una respuesta 404
-                return ResponseEntity.notFound().build();
-            }
-        } catch (IOException e) {
-            // Maneja las excepciones
-            return ResponseEntity.badRequest().build();
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        Map<String, Object> idsProduccionesVinculadas = new HashMap<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        idsProduccionesVinculadas.put("idsLibros", idsLibros);
+        idsProduccionesVinculadas.put("idsCapitulosLibros", idsCapitulosLibros);
+        idsProduccionesVinculadas.put("idsArticulos", idsArticulos);
+        idsProduccionesVinculadas.put("idsDemasTrabajo", idsDemasTrabajo);
+        String idsProducciones = objectMapper.writeValueAsString(idsProduccionesVinculadas);
+        System.out.println(idsProducciones);
+        if (session.getAttribute("usuario") != null) {
+            Boolean result = proyectoServicio.vincularProducciones(idProyectoInvestigacion, idsProducciones);
+            mav.setViewName("redirect:/proyectosInvestigacion/detalle/" + idProyectoInvestigacion + "?exito=" + result);
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
         }
     }
 
-    private void eliminarArchivo(String nombreArchivo) {
-        if (nombreArchivo != null && !nombreArchivo.isEmpty()) {
-            try {
-                Path archivoEliminar = Paths.get(Format.ARCHIVOS_CARGADOS_PATH, nombreArchivo);
-                Files.deleteIfExists(archivoEliminar);
-            } catch (IOException e) {
-                System.out.println("Error al eliminar el archivo: " + e.getMessage());
-            }
-        }
-    }
 }

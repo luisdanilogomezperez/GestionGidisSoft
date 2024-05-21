@@ -74,6 +74,17 @@ public class ProyectoInvestigacion {
     @Column(name = "numeropaginas")
     private String numeroPaginas;
 
+    @Column(name = "produccionesvinculadas")
+    private String jsonProducciones;
+
+    public String getJsonProducciones() {
+        return jsonProducciones;
+    }
+
+    public void setJsonProducciones(String jsonProducciones) {
+        this.jsonProducciones = jsonProducciones;
+    }
+
     public String getNumeroPaginas() {
         return numeroPaginas;
     }

@@ -76,5 +76,6 @@ public interface LibroRepo extends JpaRepository<Libro, Long> {
                          @Param("certificadoCreditos") String certificadoCreditos);
 
     Optional<Libro> findByIsbn(String isbn);
+
 }
 

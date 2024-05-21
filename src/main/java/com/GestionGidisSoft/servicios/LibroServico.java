@@ -32,4 +32,5 @@ public interface LibroServico {
     void eliminar(long idLibro);
 
     List<Libro> findByUsuarioId(Long idAutor);
+
 }

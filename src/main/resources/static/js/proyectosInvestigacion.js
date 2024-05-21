@@ -186,4 +186,30 @@ $(document).ready(function() {
         // Actualizar el contador
         $('#contador').text(caracteresRestantes);
     });
+
+    $('#tab_logic_prducciones').DataTable();
+    $('#tab_logic_libro').DataTable();
+    $('#tab_logic_cap_libro').DataTable();
+    $('#tab_logic_articulo').DataTable();
+    $('#tab_logic_demas_trabajos').DataTable();
 });
+
+// Función para mostrar el popup
+function mostrarPopupProduccion() {
+    document.getElementById("producciones-popup").style.display = "flex";
+}
+
+// Función para cerrar el popup
+function cerrarPopupProduccion() {
+    document.getElementById("producciones-popup").style.display = "none";
+}
+
+// Función para mostrar el popup
+function mostrarPopup() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+// Función para cerrar el popup
+function cerrarPopup() {
+    document.getElementById("popup").style.display = "none";
+}

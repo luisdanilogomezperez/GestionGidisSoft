@@ -3,6 +3,7 @@ package com.GestionGidisSoft.entidades;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "usuariorol")
 public class UsuarioRol {
 
     @Id
