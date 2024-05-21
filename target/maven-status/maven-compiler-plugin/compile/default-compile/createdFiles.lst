@@ -48,6 +48,7 @@ com\GestionGidisSoft\servicios\ArchivosServicio.class
 com\GestionGidisSoft\servicios\PasswordResetService.class
 com\GestionGidisSoft\controlador\LibroControlador.class
 com\GestionGidisSoft\servicios\impl\ProyectoDirigidoServicioImpl.class
+com\GestionGidisSoft\controlador\ProyectoInvestControlador$1.class
 com\GestionGidisSoft\DTO\EventoDTO.class
 com\GestionGidisSoft\controlador\ArticuloControlador$1.class
 com\GestionGidisSoft\servicios\impl\ArchivosServicioImpl.class

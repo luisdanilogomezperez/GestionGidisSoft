@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    $("table.display").Datatable();
+});
+
 function onLoad(){
     ComboAno();
     cargarMeses();
@@ -6,9 +10,6 @@ function onLoad(){
 }
 window.onload = onLoad;
 
-$(document).ready(function () {
-    $("table.display").Datatable();
-});
 
 async function mostrarMes(){
     var select = document.getElementById("meses").value;
@@ -173,6 +174,5 @@ function mostrarPopup() {
 function cerrarPopup() {
     document.getElementById("popup").style.display = "none";
 }
-
 
 

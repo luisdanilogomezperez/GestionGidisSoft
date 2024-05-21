@@ -96,6 +96,10 @@ public class UsuarioControlador {
     public ModelAndView goHomeGidis(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ModelAndView mav = new ModelAndView();
+        session.removeAttribute("listaProduccionesAsociados");
+        session.removeAttribute("listaLibros");
+        session.removeAttribute("listaArticulos");
+        session.removeAttribute("listaCapitulos");
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         if (usuario != null) {
             mav.addObject("usuario", usuario);

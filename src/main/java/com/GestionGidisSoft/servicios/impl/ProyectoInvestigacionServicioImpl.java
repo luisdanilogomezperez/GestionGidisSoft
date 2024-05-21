@@ -43,7 +43,7 @@ public class ProyectoInvestigacionServicioImpl implements ProyectoInvestigacionS
             }
         } catch (Exception e) {
             e.printStackTrace();
-            mensaje = "Error inesperado::: " + e.getMessage();
+            mensaje = "Error::: " + e.getMessage();
         }
         return mensaje;
     }
@@ -143,23 +143,18 @@ public class ProyectoInvestigacionServicioImpl implements ProyectoInvestigacionS
     }
 
     @Override
-    public String agregarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion) {
-        String mensaje = "";
+    public Boolean vincularProducciones(Long idProyectoInvestigacion, String jsonProducciones) {
         try {
-//            if (investigacionRepo.agregarProduccionAProyectoInvestigacion(idProyecto, idAutor, idProduccion) == 1) {
-//                mensaje = "La producción se agregó exitosamente";
-//            } else {
-//                mensaje = "Ocurrió un error agregando la producción";
-//            }
+            if(investigacionRepo.vincularProduccion(idProyectoInvestigacion, jsonProducciones) == 1) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            mensaje = "Error inesperado:: " + e.getMessage();
+            System.out.println("Error::: " + e.getMessage());
+            return false;
         }
-        return mensaje;
     }
 
-    @Override
-    public String eliminarProduccionAProyectoInvestigacion(Long idProyecto, Long idAutor, Long idProduccion) {
-        return null;
-    }
 }

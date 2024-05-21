@@ -1,5 +1,6 @@
 package com.GestionGidisSoft.repositorios;
 
+import com.GestionGidisSoft.entidades.CapituloLibro;
 import com.GestionGidisSoft.entidades.DemasTrabajo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -39,4 +40,5 @@ public interface DemasTrabajoRepo extends JpaRepository<DemasTrabajo, Long> {
     @Modifying
     @Query(value = "DELETE FROM usuariodemastrabajos WHERE iddemastrabajos = :idDemasTrabajo AND idusuario = :idUsuario", nativeQuery = true)
     void eliminarRegistrosUsuarioDemasTrabajo(Long idDemasTrabajo, Long idUsuario);
+
 }

@@ -178,3 +178,39 @@ label{
 .mt {
     margin-top: 40px;
 }
+
+#linkButton {
+    background: none;
+    color: blue;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#linkButton:hover {
+    color: darkblue;
+}
+.producciones-popup {
+    display: none;
+    position: fixed; /* Cambiado a fixed para que el popup se mantenga en su posición cuando se haga scroll */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-height: 90vh; /* Limita la altura máxima del popup */
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+.popup-produccion-content {
+    background-color: #fefefe;
+    padding: 20px;
+    width: 100%;
+    height: auto; /* Cambiado para ajustar automáticamente la altura al contenido */
+}

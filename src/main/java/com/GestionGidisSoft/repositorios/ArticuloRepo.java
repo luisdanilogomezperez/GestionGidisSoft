@@ -80,5 +80,6 @@ public interface ArticuloRepo extends JpaRepository<Articulo, Long> {
     @Query(value = " UPDATE articulo art SET art.documentoevidencia = :documentoEvidencia" +
             " WHERE art.idarticulo = :idArticulo", nativeQuery = true)
     int cargarDocumento(@Param("idArticulo") Long idArticulo, @Param("documentoEvidencia") String documentoEvidencia);
+
 }
 

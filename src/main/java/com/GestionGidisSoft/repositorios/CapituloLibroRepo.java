@@ -1,5 +1,6 @@
 package com.GestionGidisSoft.repositorios;
 
+import com.GestionGidisSoft.entidades.Articulo;
 import com.GestionGidisSoft.entidades.CapituloLibro;
 import com.GestionGidisSoft.entidades.Libro;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -74,4 +75,5 @@ public interface CapituloLibroRepo extends JpaRepository<CapituloLibro, Long> {
     int cargarDocumentos(@Param("idCapituloLibro") Long idCapituloLibro, @Param("documentoEvidencia") String documentoEvidencia,
                          @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala,
                          @Param("certificadoCreditos") String certificadoCreditos);
+
 }

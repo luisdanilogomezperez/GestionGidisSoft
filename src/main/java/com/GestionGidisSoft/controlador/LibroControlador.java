@@ -129,8 +129,6 @@ public class LibroControlador {
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             Libro libro = libroServico.buscarPorId(libroId);
-            System.out.println("año del libro ::::::::: " + libro.getIdLibro());
-
             mav.addObject("libro", libro);
             mav.setViewName("editarLibro");
             return mav;
@@ -179,7 +177,6 @@ public class LibroControlador {
             for (Usuario usuario1: autores) {
                 if (usuario1.getIdusuario() != usuario.getIdusuario()) {
                     listaAutores.add(usuario1);
-                    System.out.println();
                 }
             }
             mav.addObject("autoresList", listaAutores);

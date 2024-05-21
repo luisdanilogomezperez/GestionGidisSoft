@@ -109,13 +109,10 @@ public interface ProyectoInvestigacionRepo extends JpaRepository<ProyectoInvesti
                                         @Param("tipoParticipacion") String tipoParticipacion
                                         );
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = " UPDATE libro lib SET lib.documentoevidencia = :documentoEvidencia" +
-//            " lib.certificadoinstitucionavala = :certificadoInstitucionAvala, lib.certificadocreditos = :certificadoCreditos, " +
-//            " WHERE lib.idlibro = :idLibro", nativeQuery = true)
-//    int cargarDocumentos(@Param("idLibro") Long idLibro, @Param("documentoEvidencia") String documentoEvidencia,
-//                         @Param("certificadoInstitucionAvala") String certificadoInstitucionAvala,
-//                         @Param("certificadoCreditos") String certificadoCreditos);
-//
+    @Transactional
+    @Modifying
+    @Query(value = " UPDATE proyectoinvestigacion proin  SET proin.produccionesvinculadas = :jsonProducciones" +
+            " WHERE proin.idproyectoinvestigacion = :idProyectoInvestigacion", nativeQuery = true)
+    int vincularProduccion(@Param("idProyectoInvestigacion") Long idProyectoInvestigacion, @Param("jsonProducciones") String jsonProducciones);
+
 }
