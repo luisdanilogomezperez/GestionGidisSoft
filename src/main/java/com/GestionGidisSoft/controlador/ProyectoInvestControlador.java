@@ -114,6 +114,15 @@ public class ProyectoInvestControlador {
                 proyectoInvestigacion.setFuenteFinanciacion(fuenteFinanciacion);
                 proyectoInvestigacion.setTipoFinanciacion(financiacion);
             }
+            Map<String, Object> idsProduccionesVinculadas = new HashMap<>();
+            ObjectMapper objectMapper = new ObjectMapper();
+            idsProduccionesVinculadas.put("idsLibros", "");
+            idsProduccionesVinculadas.put("idsCapitulosLibros", "");
+            idsProduccionesVinculadas.put("idsArticulos", "");
+            idsProduccionesVinculadas.put("idsDemasTrabajo", "");
+            // Convertir el mapa de nuevo a JSON
+            String idsProducciones = objectMapper.writeValueAsString(idsProduccionesVinculadas);
+            proyectoInvestigacion.setJsonProducciones(idsProducciones);
             proyectoServicio.guardarProyectoInvestigacion(proyectoInvestigacion);
             proyectoServicio.agregarRegistroAutorProyectoInvestigacion( proyectoInvestigacion.getIdProyectoInvestigacion(), usuario.getIdusuario());
             List<ProyectoInvestigacion> listaProyectos = proyectoServicio.findByUsuarioId(usuario.getIdusuario());
@@ -205,6 +214,7 @@ public class ProyectoInvestControlador {
             ProyectoInvestigacion proyectoInvestigacion = proyectoServicio.buscarPorId(idProyectoInvestigacion);
             ObjectMapper objectMapper = new ObjectMapper();
             Map<String, Object> produccionesMap;
+
             try {
                 produccionesMap = objectMapper.readValue(proyectoInvestigacion.getJsonProducciones(), new TypeReference<HashMap<String, Object>>() {});
             } catch (IOException e) {
@@ -237,7 +247,6 @@ public class ProyectoInvestControlador {
             for (Usuario usuarioAux: autores) {
                 if (usuarioAux.getIdusuario() != usuario.getIdusuario()) {
                     listaAutores.add(usuarioAux);
-                    System.out.println();
                 }
             }
             for (Libro libro : listaLibros) {
@@ -530,7 +539,6 @@ public class ProyectoInvestControlador {
         try {
             // Convertir el mapa de nuevo a JSON
             String updatedJsonProducciones = objectMapper.writeValueAsString(produccionesMap);
-            System.out.println(updatedJsonProducciones);
             // Actualizar el JSON en el proyecto
             proyecto.setJsonProducciones(updatedJsonProducciones);
             proyectoServicio.vincularProducciones(idProyectoInvestigacion, updatedJsonProducciones);
