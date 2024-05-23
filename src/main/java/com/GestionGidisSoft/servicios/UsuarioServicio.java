@@ -3,11 +3,10 @@ package com.GestionGidisSoft.servicios;
 import com.GestionGidisSoft.DTO.LoginRequestDto;
 import com.GestionGidisSoft.entidades.Rol;
 import com.GestionGidisSoft.entidades.Usuario;
-import com.GestionGidisSoft.entidades.UsuarioRol;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
+
 @Service
 public interface UsuarioServicio {
     public Usuario guardarUsuario(Usuario usuario, Rol rol) throws Exception;

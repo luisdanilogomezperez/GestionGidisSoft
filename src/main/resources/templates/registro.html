@@ -43,7 +43,9 @@
                 Registro Gidis Soft
             </span>
             <form th:action="@{/usuarios/guardar}" th:object="${usuario}" method="POST" class="registro100-form validate-form">
-
+                <div th:if=${param.error}>
+                    <div  id="alertaUsuario" class="alert alert-warning">Ya existe un usuario con el código o el correo que ingresó, por favor verifique su datos e intentelo nuevamente.</div>
+                </div>
                 <div class="input100-all">
                     <div class="input100-left">
                         <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -137,6 +139,17 @@
     $('.js-tilt').tilt({
         scale: 1.1
     })
+
+
+    function mostrarAlerta() {
+        var alerta = document.getElementById("alertaUsuario");
+        alerta.style.display = "block";
+
+        // Ocultar la alerta después de 5 segundos (5000 milisegundos)
+        setTimeout(function() {
+            alerta.style.display = "none";
+        }, 5000);
+    }
 </script>
 <!--===============================================================================================-->
 <script th:src="@{/js/registro.js}"></script>

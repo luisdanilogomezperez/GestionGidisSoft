@@ -33,10 +33,8 @@ public class UsuarioServicioImpl implements UsuarioServicio {
             throw new Exception("El usuario ya esta presente");
         } else {
             if (rolRepo.existenRoles(rol.getRolId()) > 0 ) {
-                System.out.println("el rol ya existe");
             } else {
                 rolRepo.save(rol);
-                System.out.println("creando nuevo rol");
             }
             usuarioLocal = usuarioRepo.save(usuario);
             usuarioRepo.actualizarTablaIntermedia(usuario.getIdusuario(), rol.getRolId());
@@ -150,10 +148,9 @@ public class UsuarioServicioImpl implements UsuarioServicio {
         boolean existen = false;
 
         if ( usuarioRepo.existenUsuarios() > 0) {
-            System.out.println("existen");
             existen = true;
         } else {
-            System.out.println("no existen");
+            existen = false;
         }
         return existen;
     }

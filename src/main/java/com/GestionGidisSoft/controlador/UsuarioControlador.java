@@ -1,26 +1,16 @@
 package com.GestionGidisSoft.controlador;
 
 import com.GestionGidisSoft.DTO.LoginRequestDto;
-import com.GestionGidisSoft.DTO.LoginResponseDto;
-import com.GestionGidisSoft.DTO.RegistroResponseDto;
 import com.GestionGidisSoft.entidades.Rol;
 import com.GestionGidisSoft.entidades.Usuario;
-import com.GestionGidisSoft.entidades.UsuarioRol;
 import com.GestionGidisSoft.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -32,7 +22,6 @@ public class UsuarioControlador {
     @PostMapping("/guardar")
     public ModelAndView guardarUsuario(@ModelAttribute("usuario") Usuario usuario){
         ModelAndView model = new ModelAndView();
-        boolean existenUsuarios = false;
         try {
             Rol rol = new Rol();
             if (usuarioServicio.existenUsuarios()) {
@@ -46,14 +35,12 @@ public class UsuarioControlador {
             usuarioServicio.guardarUsuario(usuario, rol);
 
             model.setViewName("redirect:/?registroExitoso=true");
-            return model;
        //     return new ResponseEntity(new RegistroResponseDto(true),HttpStatus.CREATED);
         }catch (Exception e){
-            model.addObject("mensaje", "ha ocurrido un error");
-            model.setViewName("redirect:registrarse?error=true");
-            return model;
+            model.setViewName("redirect:/registrarse?error=true");
            // return new ResponseEntity(new RegistroResponseDto(false),HttpStatus.BAD_REQUEST);
         }
+            return model;
     }
 
     @GetMapping("/buscar/{username}")

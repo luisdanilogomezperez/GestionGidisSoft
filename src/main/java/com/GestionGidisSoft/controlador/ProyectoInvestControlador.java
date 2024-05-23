@@ -3,6 +3,7 @@ package com.GestionGidisSoft.controlador;
 import com.GestionGidisSoft.Constantes.Format;
 import com.GestionGidisSoft.entidades.*;
 import com.GestionGidisSoft.servicios.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -243,7 +244,7 @@ public class ProyectoInvestControlador {
                 Map<String, String> item = new HashMap<>();
                 if (idsLibroSet.contains(libro.getIdLibro().toString())) {
                     item.put("tipo", "Libro");
-                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                    item.put("ruta", "libro/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
                             + "/" + usuario.getIdusuario().toString() + "/" + libro.getIdLibro().toString());
                     item.put("titulo", libro.getTitulo());
                     item.put("anio", libro.getAnio());
@@ -257,7 +258,7 @@ public class ProyectoInvestControlador {
                 if (idsCapitulosLibroSet.contains(capitulo.getIdCapitulo().toString())) {
                     Map<String, String> item = new HashMap<>();
                     item.put("tipo", "Capítulo de libro");
-                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                    item.put("ruta", "capLibro/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
                             + "/" + usuario.getIdusuario().toString() + "/" + capitulo.getIdCapitulo().toString());
                     item.put("titulo", capitulo.getTitulo());
                     item.put("anio", capitulo.getAnio().toString());
@@ -272,7 +273,7 @@ public class ProyectoInvestControlador {
                 if (idsArticuloSet.contains(articulo.getIdArticulo().toString())) {
                     Map<String, String> item = new HashMap<>();
                     item.put("tipo", "Artículo");
-                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                    item.put("ruta", "articulo/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
                             + "/" + usuario.getIdusuario().toString() + "/" + articulo.getIdArticulo().toString());
                     item.put("titulo", articulo.getTitulo());
                     item.put("anio", articulo.getAnio().toString());
@@ -287,7 +288,7 @@ public class ProyectoInvestControlador {
                 if (idsDemasTrabajosSet.contains(demasTrabajo.getIdDemasTrabajo().toString())) {
                     Map<String, String> item = new HashMap<>();
                     item.put("tipo", "Demás Trabajos");
-                    item.put("ruta", proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                    item.put("ruta", "demTrabajo/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
                             + "/" + usuario.getIdusuario().toString() + "/" + demasTrabajo.getIdDemasTrabajo().toString());
                     item.put("titulo", demasTrabajo.getNombreProducto()); // Valor por defecto para título
                     item.put("anio", demasTrabajo.getAnio().toString());
@@ -393,14 +394,67 @@ public class ProyectoInvestControlador {
 
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
+        Map<String, Object> produccionesMap;
+        ProyectoInvestigacion proyecto = proyectoServicio.buscarPorId(idProyectoInvestigacion);
+
+        Set<String> idsLibroSet = Arrays.stream(idsLibros.split(","))
+                .filter(id -> !id.trim().isEmpty())
+                .collect(Collectors.toSet());
+        Set<String> idsCapitulosLibroSet = Arrays.stream(idsCapitulosLibros.split(","))
+                .filter(id -> !id.trim().isEmpty())
+                .collect(Collectors.toSet());
+        Set<String> idsArticuloSet = Arrays.stream(idsArticulos.split(","))
+                .filter(id -> !id.trim().isEmpty())
+                .collect(Collectors.toSet());
+        Set<String> idsDemasTrabajosSet = Arrays.stream(idsDemasTrabajo.split(","))
+                .filter(id -> !id.trim().isEmpty())
+                .collect(Collectors.toSet());
+
+        if (proyecto.getJsonProducciones() != null && !proyecto.getJsonProducciones().isEmpty()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                produccionesMap = objectMapper.readValue(proyecto.getJsonProducciones(), new TypeReference<HashMap<String, Object>>() {});
+            } catch (IOException e) {
+                produccionesMap = new HashMap<>();
+            }
+
+            // Obtener las cadenas de IDs adicionales del mapa
+            String idsLibrosAux = (String) produccionesMap.get("idsLibros");
+            String idsCapitulosLibrosAux = (String) produccionesMap.get("idsCapitulosLibros");
+            String idsArticulosAux = (String) produccionesMap.get("idsArticulos");
+            String idsDemasTrabajoAux = (String) produccionesMap.get("idsDemasTrabajo");
+
+            // Convertir las cadenas adicionales a conjuntos
+            Set<String> idsLibrosAuxSet = Arrays.stream(idsLibrosAux.split(","))
+                    .filter(id -> !id.trim().isEmpty())
+                    .collect(Collectors.toSet());
+            Set<String> idsCapitulosLibrosAuxSet = Arrays.stream(idsCapitulosLibrosAux.split(","))
+                    .filter(id -> !id.trim().isEmpty())
+                    .collect(Collectors.toSet());
+            Set<String> idsArticulosAuxSet = Arrays.stream(idsArticulosAux.split(","))
+                    .filter(id -> !id.trim().isEmpty())
+                    .collect(Collectors.toSet());
+            Set<String> idsDemasTrabajoAuxSet = Arrays.stream(idsDemasTrabajoAux.split(","))
+                    .filter(id -> !id.trim().isEmpty())
+                    .collect(Collectors.toSet());
+
+            // Combinar los conjuntos iniciales con los conjuntos adicionales
+            idsLibroSet.addAll(idsLibrosAuxSet);
+            idsCapitulosLibroSet.addAll(idsCapitulosLibrosAuxSet);
+            idsArticuloSet.addAll(idsArticulosAuxSet);
+            idsDemasTrabajosSet.addAll(idsDemasTrabajoAuxSet);
+        }
+
+        // Crear el mapa con los conjuntos combinados convertidos a cadenas
         Map<String, Object> idsProduccionesVinculadas = new HashMap<>();
         ObjectMapper objectMapper = new ObjectMapper();
-        idsProduccionesVinculadas.put("idsLibros", idsLibros);
-        idsProduccionesVinculadas.put("idsCapitulosLibros", idsCapitulosLibros);
-        idsProduccionesVinculadas.put("idsArticulos", idsArticulos);
-        idsProduccionesVinculadas.put("idsDemasTrabajo", idsDemasTrabajo);
+        idsProduccionesVinculadas.put("idsLibros", String.join(",", idsLibroSet));
+        idsProduccionesVinculadas.put("idsCapitulosLibros", String.join(",", idsCapitulosLibroSet));
+        idsProduccionesVinculadas.put("idsArticulos", String.join(",", idsArticuloSet));
+        idsProduccionesVinculadas.put("idsDemasTrabajo", String.join(",", idsDemasTrabajosSet));
+        // Convertir el mapa de nuevo a JSON
         String idsProducciones = objectMapper.writeValueAsString(idsProduccionesVinculadas);
-        System.out.println(idsProducciones);
+
         if (session.getAttribute("usuario") != null) {
             Boolean result = proyectoServicio.vincularProducciones(idProyectoInvestigacion, idsProducciones);
             mav.setViewName("redirect:/proyectosInvestigacion/detalle/" + idProyectoInvestigacion + "?exito=" + result);
@@ -412,6 +466,81 @@ public class ProyectoInvestControlador {
             mav.setViewName("redirect:/");
             return mav;
         }
+    }
+
+    @GetMapping("/desvincular/{tipo}/{idProyecto}/{idUsuario}/{idProduccion}")
+    public ModelAndView desvincularProduccion(HttpServletRequest request, @PathVariable("tipo") String tipo,
+                                              @PathVariable("idProyecto") Long idProyectoInvestigacion,
+                                              @PathVariable("idUsuario") Long idUsuario,
+                                              @PathVariable("idProduccion") Long idProduccion) throws Exception {
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        // Obtener el proyecto
+        ProyectoInvestigacion proyecto = proyectoServicio.buscarPorId(idProyectoInvestigacion);
+        if (session.getAttribute("usuario") != null) {
+
+        }
+        // Obtener el JSON de producciones
+        String jsonProducciones = proyecto.getJsonProducciones();
+        Map<String, Object> produccionesMap;
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            produccionesMap = objectMapper.readValue(jsonProducciones, new TypeReference<HashMap<String, Object>>() {});
+        } catch (IOException e) {
+            produccionesMap = new HashMap<>();
+        }
+
+        // Determinar el conjunto correcto a modificar basado en el tipo
+        Set<String> idsSet = new HashSet<>();
+        String key = "";
+
+        switch (tipo) {
+            case "libro":
+                key = "idsLibros";
+                break;
+            case "capLibro":
+                key = "idsCapitulosLibros";
+                break;
+            case "articulo":
+                key = "idsArticulos";
+                break;
+            case "demasTrabajo":
+                key = "idsDemasTrabajo";
+                break;
+            default:
+                mav.setViewName("redirect:/proyectosInvestigacion/detalle/" + idProyectoInvestigacion + "?error=" + "Tipo no válido");
+                return mav;
+        }
+
+        // Convertir la cadena de IDs a un conjunto
+        if (produccionesMap.containsKey(key)) {
+            String idsString = (String) produccionesMap.get(key);
+            idsSet = Arrays.stream(idsString.split(","))
+                    .filter(id -> !id.trim().isEmpty())
+                    .collect(Collectors.toSet());
+        }
+
+        // Eliminar el ID de la producción
+        idsSet.remove(idProduccion.toString());
+
+        // Actualizar el mapa de producciones
+        produccionesMap.put(key, String.join(",", idsSet));
+
+        try {
+            // Convertir el mapa de nuevo a JSON
+            String updatedJsonProducciones = objectMapper.writeValueAsString(produccionesMap);
+            System.out.println(updatedJsonProducciones);
+            // Actualizar el JSON en el proyecto
+            proyecto.setJsonProducciones(updatedJsonProducciones);
+            proyectoServicio.vincularProducciones(idProyectoInvestigacion, updatedJsonProducciones);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        mav.setViewName("redirect:/proyectosInvestigacion/detalle/" + idProyectoInvestigacion + "?exito=" + "true");
+        return mav;
     }
 
 }
