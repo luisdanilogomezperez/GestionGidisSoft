@@ -2,6 +2,7 @@ var passwordInput = document.getElementById('clave');
 var confirmPasswordInput = document.getElementById('verificarClave');
 var progressBar = document.getElementById('password-strength');
 var passwordMatchMessage = document.getElementById('passwordMatchMessage');
+var passwordLengtMessage = document.getElementById('passwordLengtMessage');
 var submitButton = document.getElementById('submitButton');
 
 // Agregar eventos de escucha para validar la contraseña al cargar la página y cuando se cambien los valores de los campos
@@ -29,6 +30,19 @@ function validatePassword() {
     progressBar.style.backgroundColor = getStrengthColor(strength);
     submitButton.disabled = true;
     // Verificar si las contraseñas coinciden y mostrar mensaje correspondiente
+    if(password.length > 0) {
+        if (password.length < 8) {
+            passwordLengtMessage.textContent = 'Minimo 8 caracteres (X)';
+            passwordLengtMessage.style.color = 'red'; // Cambiar el color del mensaje a verde
+            submitButton.disabled = false;
+        } else {
+            passwordLengtMessage.textContent = 'Minimo 8 caracteres (OK)';
+            passwordLengtMessage.style.color = 'green'; // Mantener el color del mensaje en rojo
+            submitButton.disabled = true;
+        }
+    } else {
+         passwordLengtMessage.textContent = "";
+    }
     if(confirmPassword.length > 0) {
         if (password === confirmPassword) {
             passwordMatchMessage.textContent = 'Las contraseñas coinciden';
@@ -39,6 +53,8 @@ function validatePassword() {
             passwordMatchMessage.style.color = 'red'; // Mantener el color del mensaje en rojo
             submitButton.disabled = true;
         }
+    } else {
+        passwordMatchMessage.textContent = "";
     }
 }
 
@@ -68,11 +84,11 @@ function calculatePasswordStrength(password) {
 }
 
 function getStrengthColor(strength) {
-    if (strength < 30) {
+    if (strength <= 30) {
         return 'red';
-    } else if (strength > 31 && strength < 60) {
+    } else if (strength >= 31 && strength <= 60) {
         return 'orange';
-    } else {
+    } else if (strength >= 61) {
         return 'green';
     }
 }
