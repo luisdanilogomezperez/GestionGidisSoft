@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var fin = new Date(fechaFin.value);
 
         if (inicio && fin && inicio >= fin) {
-            alert("La fecha de inicio debe ser anterior a la fecha de fin.");
+            alert("La fecha Fin debe ser mayor a la fecha Inicio.");
             guardarBtn.disabled = true;
         } else {
             guardarBtn.disabled = false;
