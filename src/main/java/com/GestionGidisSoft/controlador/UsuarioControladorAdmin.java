@@ -5,6 +5,10 @@ import com.GestionGidisSoft.DTO.LoginResponseDto;
 import com.GestionGidisSoft.DTO.RegistroResponseDto;
 import com.GestionGidisSoft.entidades.*;
 import com.GestionGidisSoft.servicios.*;
+import com.GestionGidisSoft.servicios.impl.DemasTrabajoServicioImpl;
+import com.GestionGidisSoft.servicios.impl.EventoServicioImpl;
+import com.GestionGidisSoft.servicios.impl.PonenciaServicioImpl;
+import com.GestionGidisSoft.servicios.impl.ProyectoDirigidoServicioImpl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/usuarios/admin")
@@ -35,6 +40,17 @@ public class UsuarioControladorAdmin {
     private LibroServico libroServico;
     @Autowired
     private CapituloLibroServicio capituloLibroServicio;
+    @Autowired
+    private ProyectoInvestigacionServicio proyectoServicio;
+    @Autowired
+    private ProyectoDirigidoServicioImpl proyectoDirigidoServicio;
+    @Autowired
+    private EventoServicioImpl eventoServicio;
+    @Autowired
+    private PonenciaServicioImpl ponenciaServicio;
+    @Autowired
+    private DemasTrabajoServicioImpl demasTrabajoServicio;
+
 
     @GetMapping("/listarUsuarios")
     public ModelAndView listarUsuarios(HttpServletRequest request) {
@@ -153,8 +169,13 @@ public class UsuarioControladorAdmin {
             Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
             List<Articulo> listaArticulos = articuloServicio.findByUsuarioId(idUsuario);
             List<Libro> listaLibros = libroServico.findByUsuarioId(idUsuario);
+            List<ProyectoInvestigacion> listaProyectos = proyectoServicio.findByUsuarioId(idUsuario);
             List<CapituloLibro> listacapituloLibros = capituloLibroServicio.findByUsuarioId(idUsuario);
             List<CapituloLibro> listacapituloLibrosVista = new ArrayList<>();
+            List<DemasTrabajo> listaDemasTrabajos = demasTrabajoServicio.findByUsuarioId(idUsuario);
+            List<Ponencia> listaPonencias = ponenciaServicio.findByUsuarioId(idUsuario);
+            List<Evento> listaEventos = eventoServicio.findByUsuarioId(idUsuario);
+            List<ProyectoDirigido> listaProyectoDirigidos = proyectoDirigidoServicio.findByUsuarioId(idUsuario);
 
             if (!listacapituloLibros.isEmpty()){
                 for (CapituloLibro capituloLibro : listacapituloLibros) {
@@ -196,6 +217,11 @@ public class UsuarioControladorAdmin {
             mav.addObject("listaArticulos", listaArticulos);
             mav.addObject("listaLibros", listaLibros);
             mav.addObject("listaCapitulosLibros", listacapituloLibrosVista);
+            mav.addObject("listaProyectos", listaProyectos);
+            mav.addObject("listaProyectoDirigidos", listaProyectoDirigidos);
+            mav.addObject("listaEventos", listaEventos);
+            mav.addObject("listaPonencias", listaPonencias);
+            mav.addObject("listaDemasTrabajos", listaDemasTrabajos);
             mav.setViewName("gestionUsuarios/listarProductosUsuario");
 
             return mav;
@@ -262,31 +288,6 @@ public class UsuarioControladorAdmin {
         }
     }
 
-    @RequestMapping("/eliminar/{idArticulo}")
-    public ModelAndView eliminar(HttpServletRequest request, @PathVariable(value = "idArticulo") Long idArticulo) {
-        ModelAndView mav = new ModelAndView();
-        HttpSession session = request.getSession();
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if (session.getAttribute("usuario") != null) {
-            try {
-                articuloServicio.eliminarRegistroAutoresArticulo(idArticulo, usuario.getIdusuario());
-                articuloServicio.eliminarRegistroCoautoresArticulo(idArticulo, usuario.getIdusuario());
-                articuloServicio.eliminarArticulo(idArticulo);
-                mav.setViewName("redirect:/articulos/verArticulos");
-                return mav;
-            } catch (Exception e) {
-                mav.setViewName("redirect:/articulos/verArticulos" );
-                return mav;
-            }
-        } else {
-            System.out.println("error de logueo");
-            session.setAttribute("usuario", new Usuario());
-            mav.addObject("usuario", session.getAttribute("usuario"));
-            mav.setViewName("redirect:/");
-            return mav;
-        }
-    }
-
     @RequestMapping("/detallesLibro/{idLibro}/{idUsuario}")
     public ModelAndView verDetallesLibro(HttpServletRequest request, @PathVariable(value = "idLibro") long idLibro,
                                  @PathVariable(value = "idUsuario") long idUsuario) {
@@ -297,11 +298,11 @@ public class UsuarioControladorAdmin {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
 
             Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
-            List<Usuario> coautores = usuarioServicio.listarCoautoresLibros(idLibro, usuario.getIdusuario());
-            List<Usuario> autores = usuarioServicio.listarAutoresLibros(idLibro, usuario.getIdusuario());
+            List<Usuario> coautores = usuarioServicio.listarCoautoresLibros(idLibro, idUsuario);
+            List<Usuario> autores = usuarioServicio.listarAutoresLibros(idLibro, idUsuario);
             Libro libro = libroServico.buscarPorId(idLibro);
             for (Usuario usuario1: autores) {
-                if (usuario1.getIdusuario() != usuario.getIdusuario()) {
+                if (usuario1.getIdusuario() != idUsuario) {
                     listaAutores.add(usuario1);
                 }
             }
@@ -330,18 +331,21 @@ public class UsuarioControladorAdmin {
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute("usuario") != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
-            List<Usuario> coautores = usuarioServicio.listarCoautoresCapitulosLibros(idCapituloLibro, usuario.getIdusuario());
-            List<Usuario> autores = usuarioServicio.listarAutoresCapitulosLibros(idCapituloLibro, usuario.getIdusuario());
+
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            List<Usuario> coautores = usuarioServicio.listarCoautoresCapitulosLibros(idCapituloLibro, idUsuario);
+            List<Usuario> autores = usuarioServicio.listarAutoresCapitulosLibros(idCapituloLibro, idUsuario);
             CapituloLibro capituloLibro = capituloLibroServicio.buscarPorId(idCapituloLibro);
             Libro libro = libroServico.buscarPorId(capituloLibro.getIdLibro());
             capituloLibro.setTituloLibro(libro.getTitulo());
             if (autores != null) {
                 for (Usuario usuario1: autores) {
-                    if (usuario1.getIdusuario() != usuario.getIdusuario()) {
+                    if (usuario1.getIdusuario() != idUsuario) {
                         listaAutores.add(usuario1);
                     }
                 }
             }
+            mav.addObject("usuarioConsultado", usuarioConsultado);
             mav.addObject("autoresList", listaAutores);
             mav.addObject("listaCoautores", coautores);
             mav.addObject("capituloLibro", capituloLibro);
@@ -358,4 +362,214 @@ public class UsuarioControladorAdmin {
         }
     }
 
+    @RequestMapping("/detalleProyectoInvestigacion/{idProyectoInvestigacion}/{idUsuario}")
+    public ModelAndView verDetallesProyectoInvestigacion(HttpServletRequest request, @PathVariable(value = "idProyectoInvestigacion") long idProyectoInvestigacion,
+                                 @PathVariable(value = "idUsuario") long idUsuario) throws Exception {
+        List<Usuario> listaAutores = new ArrayList();
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            List<Usuario> coautores = usuarioServicio.listarCoautoresProyectosInvestigacion(idProyectoInvestigacion, idUsuario);
+            List<Usuario> autores = usuarioServicio.listarAutoresProyectosInvestigacion(idProyectoInvestigacion, idUsuario);
+            List<Map<String, String>> produccionesConsolidadas = new ArrayList<>();
+            ProyectoInvestigacion proyectoInvestigacion = proyectoServicio.buscarPorId(idProyectoInvestigacion);
+            ObjectMapper objectMapper = new ObjectMapper();
+            Map<String, Object> produccionesMap;
+
+            try {
+                produccionesMap = objectMapper.readValue(proyectoInvestigacion.getJsonProducciones(), new TypeReference<HashMap<String, Object>>() {});
+            } catch (IOException e) {
+                produccionesMap = new HashMap<>();
+            }
+            String idsLibros = (String) produccionesMap.get("idsLibros");
+            String idsCapitulosLibros = (String) produccionesMap.get("idsCapitulosLibros");
+            String idsArticulos = (String) produccionesMap.get("idsArticulos");
+            String idsDemasTrabajo = (String) produccionesMap.get("idsDemasTrabajo");
+            Set<String> idsLibroSet = Arrays.stream(idsLibros.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsCapitulosLibroSet = Arrays.stream(idsCapitulosLibros.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsArticuloSet = Arrays.stream(idsArticulos.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            Set<String> idsDemasTrabajosSet = Arrays.stream(idsDemasTrabajo.split(","))
+                    .map(String::toString)
+                    .collect(Collectors.toSet());
+            List<Libro> listaLibros = libroServico.findByUsuarioId(idUsuario);
+            List<Articulo> listaArticulos = articuloServicio.findByUsuarioId(idUsuario);
+            List<CapituloLibro> listaCapitulos = capituloLibroServicio.findByUsuarioId(idUsuario);
+            List<DemasTrabajo> listademasTrabajos = demasTrabajoServicio.findByUsuarioId(idUsuario);
+
+            for (Usuario usuarioAux: autores) {
+                if (usuarioAux.getIdusuario() != idUsuario) {
+                    listaAutores.add(usuarioAux);
+                }
+            }
+            for (Libro libro : listaLibros) {
+                Map<String, String> item = new HashMap<>();
+                if (idsLibroSet.contains(libro.getIdLibro().toString())) {
+                    item.put("tipo", "Libro");
+                    item.put("ruta", "libro/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + idUsuario + "/" + libro.getIdLibro().toString());
+                    item.put("titulo", libro.getTitulo());
+                    item.put("anio", libro.getAnio());
+                    produccionesConsolidadas.add(item);
+                }
+            }
+            // Consolidar capítulos de libros
+            for (CapituloLibro capitulo : listaCapitulos) {
+                if (idsCapitulosLibroSet.contains(capitulo.getIdCapitulo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Capítulo de libro");
+                    item.put("ruta", "capLibro/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + idUsuario + "/" + capitulo.getIdCapitulo().toString());
+                    item.put("titulo", capitulo.getTitulo());
+                    item.put("anio", capitulo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                }
+            }
+
+            // Consolidar artículos
+            for (Articulo articulo : listaArticulos) {
+                if (idsArticuloSet.contains(articulo.getIdArticulo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Artículo");
+                    item.put("ruta", "articulo/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + idUsuario + "/" + articulo.getIdArticulo().toString());
+                    item.put("titulo", articulo.getTitulo());
+                    item.put("anio", articulo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                }
+            }
+
+            // Consolidar demás trabajos
+            for (DemasTrabajo demasTrabajo : listademasTrabajos) {
+                if (idsDemasTrabajosSet.contains(demasTrabajo.getIdDemasTrabajo().toString())) {
+                    Map<String, String> item = new HashMap<>();
+                    item.put("tipo", "Demás Trabajos");
+                    item.put("ruta", "demTrabajo/" + proyectoInvestigacion.getIdProyectoInvestigacion().toString()
+                            + "/" + idUsuario + "/" + demasTrabajo.getIdDemasTrabajo().toString());
+                    item.put("titulo", demasTrabajo.getNombreProducto()); // Valor por defecto para título
+                    item.put("anio", demasTrabajo.getAnio().toString());
+                    produccionesConsolidadas.add(item);
+                }
+            }
+            session.setAttribute("produccionesConsolidadas", produccionesConsolidadas);
+            mav.addObject("autoresList", listaAutores);
+            mav.addObject("listaCoautores", coautores);
+            mav.addObject("proyectoInvestigacion", proyectoInvestigacion);
+            mav.addObject("usuario", usuario);
+            mav.addObject("usuarioConsultado", usuarioConsultado);
+            mav.addObject("usuarioCoautor", new Usuario());
+            mav.setViewName("gestionUsuarios/layout/verDetallesProyectoInvestigacion");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
+
+    @GetMapping("/detalleProyectoDirigido/{idProyectoDirigido}/{idUsuario}")
+    public ModelAndView verDetallesProyectoDirigido(HttpServletRequest request, @PathVariable(value = "idProyectoDirigido") long idProyectoDirigido,
+                                                    @PathVariable(value = "idUsuario") long idUsuario) {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            ProyectoDirigido proyectoDirigido = proyectoDirigidoServicio.buscarProyectoDirigidoPorId(idProyectoDirigido);
+
+            mav.addObject("usuarioConsultado", usuarioConsultado);
+            mav.addObject("proyectoDirigido", proyectoDirigido);
+            mav.addObject("usuario", usuario);
+            mav.setViewName("gestionUsuarios/layout/verDetallesProyectoDirigido");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
+
+    @GetMapping("/detalleEvento/{idEvento}/{idUsuario}")
+    public ModelAndView verDetallesEvento(HttpServletRequest request, @PathVariable(value = "idEvento") long idEvento,
+                                          @PathVariable(value = "idUsuario") long idUsuario) {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            Evento evento = eventoServicio.buscarEventoPorId(idEvento);
+
+            mav.addObject("usuarioConsultado", usuarioConsultado);
+            mav.addObject("evento", evento);
+            mav.addObject("usuario", usuario);
+            mav.setViewName("gestionUsuarios/layout/verDetallesEvento");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
+
+    @GetMapping("/detallePonencia/{idPonencia}/{idUsuario}")
+    public ModelAndView verDetallesPonencia(HttpServletRequest request, @PathVariable(value = "idPonencia") long idPonencia,
+                                            @PathVariable(value = "idUsuario") long idUsuario) {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            Ponencia ponencia = ponenciaServicio.buscarPonenciaPorId(idPonencia);
+
+            mav.addObject("usuarioConsultado", usuarioConsultado);
+            mav.addObject("ponencia", ponencia);
+            mav.addObject("usuario", usuario);
+            mav.setViewName("gestionUsuarios/layout/verDetallesPonencia");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
+
+    @GetMapping("/detalleDemasTrabajo/{idDemasTrabajo}/{idUsuario}")
+    public ModelAndView verDetalleDemasTrabajo(HttpServletRequest request, @PathVariable(value = "idDemasTrabajo") long idDemasTrabajo,
+                                 @PathVariable(value = "idUsuario") long idUsuario) {
+        HttpSession session = request.getSession();
+        ModelAndView mav = new ModelAndView();
+        if (session.getAttribute("usuario") != null) {
+            Usuario usuario = (Usuario) session.getAttribute("usuario");
+            Usuario usuarioConsultado = usuarioServicio.getByUsuarioId(idUsuario);
+            DemasTrabajo demasTrabajo = demasTrabajoServicio.buscarDemasTrabajoPorId(idDemasTrabajo);
+
+            mav.addObject("usuarioConsultado", usuarioConsultado);
+            mav.addObject("demasTrabajo", demasTrabajo);
+            mav.addObject("usuario", usuario);
+            mav.setViewName("gestionUsuarios/layout/verDetallesDemasTrabajo");
+            return mav;
+        } else {
+            System.out.println("error de logueo");
+            session.setAttribute("usuario", new Usuario());
+            mav.addObject("usuario", session.getAttribute("usuario"));
+            mav.setViewName("redirect:/");
+            return mav;
+        }
+    }
 }

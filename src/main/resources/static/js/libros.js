@@ -129,10 +129,12 @@ function validarDocumento(id) {
     if (fileInput.files[0].size > 20097152) {
         alert("El tamaño del documento excede los 20MB");
         fileInput.value = "";
+        return
     }
     if (fileInput.files[0].type != "application/pdf") {
         alert("El tipo de archivo no es válido");
         fileInput.value = "";
+        return
     }
 }
 function validarSelect(select) {

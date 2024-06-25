@@ -2,6 +2,11 @@ $(document).ready(function () {
     $('#tab_logic1').DataTable();
     $('#tab_logic2').DataTable();
     $('#tab_logic3').DataTable();
+    $('#tab_logic4').DataTable();
+    $('#tab_logic5').DataTable();
+    $('#tab_logic6').DataTable();
+    $('#tab_logic7').DataTable();
+    $('#tab_logic8').DataTable();
 });
 
 var estadoUsuario = document.getElementById("estadoUsuario").value;
