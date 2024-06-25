@@ -24,6 +24,7 @@ com\GestionGidisSoft\controlador\ArticuloControlador.class
 com\GestionGidisSoft\controlador\ProyectoInvestControlador$3.class
 com\GestionGidisSoft\controlador\ProyectoInvestControlador.class
 com\GestionGidisSoft\entidades\Usuario.class
+com\GestionGidisSoft\controlador\UsuarioControladorAdmin$3.class
 com\GestionGidisSoft\controlador\InicioControlador.class
 com\GestionGidisSoft\servicios\impl\ArticuloServicioImpl.class
 com\GestionGidisSoft\servicios\impl\EventoServicioImpl.class

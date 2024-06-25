@@ -67,6 +67,11 @@
                         <button class="tablinks active" onclick="openTab('tab1')">Articulos</button>
                         <button class="tablinks" onclick="openTab('tab2')">Libros</button>
                         <button class="tablinks" onclick="openTab('tab3')">Cap. Libros</button>
+                        <button class="tablinks" onclick="openTab('tab4')">Proyectos Inv.</button>
+                        <button class="tablinks" onclick="openTab('tab5')">Proyectos Dir.</button>
+                        <button class="tablinks" onclick="openTab('tab6')">Eventos</button>
+                        <button class="tablinks" onclick="openTab('tab7')">Ponencias</button>
+                        <button class="tablinks" onclick="openTab('tab8')">Demás Trabajos.</button>
                     </div>
                     <div id="tab1" class="tabcontent active" style="border: 1px solid black">
                         <br>
@@ -93,18 +98,10 @@
                                         <a th:href="@{/usuarios/admin/detallesArticulo/{idArticulo}/{idUsuario}(idArticulo=${art.idArticulo}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
                                             <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
                                         </a>
-                                        <a th:href="@{/usuarios/admin/eliminar/{idArticulo}(idArticulo=${art.idArticulo})}" class="links">
-                                            <img title="Eliminar" src="/img/eliminar.png" alt="Eliminar">
-                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div th:if="${#lists.isEmpty(listaArticulos)}">
-                            <div class="alert alert-secondary" style="text-align:center;" role="alert">
-                                <span th:text="${mensajeArticulos}"></span></td>
-                            </div>
                         </div>
                     </div>
 
@@ -131,18 +128,10 @@
                                         <a th:href="@{/usuarios/admin/detallesLibro/{idLibro}/{idUsuario}(idLibro=${l.idLibro}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
                                             <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
                                         </a>
-                                        <a th:href="@{/usuarios/admin/eliminar/{libroId}(libroId=${l.idLibro})}" class="links">
-                                            <img title="Eliminar" src="/img/eliminar.png" alt="Eliminar">
-                                        </a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div th:if="${#lists.isEmpty(listaLibros)}">
-                            <div class="alert alert-secondary" style="text-align:center;" role="alert">
-                                <span th:text="${mensajeLibros}"></span></td>
-                            </div>
                         </div>
                     </div>
 
@@ -163,26 +152,168 @@
                                 <tbody>
                                 <tr th:each="cl, iterStat : ${listaCapitulosLibros}" th:id="'fila-' + ${cl.idCapitulo}">
                                     <td th:text="${iterStat.index + 1}"></td>
-                                    <td th:text="${cl.titulo}"></td>
-                                    <td th:text="${cl.tituloLibro}"></td>
-                                    <td th:text="${cl.anio}"></td>
+                                    <td th:text="${cl.titulo}" class="text-center"></td>
+                                    <td th:text="${cl.tituloLibro}" class="text-center"></td>
+                                    <td th:text="${cl.anio}" class="text-center"></td>
                                     <td th:text="${cl.disciplina}"></td>
                                     <td>
                                         <a th:href="@{/usuarios/admin/detallesCapituloLibro/{idCapituloLibro}/{idUsuario}(idCapituloLibro=${cl.idCapitulo}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
                                             <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
-                                        </a>
-                                        <a th:href="@{/usuarios/admin/eliminar/{idCapituloLibro}(idCapituloLibro=${cl.idCapitulo})}" class="links">
-                                            <img title="Eliminar" src="/img/eliminar.png" alt="Eliminar">
                                         </a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div th:if="${#lists.isEmpty(listaCapitulosLibros)}">
-                            <div class="alert alert-secondary" style="text-align:center;" role="alert">
-                                <span th:text="${mensajeCapitulos}"></span></td>
-                            </div>
+                    </div>
+                    <div id="tab4" class="tabcontent" style="border: 1px solid black">
+                        <br>
+                        <div class="container">
+                            <table class="display" id="tab_logic4">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">#</th>
+                                    <th style="width: 35%;" class="text-center">T&iacute;tulo</th>
+                                    <th style="width: 15%;" class="text-center">Tipo de proyecto</th>
+                                    <th style="width: 15%;" class="text-center">Institución</th>
+                                    <th style="width: 15%;" class="text-center">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="pi, iterStat : ${listaProyectos}" th:id="'fila-' + ${pi.idProyectoInvestigacion}">
+                                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                                    <td th:text="${pi.titulo}"></td>
+                                    <td th:text="${pi.tipoProyecto}" class="text-center"></td>
+                                    <td th:text="${pi.nombreInstitucion}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/usuarios/admin/detalleProyectoInvestigacion/{idProyectoInvestigacion}/{idUsuario}(idProyectoInvestigacion=${pi.idProyectoInvestigacion}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
+                                            <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="tab5" class="tabcontent" style="border: 1px solid black">
+                        <br>
+                        <div class="container">
+                            <table class="display" id="tab_logic5">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">#</th>
+                                    <th style="width: 30%;" class="text-center">Proyecto/Tutoría dirigida</th>
+                                    <th style="width: 5%;" class="text-center">Tipo de Producto</th>
+                                    <th style="width: 10%;" class="text-center">Año Inicio</th>
+                                    <th style="width: 10%;" class="text-center">Tipo Orientación</th>
+                                    <th style="width: 10%;" class="text-center">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="l, iterStat : ${listaProyectoDirigidos}" th:id="'fila-' + ${l.idProyectoDirigido}">
+                                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                                    <td th:text="${l.nombre}"></td>
+                                    <td th:text="${l.tipoProducto} "  ></td>
+                                    <td th:text="${l.anioInicio}" class="text-center"></td>
+                                    <td th:text="${l.tipoOrientacion}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/usuarios/admin/detalleProyectoDirigido/{idProyectoDirigido}/{idUsuario}(idProyectoDirigido=${l.idProyectoDirigido}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
+                                            <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
+                                        </a>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="tab6" class="tabcontent" style="border: 1px solid black">
+                        <br>
+                        <div class="container">
+                            <table class="display" id="tab_logic6">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">#</th>
+                                    <th style="width: 30%;" class="text-center">Nombre del Evento</th>
+                                    <th style="width: 5%;" class="text-center">Fecha de Inicio</th>
+                                    <th style="width: 10%;" class="text-center">Detalles</th>
+                                    <th style="width: 10%;" class="text-center">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="l, iterStat : ${listaEventos}" th:id="'fila-' + ${l.idEvento}">
+                                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                                    <td th:text="${l.nombreEvento}"></td>
+                                    <td th:text="${l.fechaInicio}" class="text-center"></td>
+                                    <td th:text="${l.descripcion}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/usuarios/admin/detalleEvento/{idEvento}/{idUsuario}(idEvento=${l.idEvento}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
+                                            <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tab7" class="tabcontent" style="border: 1px solid black">
+                        <br>
+                        <div class="container">
+                            <table class="display" id="tab_logic7">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">#</th>
+                                    <th style="width: 30%;" class="text-center">Título de la Ponencia</th>
+                                    <th style="width: 5%;" class="text-center">Fecha de Ponencia</th>
+                                    <th style="width: 10%;" class="text-center">Ámbito</th>
+                                    <th style="width: 10%;" class="text-center">Institución</th>
+                                    <th style="width: 10%;" class="text-center">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="l, iterStat : ${listaPonencias}" th:id="'fila-' + ${l.idPonencia}">
+                                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                                    <td th:text="${l.titulo}"></td>
+                                    <td th:text="${l.mes} + ', ' + ${l.anio} "  class="text-center"></td>
+                                    <td th:text="${l.ambito}"></td>
+                                    <td th:text="${l.institucion}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/usuarios/admin/detallePonencia/{idPonencia}/{idUsuario}(idPonencia=${l.idPonencia}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
+                                            <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tab8" class="tabcontent" style="border: 1px solid black">
+                        <br>
+                        <div class="container">
+                            <table class="display" id="tab_logic8">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;" class="text-center">#</th>
+                                    <th style="width: 30%;" class="text-center">Título</th>
+                                    <th style="width: 5%;" class="text-center">Año</th>
+                                    <th style="width: 10%;" class="text-center">Idioma</th>
+                                    <th style="width: 10%;" class="text-center">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="l, iterStat : ${listaDemasTrabajos}" th:id="'fila-' + ${l.idDemasTrabajo}">
+                                    <td th:text="${iterStat.index + 1}" class="text-center"></td>
+                                    <td th:text="${l.nombreProducto}"></td>
+                                    <td th:text="${l.anio} "  class="text-center"></td>
+                                    <td th:text="${l.idioma}"></td>
+                                    <td class="text-center">
+                                        <a th:href="@{/usuarios/admin/detalleDemasTrabajo/{idDemasTrabajo}/{idUsuario}(idDemasTrabajo=${l.idDemasTrabajo}, idUsuario=${usuarioConsultado.idusuario})}" class="links">
+                                            <img title="Ver Detalles" src="/img/ver.png" alt="Ver Detalles">
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
